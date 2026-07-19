@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+    display: flex;
+    position: fixed; /* Фиксирует элемент на экране */
+    top: 0;          /* Прижимает к самому верху */
+    left: 0;         /* Прижимает к левому краю */
+    z-index: 1000;   /* Показывает шапку поверх остального контента  ??????????????*/
+    width: 100%;
+    height: 8vh;
+    background-color: rgba(128, 128, 128, 0.6);
+}
+
+.menu-links {
+    display: flex;        /* Включает режим флексбокса */
+    flex-direction: row;  /* Выстраивает элементы в ряд (это значение по умолчанию) */
+  
+    position: absolute;
+    font-size: 24px; 
+}
