@@ -1,0 +1,766 @@
+/*==================================================
+                    RESET
+==================================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:"Montserrat",sans-serif;
+
+    background:#ffffff;
+
+    overflow-x:hidden;
+
+    color:#18212D;
+
+}
+
+/*==================================================
+                    HERO
+==================================================*/
+
+.hero{
+
+    position:relative;
+
+    width:100%;
+
+    min-height:980px;
+
+    padding-bottom:220px;
+
+    overflow:hidden;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+
+    radial-gradient(circle at center,
+
+    #ffffff 0%,
+
+    #f7fbf8 60%,
+
+    #eef8f2 100%);
+
+}
+
+/*==================================================
+                GRID
+==================================================*/
+
+.grid{
+
+    position:absolute;
+
+    inset:0;
+
+    background-image:
+
+    linear-gradient(rgba(39,180,71,.05) 1px,transparent 1px),
+
+    linear-gradient(90deg,rgba(39,180,71,.05) 1px,transparent 1px);
+
+    background-size:42px 42px;
+
+    z-index:1;
+
+}
+
+/*==================================================
+            CENTER GLOW
+==================================================*/
+
+.centerGlow{
+
+    position:absolute;
+
+    width:820px;
+
+    height:820px;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(circle,
+
+    rgba(60,200,90,.12),
+
+    rgba(60,200,90,.04),
+
+    transparent 72%);
+
+    left:50%;
+
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    z-index:2;
+
+}
+
+/*==================================================
+                SVG
+==================================================*/
+
+.heroSvg{
+
+    position:absolute;
+
+    width:1500px;
+
+    left:50%;
+
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    z-index:5;
+
+    pointer-events:none;
+
+}
+
+/*==================================================
+                PLANET
+==================================================*/
+
+.earth{
+
+    position:absolute;
+
+    width: 580px;
+
+    left:50%;
+
+    top:49%;
+
+    transform:translate(-50%,-50%);
+
+    z-index:30;
+
+    filter:
+
+        drop-shadow(0 0 35px rgba(20,120,60,.35))
+
+        drop-shadow(0 0 90px rgba(20,120,60,.20));
+
+    animation:planetFloat 8s ease-in-out infinite;
+
+}
+
+/*==================================================
+                LOGO
+==================================================*/
+
+/*=============================
+        LOGO TOP
+=============================*/
+
+.logoTop{
+
+    position:absolute;
+
+    left:150px;
+    top:120px;
+
+    display:flex;
+    align-items:center;
+
+    gap:0;
+
+    z-index:100;
+}
+
+.logoK,
+.logoMP{
+
+    font-size:120px;
+    font-weight:900;
+
+    color:#18212D;
+
+    letter-spacing:-10px;
+
+    line-height:.9;
+    text-shadow:
+        0 6px 18px rgba(0,0,0,.08);
+
+}
+
+.logoCircleTop{
+
+    width:86px;
+    height:86px;
+
+    border:9px solid #38C84A;
+
+    border-radius:50%;
+
+    margin:0 -12px;
+
+    transform:translateY(3px);
+
+    box-shadow:
+        0 0 18px rgba(56,200,74,.25);
+
+}
+
+.logoCircleTop::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:-22px;
+
+    transform:translateX(-50%);
+
+    width:8px;
+
+    height:122px;
+
+    background:#38C84A;
+
+    border-radius:20px;
+
+}
+.logoCircleO::before{
+
+    display:none;
+
+}
+
+/*=============================
+        LOGO BOTTOM
+=============================*/
+
+.logoBottom{
+
+    position:absolute;
+
+    right:150px;
+    bottom:170px;
+
+    display:flex;
+    align-items:center;
+
+    gap:0;
+
+    z-index:100;
+}
+
+.logoCircleBottom{
+
+    width:112px;
+    height:112px;
+
+    border:12px solid #38C84A;
+
+    box-shadow:
+        0 0 18px rgba(56,200,74,.25);
+
+}
+
+.logoCircleBottom::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:-28px;
+
+    transform:translateX(-50%);
+
+    width:10px;
+
+    height:165px;
+
+    background:#39c84b;
+
+    border-radius:20px;
+
+}
+
+.logoTextRight{
+
+    margin-left:-12px;
+
+    font-size:120px;
+    font-weight:900;
+
+    letter-spacing:-10px;
+
+    line-height:.9;
+
+    color:#18212D;
+    text-shadow:
+        0 6px 18px rgba(0,0,0,.08);
+
+}
+.logoBottom{
+
+    position:absolute;
+
+    right:150px;
+    bottom:170px;
+
+    display:flex;
+    align-items:center;
+
+    z-index:100;
+
+}
+
+/* ВСТАВИТЬ СЮДА ↓↓↓ */
+
+.logoDark{
+
+    font-family:"Montserrat",sans-serif;
+
+    font-size:118px;
+
+    font-weight:900;
+
+    color:#18212D;
+
+    letter-spacing:-10px;
+
+    line-height:1;
+
+    text-shadow:
+        0 6px 18px rgba(0,0,0,.12);
+
+}
+
+.logoO{
+
+    font-family:"Montserrat",sans-serif;
+
+    font-size:118px;
+
+    font-weight:900;
+
+    color:#38C84A;
+
+    letter-spacing:-10px;
+
+    line-height:1;
+
+    margin:0 -2px;
+
+    text-shadow:
+        0 0 6px rgba(56,200,74,.9),
+        0 0 14px rgba(56,200,74,.8),
+        0 0 28px rgba(56,200,74,.55),
+        0 0 45px rgba(56,200,74,.35);
+
+    animation:greenGlow 3s ease-in-out infinite;
+
+}
+
+@keyframes greenGlow{
+
+    0%{
+        text-shadow:
+            0 0 6px rgba(56,200,74,.8),
+            0 0 16px rgba(56,200,74,.6),
+            0 0 28px rgba(56,200,74,.35);
+    }
+
+    50%{
+        text-shadow:
+            0 0 10px rgba(56,200,74,1),
+            0 0 24px rgba(56,200,74,.95),
+            0 0 45px rgba(56,200,74,.75),
+            0 0 80px rgba(56,200,74,.45);
+    }
+
+    100%{
+        text-shadow:
+            0 0 6px rgba(56,200,74,.8),
+            0 0 16px rgba(56,200,74,.6),
+            0 0 28px rgba(56,200,74,.35);
+    }
+
+}
+
+/*==================================================
+                LABELS
+==================================================*/
+
+.label{
+
+    position:absolute;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    font-weight:700;
+
+    color:#18212D;
+
+    z-index:60;
+
+}
+
+.icon{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:16px;
+
+    background:#EAF9EE;
+
+    box-shadow:
+
+    0 10px 20px rgba(39,180,71,.08);
+
+}
+
+.top{
+
+    top:95px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+}
+
+.left{
+
+    left:120px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+}
+
+.right{
+
+    right:120px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+}
+
+.bottom{
+
+    left:50%;
+
+    bottom:135px;
+
+    transform:translateX(-50%);
+
+}
+
+/*==================================================
+                    CARDS
+==================================================*/
+
+.cards{
+
+    width:1450px;
+
+    max-width:92%;
+
+    margin:-90px auto 120px;
+
+    display:grid;
+
+    grid-template-columns:repeat(5,1fr);
+
+    gap:24px;
+
+    position:relative;
+
+    z-index:100;
+
+}
+
+.card{
+
+    background:rgba(255,255,255,.96);
+
+    backdrop-filter:blur(14px);
+
+    border-radius:26px;
+
+    padding:30px;
+
+    box-shadow:
+
+        0 15px 40px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+
+        0 25px 55px rgba(0,0,0,.12);
+
+}
+
+.card h2{
+
+    font-size:24px;
+
+    margin-bottom:12px;
+
+    color:#18212D;
+
+}
+
+.card p{
+
+    font-size:15px;
+
+    line-height:1.7;
+
+    color:#6D7583;
+
+}
+
+/*==================================================
+                ANIMATIONS
+==================================================*/
+
+@keyframes planetFloat{
+
+    0%{
+
+        transform:translate(-50%,-50%);
+
+    }
+
+    50%{
+
+        transform:translate(-50%,calc(-50% - 12px));
+
+    }
+
+    100%{
+
+        transform:translate(-50%,-50%);
+
+    }
+
+}
+
+/*==================================================
+                RESPONSIVE
+==================================================*/
+
+@media(max-width:1500px){
+
+    .heroSvg{
+
+        width:1250px;
+
+    }
+
+    .logo{
+
+        font-size:100px;
+
+    }
+
+}
+
+@media(max-width:1200px){
+
+    .cards{
+
+        grid-template-columns:repeat(2,1fr);
+
+        width:95%;
+
+    }
+
+    .hero{
+
+        height:auto;
+
+        min-height:100vh;
+
+        padding-bottom:380px;
+
+    }
+
+    .logo{
+
+        font-size:72px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .heroSvg{
+
+        width:900px;
+
+    }
+
+    .earth{
+
+        width:260px;
+
+    }
+
+    .logo{
+
+        position:static;
+
+        transform:none;
+
+        text-align:center;
+
+        width:100%;
+
+        font-size:54px;
+
+    }
+
+    .logoLeft{
+
+        top:60px;
+
+        left:0;
+
+    }
+
+    .logoRight{
+
+        top:120px;
+
+        right:0;
+
+    }
+
+    .label{
+
+        display:none;
+
+    }
+
+    .cards{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+.aboutSection{
+
+    min-height:1200px;
+
+    background:#ffffff;
+
+}
+/*==================================================
+                LANDSCAPE
+==================================================*/
+
+.heroLandscape{
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    height:260px;
+
+    z-index:10;
+
+    background:
+
+    linear-gradient(
+        to top,
+        #6ba84d 0%,
+        #82bf59 18%,
+        #9fd26f 40%,
+        rgba(159,210,111,.25) 78%,
+        transparent 100%
+    );
+
+    clip-path:polygon(
+        0 65%,
+        8% 61%,
+        18% 67%,
+        31% 60%,
+        43% 66%,
+        55% 58%,
+        67% 63%,
+        79% 57%,
+        91% 65%,
+        100% 60%,
+        100% 100%,
+        0 100%
+    );
+
+    filter:blur(2px);
+
+}
+/*==================================================
+                TRACTOR
+==================================================*/
+
+.tractor{
+
+    position:absolute;
+
+    right:120px;
+
+    bottom:80px;
+
+    width:720px;
+
+    z-index:25;
+
+    user-select:none;
+
+    pointer-events:none;
+
+    filter:
+
+        drop-shadow(0 25px 35px rgba(0,0,0,.22));
+
+}
