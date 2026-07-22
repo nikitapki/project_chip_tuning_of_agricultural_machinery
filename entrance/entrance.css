@@ -164,8 +164,8 @@ body{
 
     position:absolute;
 
-    left:110px;
-    top:100px;
+    left:90px;
+    top:85px;
 
     display:flex;
     align-items:center;
@@ -173,6 +173,33 @@ body{
     gap:0;
 
     z-index:30;
+}
+.logoTop::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+
+    height:260px;
+
+    left:-40px;
+
+    top:-70px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(circle,
+
+        rgba(57,216,74,.10),
+
+        transparent 70%);
+
+    z-index:-1;
+
 }
 .logoTop::after{
 
@@ -267,8 +294,8 @@ body{
 
     position:absolute;
 
-    right:110px;
-    bottom:110px;
+    right:90px;
+    bottom:120px;
 
     display:flex;
     align-items:center;
@@ -276,6 +303,33 @@ body{
     gap:0;
 
     z-index:40;
+}
+.logoBottom::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+
+    height:260px;
+
+    right:-40px;
+
+    top:-70px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(circle,
+
+        rgba(57,216,74,.10),
+
+        transparent 70%);
+
+    z-index:-1;
+
 }
 .logoBottom::after{
 
@@ -371,21 +425,21 @@ body{
 
     font-family:"Manrope",sans-serif;
 
-    font-size:98px;
+    font-size:100px;
 
     font-weight:800;
 
-    color:#18212D;
-
     letter-spacing:-5px;
+
+    color:#18212D;
 
     line-height:1;
 
     text-shadow:
 
-        0 2px 4px rgba(255,255,255,.25),
+        0 1px 0 rgba(255,255,255,.8),
 
-        0 14px 28px rgba(0,0,0,.12);
+        0 10px 25px rgba(0,0,0,.12);
 
 }
 
@@ -393,27 +447,32 @@ body{
 
     font-family:"Manrope",sans-serif;
 
-    font-size:98px;
+    font-size:100px;
 
-    font-weight:800;
-
-    color:#37D54A;
+    font-weight:900;
 
     letter-spacing:-5px;
 
+    color:#39D84A;
+
     line-height:1;
 
-    margin:0 -2px;
+    position:relative;
+
+    margin:0 -4px;
 
     text-shadow:
 
-        0 0 10px rgba(55,213,74,.45),
+        0 0 8px rgba(57,216,74,.45),
 
-        0 0 24px rgba(55,213,74,.25);
+        0 0 20px rgba(57,216,74,.35),
 
-    animation:greenGlow 3s ease-in-out infinite;
+        0 0 40px rgba(57,216,74,.20);
+
+    animation:logoPulse 5s ease-in-out infinite;
 
 }
+
 
 @keyframes greenGlow{
 
@@ -782,6 +841,47 @@ body{
     .logo{
 
         font-size:72px;
+
+    }
+
+}
+@keyframes logoPulse{
+
+    0%{
+
+        transform:scale(1);
+
+        text-shadow:
+
+            0 0 8px rgba(57,216,74,.35),
+
+            0 0 18px rgba(57,216,74,.25);
+
+    }
+
+    50%{
+
+        transform:scale(1.03);
+
+        text-shadow:
+
+            0 0 14px rgba(57,216,74,.6),
+
+            0 0 30px rgba(57,216,74,.45),
+
+            0 0 60px rgba(57,216,74,.25);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+        text-shadow:
+
+            0 0 8px rgba(57,216,74,.35),
+
+            0 0 18px rgba(57,216,74,.25);
 
     }
 
