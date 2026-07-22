@@ -36,8 +36,6 @@ body{
 
     min-height:980px;
 
-    padding-bottom:220px;
-
     overflow:hidden;
 
     display:flex;
@@ -47,36 +45,26 @@ body{
     align-items:center;
 
     background:
+        linear-gradient(
+            to top,
+            rgba(255,255,255,.96) 48%,
+            rgba(255,255,255,.78) 58%,
+            rgba(255,255,255,.30) 72%,
+            rgba(255,255,255,0) 100%
+        ),
+        url("../images/hero/hero-bg.png");
 
-    radial-gradient(circle at center,
+    background-size:cover;
 
-    #ffffff 0%,
+    background-position:center bottom;
 
-    #f7fbf8 60%,
-
-    #eef8f2 100%);
+    background-repeat:no-repeat;
 
 }
 
-/*==================================================
-                GRID
-==================================================*/
-
 .grid{
 
-    position:absolute;
-
-    inset:0;
-
-    background-image:
-
-    linear-gradient(rgba(39,180,71,.05) 1px,transparent 1px),
-
-    linear-gradient(90deg,rgba(39,180,71,.05) 1px,transparent 1px);
-
-    background-size:42px 42px;
-
-    z-index:1;
+    display:none;
 
 }
 
@@ -110,7 +98,7 @@ body{
 
     transform:translate(-50%,-50%);
 
-    z-index:2;
+    z-index:5;
 
 }
 
@@ -130,7 +118,7 @@ body{
 
     transform:translate(-50%,-50%);
 
-    z-index:5;
+    z-index:10;
 
     pointer-events:none;
 
@@ -144,7 +132,7 @@ body{
 
     position:absolute;
 
-    width: 580px;
+    width: 610px;
 
     left:50%;
 
@@ -152,7 +140,7 @@ body{
 
     transform:translate(-50%,-50%);
 
-    z-index:30;
+    z-index:20;
 
     filter:
 
@@ -184,7 +172,7 @@ body{
 
     gap:0;
 
-    z-index:100;
+    z-index:30;
 }
 
 .logoK,
@@ -264,7 +252,7 @@ body{
 
     gap:0;
 
-    z-index:100;
+    z-index:40;
 }
 
 .logoCircleBottom{
@@ -337,7 +325,7 @@ body{
 
     font-family:"Montserrat",sans-serif;
 
-    font-size:118px;
+    font-size:110px;
 
     font-weight:900;
 
@@ -404,83 +392,152 @@ body{
 
 }
 
-/*==================================================
-                LABELS
-==================================================*/
+/*======================================
+        INFO BLOCKS
+======================================*/
 
-.label{
+.info{
 
     position:absolute;
 
-    display:flex;
+    z-index:40;
 
-    align-items:center;
+    transition:.35s;
 
-    gap:14px;
+}
 
-    font-weight:700;
+
+.infoText h3{
+
+    font-size:30px;
+
+    font-weight:800;
 
     color:#18212D;
 
-    z-index:60;
+    margin-bottom:10px;
 
 }
 
-.icon{
+.infoText p{
 
-    width:48px;
+    font-size:18px;
 
-    height:48px;
+    line-height:1.6;
 
-    border-radius:16px;
+    color:#68717C;
 
-    background:#EAF9EE;
+}
+
+.infoDot{
+
+    width:16px;
+
+    height:16px;
+
+    border-radius:50%;
+
+    background:#38C84A;
 
     box-shadow:
-
-    0 10px 20px rgba(39,180,71,.08);
+        0 0 10px #38C84A,
+        0 0 30px rgba(56,200,74,.55);
 
 }
 
-.top{
 
-    top:95px;
+.infoTop{
 
-    left:50%;
+     top:115px;
+
+    left:54%;
 
     transform:translateX(-50%);
 
 }
 
-.left{
+.infoTop::before{
 
-    left:120px;
+    width:2px;
 
-    top:50%;
+    height:110px;
 
-    transform:translateY(-50%);
+    left:-26px;
+
+    top:16px;
 
 }
 
-.right{
+.infoTop .infoDot{
+
+    left:-36px;
+
+    top:10px;
+
+}
+
+
+.infoLeft{
+
+    left:130px;
+
+    top:500px;
+
+}
+
+
+
+.infoLeft .infoDot{
+
+    right:-35px;
+
+    top:18px;
+
+}
+
+
+.infoRight{
 
     right:120px;
 
-    top:50%;
+    top:500px;
 
-    transform:translateY(-50%);
+    text-align:right;
 
 }
 
-.bottom{
 
-    left:50%;
+
+.infoRight .infoDot{
+
+    left:-35px;
+
+    top:18px;
+
+}
+
+
+.infoBottom{
+
+    left:54%;
 
     bottom:135px;
 
     transform:translateX(-50%);
 
 }
+
+
+
+.infoBottom .infoDot{
+
+    left:-36px;
+
+    top:-10px;
+
+}
+
+
 
 /*==================================================
                     CARDS
@@ -696,71 +753,75 @@ body{
                 LANDSCAPE
 ==================================================*/
 
-.heroLandscape{
 
-    position:absolute;
-
-    left:0;
-
-    right:0;
-
-    bottom:0;
-
-    height:260px;
-
-    z-index:10;
-
-    background:
-
-    linear-gradient(
-        to top,
-        #6ba84d 0%,
-        #82bf59 18%,
-        #9fd26f 40%,
-        rgba(159,210,111,.25) 78%,
-        transparent 100%
-    );
-
-    clip-path:polygon(
-        0 65%,
-        8% 61%,
-        18% 67%,
-        31% 60%,
-        43% 66%,
-        55% 58%,
-        67% 63%,
-        79% 57%,
-        91% 65%,
-        100% 60%,
-        100% 100%,
-        0 100%
-    );
-
-    filter:blur(2px);
-
-}
 /*==================================================
                 TRACTOR
 ==================================================*/
 
-.tractor{
+.heroPhoto{
 
     position:absolute;
 
-    right:120px;
+    left:0;
+    right:0;
+    bottom:0;
 
-    bottom:80px;
+    width:100%;
+    height:340px;
 
-    width:720px;
+    z-index:3;
 
-    z-index:25;
+    background:
+    linear-gradient(
+        to top,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,.10) 25%,
+        rgba(255,255,255,.35) 50%,
+        rgba(255,255,255,.70) 72%,
+        rgba(255,255,255,.92) 88%,
+        #fff 100%
+    ),
+    url("../images/hero/hero-bg.png");
 
-    user-select:none;
+    background-size:115%;
+
+    background-position:18% bottom;
+
+    background-repeat:no-repeat;
+
+    filter:
+        saturate(1.08)
+        contrast(1.03);
+
+}
+.connections{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
 
     pointer-events:none;
 
-    filter:
+    z-index:18;
 
-        drop-shadow(0 25px 35px rgba(0,0,0,.22));
+}
+
+.connect{
+
+    fill:none;
+
+    stroke:#42d85b;
+
+    stroke-width:2.5;
+
+    stroke-linecap:round;
+
+    opacity:.45;
+
+    filter:drop-shadow(0 0 8px rgba(56,200,74,.45));
 
 }
