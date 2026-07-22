@@ -164,8 +164,8 @@ body{
 
     position:absolute;
 
-    left:150px;
-    top:120px;
+    left:110px;
+    top:100px;
 
     display:flex;
     align-items:center;
@@ -173,6 +173,29 @@ body{
     gap:0;
 
     z-index:30;
+}
+.logoTop::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-18px;
+
+    width:180px;
+
+    height:3px;
+
+    border-radius:10px;
+
+    background:linear-gradient(
+        90deg,
+        #39d94b,
+        transparent
+    );
+
 }
 
 .logoK,
@@ -244,8 +267,8 @@ body{
 
     position:absolute;
 
-    right:150px;
-    bottom:170px;
+    right:110px;
+    bottom:110px;
 
     display:flex;
     align-items:center;
@@ -253,6 +276,29 @@ body{
     gap:0;
 
     z-index:40;
+}
+.logoBottom::after{
+
+    content:"";
+
+    position:absolute;
+
+    right:0;
+
+    bottom:-18px;
+
+    width:180px;
+
+    height:3px;
+
+    border-radius:10px;
+
+    background:linear-gradient(
+        270deg,
+        #39d94b,
+        transparent
+    );
+
 }
 
 .logoCircleBottom{
@@ -323,44 +369,47 @@ body{
 
 .logoDark{
 
-    font-family:"Montserrat",sans-serif;
+    font-family:"Manrope",sans-serif;
 
-    font-size:110px;
+    font-size:98px;
 
-    font-weight:900;
+    font-weight:800;
 
     color:#18212D;
 
-    letter-spacing:-10px;
+    letter-spacing:-5px;
 
     line-height:1;
 
     text-shadow:
-        0 6px 18px rgba(0,0,0,.12);
+
+        0 2px 4px rgba(255,255,255,.25),
+
+        0 14px 28px rgba(0,0,0,.12);
 
 }
 
 .logoO{
 
-    font-family:"Montserrat",sans-serif;
+    font-family:"Manrope",sans-serif;
 
-    font-size:118px;
+    font-size:98px;
 
-    font-weight:900;
+    font-weight:800;
 
-    color:#38C84A;
+    color:#37D54A;
 
-    letter-spacing:-10px;
+    letter-spacing:-5px;
 
     line-height:1;
 
     margin:0 -2px;
 
     text-shadow:
-        0 0 6px rgba(56,200,74,.9),
-        0 0 14px rgba(56,200,74,.8),
-        0 0 28px rgba(56,200,74,.55),
-        0 0 45px rgba(56,200,74,.35);
+
+        0 0 10px rgba(55,213,74,.45),
+
+        0 0 24px rgba(55,213,74,.25);
 
     animation:greenGlow 3s ease-in-out infinite;
 
@@ -545,49 +594,98 @@ body{
 
 .cards{
 
-    width:1450px;
+    width:1500px;
+    max-width:94%;
 
-    max-width:92%;
-
-    margin:-90px auto 120px;
+    margin:-120px auto 80px;
 
     display:grid;
-
     grid-template-columns:repeat(5,1fr);
-
-    gap:24px;
+    gap:28px;
 
     position:relative;
-
-    z-index:100;
+    z-index:300;
 
 }
 
 .card{
 
-    background:rgba(255,255,255,.96);
+    position:relative;
 
-    backdrop-filter:blur(14px);
+    padding:42px 34px;
 
-    border-radius:26px;
+    min-height:280px;
 
-    padding:30px;
+    background:rgba(255,255,255,.88);
+
+    backdrop-filter:blur(24px);
+
+    border-radius:28px;
+
+    border:1px solid rgba(255,255,255,.6);
 
     box-shadow:
 
-        0 15px 40px rgba(0,0,0,.08);
+        0 25px 60px rgba(15,35,20,.12),
+
+        inset 0 1px rgba(255,255,255,.7);
 
     transition:.35s;
 
-}
+    overflow:hidden;
 
+}
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:100%;
+    height:5px;
+
+    background:linear-gradient(
+        90deg,
+        #32d74b,
+        #57ff7d
+    );
+
+}
+.card::after{
+
+    content:"";
+
+    position:absolute;
+
+    right:-70px;
+
+    top:-70px;
+
+    width:170px;
+
+    height:170px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(circle,
+
+        rgba(56,200,74,.18),
+
+        transparent 70%);
+
+}
 .card:hover{
 
-    transform:translateY(-8px);
+    transform:translateY(-14px);
 
     box-shadow:
 
-        0 25px 55px rgba(0,0,0,.12);
+        0 40px 90px rgba(20,40,25,.18);
 
 }
 
@@ -595,19 +693,23 @@ body{
 
     font-size:24px;
 
-    margin-bottom:12px;
+    line-height:1.2;
 
-    color:#18212D;
+    margin-bottom:22px;
+
+    font-weight:800;
+
+    color:#1B2432;
 
 }
 
 .card p{
 
-    font-size:15px;
+    font-size:18px;
 
-    line-height:1.7;
+    line-height:1.8;
 
-    color:#6D7583;
+    color:#707B8D;
 
 }
 
@@ -744,7 +846,7 @@ body{
 }
 .aboutSection{
 
-    min-height:1200px;
+    min-height:10px;
 
     background:#ffffff;
 
@@ -823,5 +925,32 @@ body{
     opacity:.45;
 
     filter:drop-shadow(0 0 8px rgba(56,200,74,.45));
+
+}
+.cardIcon{
+
+    width:72px;
+
+    height:72px;
+
+    margin-bottom:28px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:34px;
+
+    background:#EFFBF1;
+
+    color:#31d455;
+
+    box-shadow:
+
+        0 10px 25px rgba(56,200,74,.18);
 
 }
