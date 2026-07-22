@@ -1,0 +1,25 @@
+footer {
+    border-top: 1px solid #eee;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    color: #777;
+    font-size: 14px;
+}
+
+footer nav {
+    display: flex;
+    gap: 20px;
+}
+
+footer nav a {
+    color: #555;
+    text-decoration: none;
+}
+
+footer nav a:hover {
+    color: #111;
+}
