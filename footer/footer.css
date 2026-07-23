@@ -8,6 +8,8 @@ footer {
     gap: 16px;
     color: #777;
     font-size: 14px;
+    background: linear-gradient(90deg, rgba(89, 132, 162, 0.85), rgba(50, 99, 133, 0.85));
+    backdrop-filter: blur(1px);
 }
 
 footer nav {

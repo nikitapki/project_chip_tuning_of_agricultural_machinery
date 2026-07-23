@@ -10,7 +10,7 @@ header {
     gap: 24px;
     height: 76px;
     padding: 0 32px;
-    background: linear-gradient(90deg, rgba(26,36,64,0.85), rgba(74,122,74,0.85));
+    background: linear-gradient(90deg, rgba(89, 132, 162, 0.85), rgba(50, 99, 133, 0.85));
     backdrop-filter: blur(1px);
     -webkit-backdrop-filter: blur(1px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -73,29 +73,6 @@ header {
     flex-shrink: 0;
 }
 
-.icon-btn {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    background: transparent;
-    color: #111;
-    cursor: pointer;
-    transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.icon-btn:hover {
-    background: rgba(0, 0, 0, 0.04);
-    border-color: #ccc;
-}
-
-.icon-btn svg {
-    width: 18px;
-    height: 18px;
-}
 
 .btn-primary {
     padding: 10px 22px;
@@ -204,4 +181,53 @@ header {
     .mobile-menu {
         display: none;
     }
+}
+
+
+
+
+.phone-block {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+    margin-right: 60px;
+}
+
+.phone-link {
+    color: #eee;
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.phone-link:hover {
+    text-decoration: underline;
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #eee;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.social-icon:hover {
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.social-icon svg {
+    width: 30px;
+    height: 30px;
 }
