@@ -12,8 +12,7 @@ window.addEventListener("load", () => {
             PARALLAX
 =========================================== */
 
-const planet = document.querySelector(".planet");
-const visual = document.querySelector(".hero-visual");
+
 
 if (planet && visual) {
 
@@ -41,49 +40,6 @@ if (planet && visual) {
 
 }
 
-/* ===========================================
-        FLOATING CARDS
-=========================================== */
-
-document.querySelectorAll(".tech-card").forEach((card, index) => {
-
-    card.animate(
-
-        [
-
-            {
-
-                transform: "translateY(0px)"
-
-            },
-
-            {
-
-                transform: "translateY(-12px)"
-
-            },
-
-            {
-
-                transform: "translateY(0px)"
-
-            }
-
-        ],
-
-        {
-
-            duration: 4500 + index * 700,
-
-            iterations: Infinity,
-
-            easing: "ease-in-out"
-
-        }
-
-    );
-
-});
 
 /* ===========================================
         FADE IN ON SCROLL

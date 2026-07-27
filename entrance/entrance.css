@@ -62,12 +62,6 @@ body{
 
 }
 
-.grid{
-
-    display:none;
-
-}
-
 /*==================================================
             CENTER GLOW
 ==================================================*/
@@ -164,8 +158,8 @@ body{
 
     position:absolute;
 
-    left:90px;
-    top:85px;
+    left:340px;
+    top:270px;
 
     display:flex;
     align-items:center;
@@ -207,103 +201,29 @@ body{
 
     position:absolute;
 
-    left:0;
+    left:22px;
 
     bottom:-18px;
 
-    width:180px;
+    width:170px;
 
     height:3px;
 
-    border-radius:10px;
+    background:#39D84A;
 
-    background:linear-gradient(
-        90deg,
-        #39d94b,
-        transparent
-    );
+    border-radius:30px;
 
 }
 
-.logoK,
-.logoMP{
 
-    font-size:120px;
-    font-weight:900;
 
-    color:#18212D;
 
-    letter-spacing:-10px;
-
-    line-height:.9;
-    text-shadow:
-        0 6px 18px rgba(0,0,0,.08);
-
-}
-
-.logoCircleTop{
-
-    width:86px;
-    height:86px;
-
-    border:9px solid #38C84A;
-
-    border-radius:50%;
-
-    margin:0 -12px;
-
-    transform:translateY(3px);
-
-    box-shadow:
-        0 0 18px rgba(56,200,74,.25);
-
-}
-
-.logoCircleTop::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:50%;
-
-    top:-22px;
-
-    transform:translateX(-50%);
-
-    width:8px;
-
-    height:122px;
-
-    background:#38C84A;
-
-    border-radius:20px;
-
-}
-.logoCircleO::before{
-
-    display:none;
-
-}
 
 /*=============================
         LOGO BOTTOM
 =============================*/
 
-.logoBottom{
 
-    position:absolute;
-
-    right:90px;
-    bottom:120px;
-
-    display:flex;
-    align-items:center;
-
-    gap:0;
-
-    z-index:40;
-}
 .logoBottom::before{
 
     content:"";
@@ -337,80 +257,26 @@ body{
 
     position:absolute;
 
-    right:0;
+    right:22px;
 
     bottom:-18px;
 
-    width:180px;
+    width:170px;
 
     height:3px;
 
-    border-radius:10px;
+    background:#39D84A;
 
-    background:linear-gradient(
-        270deg,
-        #39d94b,
-        transparent
-    );
+    border-radius:30px;
 
 }
 
-.logoCircleBottom{
-
-    width:112px;
-    height:112px;
-
-    border:12px solid #38C84A;
-
-    box-shadow:
-        0 0 18px rgba(56,200,74,.25);
-
-}
-
-.logoCircleBottom::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:50%;
-
-    top:-28px;
-
-    transform:translateX(-50%);
-
-    width:10px;
-
-    height:165px;
-
-    background:#39c84b;
-
-    border-radius:20px;
-
-}
-
-.logoTextRight{
-
-    margin-left:-12px;
-
-    font-size:120px;
-    font-weight:900;
-
-    letter-spacing:-10px;
-
-    line-height:.9;
-
-    color:#18212D;
-    text-shadow:
-        0 6px 18px rgba(0,0,0,.08);
-
-}
 .logoBottom{
 
     position:absolute;
 
-    right:150px;
-    bottom:170px;
+    right: 420px;
+    bottom: 240px;
 
     display:flex;
     align-items:center;
@@ -423,53 +289,41 @@ body{
 
 .logoDark{
 
-    font-family:"Manrope",sans-serif;
+    font-family:"Exo 2",sans-serif;
 
-    font-size:100px;
+    font-size:98px;
 
     font-weight:800;
 
-    letter-spacing:-5px;
+    font-style:italic;
+
+    letter-spacing:-4px;
 
     color:#18212D;
 
     line-height:1;
 
-    text-shadow:
-
-        0 1px 0 rgba(255,255,255,.8),
-
-        0 10px 25px rgba(0,0,0,.12);
-
 }
 
 .logoO{
 
-    font-family:"Manrope",sans-serif;
+    font-family:"Exo 2",sans-serif;
 
-    font-size:100px;
+    font-size:98px;
 
-    font-weight:900;
+    font-weight:800;
 
-    letter-spacing:-5px;
+    font-style:italic;
+
+    letter-spacing:-4px;
 
     color:#39D84A;
 
-    line-height:1;
-
-    position:relative;
-
-    margin:0 -4px;
+    margin:0 -3px;
 
     text-shadow:
-
-        0 0 8px rgba(57,216,74,.45),
-
-        0 0 20px rgba(57,216,74,.35),
-
-        0 0 40px rgba(57,216,74,.20);
-
-    animation:logoPulse 5s ease-in-out infinite;
+        0 0 12px rgba(57,216,74,.45),
+        0 0 28px rgba(57,216,74,.30);
 
 }
 
@@ -671,27 +525,13 @@ body{
 
     position:relative;
 
-    padding:42px 34px;
+    height:280px;
 
-    min-height:280px;
+    overflow:visible;
 
-    background:rgba(255,255,255,.88);
+    transition:.45s;
 
-    backdrop-filter:blur(24px);
-
-    border-radius:28px;
-
-    border:1px solid rgba(255,255,255,.6);
-
-    box-shadow:
-
-        0 25px 60px rgba(15,35,20,.12),
-
-        inset 0 1px rgba(255,255,255,.7);
-
-    transition:.35s;
-
-    overflow:hidden;
+    transform-origin:bottom center;
 
 }
 .card::before{
@@ -810,11 +650,7 @@ body{
 
     }
 
-    .logo{
-
-        font-size:100px;
-
-    }
+    
 
 }
 
@@ -838,11 +674,7 @@ body{
 
     }
 
-    .logo{
-
-        font-size:72px;
-
-    }
+    
 
 }
 @keyframes logoPulse{
@@ -901,19 +733,7 @@ body{
 
     }
 
-    .logo{
-
-        position:static;
-
-        transform:none;
-
-        text-align:center;
-
-        width:100%;
-
-        font-size:54px;
-
-    }
+    
 
     .logoLeft{
 
@@ -1052,5 +872,98 @@ body{
     box-shadow:
 
         0 10px 25px rgba(56,200,74,.18);
+
+}
+.cardContent{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.short{
+
+    transition:.35s;
+
+}
+
+.more{
+
+    opacity:0;
+
+    transform:
+
+        translateY(25px);
+
+    transition:
+
+        opacity .45s,
+
+        transform .45s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-20px) scale(1.06);
+
+    min-height:390px;
+
+}
+
+.card:hover .more{
+
+    opacity:1;
+
+    transform:
+
+        translateY(0);
+
+}
+.cardInner{
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    height:280px;
+
+    background:rgba(255,255,255,.92);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:28px;
+
+    padding:42px 34px;
+
+    transition:.45s;
+
+    box-shadow:
+        0 25px 60px rgba(15,35,20,.12);
+
+    /* Новое */
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    scrollbar-width:none;
+
+}
+.cardInner::-webkit-scrollbar{
+
+    display:none;
+
+}
+.card:hover .cardInner{
+
+    height:590px;
+
+    transform:
+        translateY(-340px)
+        scale(1.05);
 
 }
