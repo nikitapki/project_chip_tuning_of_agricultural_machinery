@@ -130,7 +130,7 @@ GRID
 
     display:grid;
 
-    grid-template-columns:48% 52%;
+    grid-template-columns:45% 55%;
 
     align-items:center;
 
@@ -188,17 +188,15 @@ LEFT
     background:#37C94E;
 
 }
-
 .heroLeft h1{
 
-    font-size:72px;
+    font-size:64px;
 
-    line-height:1.02;
+    line-height:1.05;
 
-    font-weight:900;
+    letter-spacing:-2px;
 
-    letter-spacing:-3px;
-
+    white-space:nowrap;
 }
 
 .heroLeft h1 span{
@@ -406,27 +404,22 @@ SERVICE BLOCK
     position:absolute;
 
     width:720px;
-
     height:720px;
 
-    right:-260px;
+    right:-320px;
+    top:50%;
 
-    top:-120px;
+    transform:translateY(-50%);
 
-    background:
+    background:url("../images/icons/gear-cad.svg") center/contain no-repeat;
 
-        url("../images/icons/gear-cad.svg")
-
-        center/contain
-
-        no-repeat;
-
-    opacity:.10;
-    filter:blur(.2px);
+    opacity:.08;
 
     animation:rotateSlow 220s linear infinite;
 
     pointer-events:none;
+
+    z-index:0;
 
 }
 .service::after{
@@ -439,16 +432,21 @@ SERVICE BLOCK
     height:1100px;
 
     left:-520px;
-    bottom:-900px;
+    top:50%;
+
+    transform:translateY(-50%);
 
     border-radius:50%;
 
-    border:2px solid rgba(55,201,78,.12);
+    border:2px solid rgba(55,201,78,.05);
 
     box-shadow:
-    0 0 0 80px rgba(55,201,78,.025),
-    0 0 0 180px rgba(55,201,78,.018),
-    0 0 0 300px rgba(55,201,78,.012);
+
+        0 0 0 120px rgba(55,201,78,.03),
+
+        0 0 0 260px rgba(55,201,78,.02),
+
+        0 0 0 420px rgba(55,201,78,.015);
 
     pointer-events:none;
 
@@ -461,9 +459,16 @@ SERVICE BLOCK
 }
 .service.reverse::before{
 
-    left:-260px;
+    left:-320px;
 
     right:auto;
+
+}
+.service.reverse::after{
+
+    left:auto;
+
+    right:-520px;
 
 }
 
@@ -827,9 +832,13 @@ RESPONSIVE
 
     .heroLeft h1{
 
-        font-size:46px;
+    font-size:64px;
 
-    }
+    line-height:1.05;
+
+    letter-spacing:-2px;
+
+}
 
     .heroLeft p{
 
@@ -1141,3 +1150,4 @@ BACKGROUND
     }
 
 }
+
