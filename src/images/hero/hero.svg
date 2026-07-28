@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<svg
+xmlns="http://www.w3.org/2000/svg"
+viewBox="0 0 1600 900">
+
+<defs>
+
+<linearGradient id="orbitGradient"
+x1="0%"
+y1="0%"
+x2="100%"
+y2="0%">
+
+<stop offset="0%" stop-color="#102117"/>
+
+<stop offset="20%" stop-color="#1f5d33"/>
+
+<stop offset="40%" stop-color="#2cc54c"/>
+
+<stop offset="55%" stop-color="#6eff89"/>
+
+<stop offset="70%" stop-color="#2bc94b"/>
+
+<stop offset="100%" stop-color="#0e1f16"/>
+
+</linearGradient>
+
+<linearGradient id="thinOrbit"
+
+x1="0%"
+y1="0%"
+x2="100%"
+y2="0%">
+
+<stop offset="0%" stop-color="#74ff95"/>
+
+<stop offset="100%" stop-color="#24c246"/>
+
+</linearGradient>
+
+<filter id="orbitGlow">
+
+<feGaussianBlur
+stdDeviation="8"
+result="blur"/>
+
+<feMerge>
+
+<feMergeNode in="blur"/>
+
+<feMergeNode in="SourceGraphic"/>
+
+</feMerge>
+
+</filter>
+
+</defs>
+
+<g transform="rotate(-18 800 450)">
+
+    <!-- Основная внешняя орбита -->
+
+    <ellipse
+        cx="800"
+        cy="450"
+        rx="470"
+        ry="145"
+        fill="none"
+        stroke="url(#orbitGradient)"
+        stroke-width="24"
+        stroke-linecap="round"
+        filter="url(#orbitGlow)"/>
+
+    <!-- Светлая тонкая орбита -->
+
+    <ellipse
+        cx="800"
+        cy="450"
+        rx="505"
+        ry="170"
+        fill="none"
+        stroke="#6dff90"
+        stroke-width="2"
+        opacity=".55"/>
+
+    <!-- Самая внешняя -->
+
+    <ellipse
+        cx="800"
+        cy="450"
+        rx="540"
+        ry="195"
+        fill="none"
+        stroke="#49d868"
+        stroke-width="1.2"
+        opacity=".22"/>
+
+    <!-- Внутренняя -->
+
+    <ellipse
+        cx="800"
+        cy="450"
+        rx="390"
+        ry="115"
+        fill="none"
+        stroke="url(#thinOrbit)"
+        stroke-width="4"
+        opacity=".65"/>
+
+    <!-- Центральная -->
+
+    <ellipse
+        cx="800"
+        cy="450"
+        rx="300"
+        ry="82"
+        fill="none"
+        stroke="#84ff9d"
+        stroke-width="2"
+        opacity=".45"/>
+    
+
+</g>
+
+
+</svg>

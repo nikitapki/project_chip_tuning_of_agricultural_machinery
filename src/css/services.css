@@ -1,0 +1,1153 @@
+/* ==================================================
+
+RESET
+
+==================================================*/
+
+/* *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:"Montserrat",sans-serif;
+
+    background:#ffffff;
+
+    color:#17212B;
+
+    overflow-x:hidden;
+
+    position:relative;
+
+} */
+
+
+/*==================================================
+
+CONTAINER
+
+==================================================*/
+
+.heroContainer,
+.services{
+
+    width:1500px;
+
+    max-width:92%;
+
+    margin:auto;
+
+}
+
+
+/*==================================================
+
+HERO
+
+==================================================*/
+
+.hero{
+
+    position:relative;
+
+    min-height:1020px;
+
+    display:flex;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    background:
+
+    radial-gradient(circle at 80% 20%,
+    rgba(54,205,77,.12),
+    transparent 35%),
+
+    radial-gradient(circle at 10% 70%,
+    rgba(54,205,77,.05),
+    transparent 45%),ч
+
+}
+
+
+
+/*==================================================
+
+GLOW
+
+==================================================*/
+
+.heroGlow{
+
+    position:absolute;
+
+    width:650px;
+
+    height:650px;
+
+    left:-20px;
+
+    top:20px;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(circle,
+
+    rgba(55,201,78,.25),
+
+    rgba(55,201,78,.08),
+
+    transparent 72%);
+
+}
+
+
+/*==================================================
+
+GRID
+
+==================================================*/
+
+.heroContainer{
+
+    width:1500px;
+
+    max-width:92%;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:45% 55%;
+
+    align-items:center;
+
+    gap:80px;
+
+}
+
+
+/*==================================================
+
+LEFT
+
+==================================================*/
+
+.heroLeft{
+    z-index:20;
+
+    padding-top:40px;
+
+}
+
+.heroLabel{
+
+    display:inline-block;
+
+    position:relative;
+
+    padding-left:80px;
+
+    color:#37C94E;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    letter-spacing:7px;
+
+    margin-bottom:35px;
+
+}
+.heroLabel::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:50%;
+
+    width:60px;
+
+    height:2px;
+
+    background:#37C94E;
+
+}
+.heroLeft h1{
+
+    font-size:64px;
+
+    line-height:1.05;
+
+    letter-spacing:-2px;
+
+    white-space:nowrap;
+}
+
+.heroLeft h1 span{
+
+    color:#37C94E;
+
+}
+
+.heroLeft p{
+
+    width:620px;
+
+    max-width:100%;
+
+    margin-top:42px;
+
+    font-size:22px;
+
+    line-height:1.8;
+
+    color:#6F7682;
+
+}
+
+
+
+/*==================================================
+
+RIGHT
+
+==================================================*/
+
+
+.heroRight{
+
+    position:relative;
+
+    height:650px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+.heroField{
+
+    position:absolute;
+
+    left:-170px;
+    bottom:0;
+
+    width:980px;
+    height:430px;
+
+    background:url("../images/hero/field.jpg")
+        center bottom/cover no-repeat;
+
+    border-radius:0 240px 0 0;
+
+    overflow:visible;
+
+    z-index:2;
+
+}
+
+
+
+/*==================================================
+
+TRACTOR
+
+==================================================*/
+
+.heroImage{
+
+    position:absolute;
+
+    width:720px;
+
+    left:130px;
+
+    bottom:40px;
+
+    animation:tractorFloat 5s ease-in-out infinite;
+
+    z-index:8;
+
+    transition:.45s;
+
+    filter:
+
+        drop-shadow(0 35px 35px rgba(0,0,0,.22));
+
+}
+.hero:hover .heroImage{
+
+    transform:
+
+        translateY(-8px)
+
+        scale(1.02);
+
+}
+
+/*==================================================
+
+ORBITS
+
+==================================================*/
+
+.orbit{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    border:2px solid rgba(55,201,78,.22);
+
+    animation:orbitRotate 40s linear infinite;
+
+    z-index:5;
+
+}
+
+.orbit1{
+
+    width:670px;
+    height:250px;
+
+    left:-10px;
+    top:150px;
+
+}
+
+.orbit2{
+
+    width:840px;
+    height:350px;
+
+    left:-90px;
+    top:100px;
+    animation-duration:55s;
+
+}
+
+.orbit3{
+
+    width:1010px;
+    height:470px;
+
+    left:-170px;
+    top:45px;
+    animation-duration:70s;
+
+}
+
+
+
+
+/*==================================================
+
+SECTION
+
+==================================================*/
+
+.services{
+
+    margin-top:80px;
+
+    padding-bottom:140px;
+    position:relative;
+
+    background:transparent;
+
+}
+/*==================================================
+
+SERVICE BLOCK
+
+==================================================*/
+
+.service{
+
+    position:relative;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:80px;
+
+    align-items:center;
+
+    margin:180px 0;
+
+    overflow:visible;
+
+}
+.service::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:720px;
+    height:720px;
+
+    right:-320px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    background:url("../images/icons/gear-cad.svg") center/contain no-repeat;
+
+    opacity:.08;
+
+    animation:rotateSlow 220s linear infinite;
+
+    pointer-events:none;
+
+    z-index:0;
+
+}
+.service::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:1100px;
+    height:1100px;
+
+    left:-520px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    border-radius:50%;
+
+    border:2px solid rgba(55,201,78,.05);
+
+    box-shadow:
+
+        0 0 0 120px rgba(55,201,78,.03),
+
+        0 0 0 260px rgba(55,201,78,.02),
+
+        0 0 0 420px rgba(55,201,78,.015);
+
+    pointer-events:none;
+
+}
+
+.service.reverse{
+
+    direction:rtl;
+
+}
+.service.reverse::before{
+
+    left:-320px;
+
+    right:auto;
+
+}
+.service.reverse::after{
+
+    left:auto;
+
+    right:-520px;
+
+}
+
+.service.reverse>*{
+
+    direction:ltr;
+
+}
+
+
+/*==================================================
+
+IMAGE
+
+==================================================*/
+
+.serviceImage{
+
+    position:relative;
+    z-index:5;
+
+}
+
+.serviceImage img{
+
+    width:100%;
+
+    display:block;
+
+    border-radius:34px;
+
+    box-shadow:
+
+        0 25px 60px rgba(0,0,0,.10);
+
+    transition:.45s;
+
+}
+
+.service:hover .serviceImage img{
+
+    transform:scale(1.02);
+
+}
+
+
+
+/*==================================================
+
+CONTENT
+
+==================================================*/
+
+.serviceContent{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:#fff;
+
+    border-radius:34px;
+
+    padding:50px;
+
+    box-shadow:
+
+        0 18px 45px rgba(0,0,0,.06);
+
+    border:1px solid rgba(0,0,0,.05);
+
+    transition:.35s;
+    z-index:5;
+
+}
+.serviceContent::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+
+    height:260px;
+
+    right:-120px;
+
+    top:-120px;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(circle,
+
+    rgba(55,201,78,.18),
+
+    transparent 70%);
+
+    pointer-events:none;
+
+}
+
+.service:hover .serviceContent{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+
+        0 30px 70px rgba(0,0,0,.10);
+
+}
+
+
+
+/*==================================================
+
+ICON
+
+==================================================*/
+
+.serviceIcon{
+
+    width:78px;
+
+    height:78px;
+
+    border-radius:24px;
+
+    background:#F2FFF4;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-bottom:26px;
+
+    box-shadow:
+
+        0 12px 25px rgba(55,201,78,.12);
+
+}
+
+.serviceIcon img{
+
+    width:38px;
+
+}
+
+
+
+/*==================================================
+
+TITLE
+
+==================================================*/
+
+.serviceContent h2{
+
+    font-size:42px;
+
+    line-height:1.15;
+
+    font-weight:800;
+
+    color:#18212D;
+
+    margin-bottom:14px;
+
+}
+
+.serviceContent span{
+
+    display:inline-block;
+
+    margin-bottom:28px;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    color:#37C94E;
+
+    letter-spacing:2px;
+
+}
+
+
+
+/*==================================================
+
+TEXT
+
+==================================================*/
+
+.serviceContent p{
+
+    font-size:18px;
+
+    line-height:1.9;
+
+    color:#697280;
+
+    margin-bottom:40px;
+
+}
+
+
+
+/*==================================================
+
+COLUMNS
+
+==================================================*/
+
+.serviceColumns{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:35px;
+
+}
+
+.serviceColumns h4{
+
+    font-size:18px;
+
+    font-weight:700;
+
+    margin-bottom:18px;
+
+    color:#18212D;
+
+}
+
+.serviceColumns ul{
+
+    list-style:none;
+
+}
+
+.serviceColumns li{
+
+    position:relative;
+
+    padding-left:28px;
+
+    margin-bottom:16px;
+
+    color:#66707C;
+
+    line-height:1.7;
+
+}
+
+.serviceColumns li::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:10px;
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:#37C94E;
+
+}
+
+
+
+/*==================================================
+
+RESPONSIVE
+
+==================================================*/
+
+@media(max-width:1200px){
+
+    .heroContainer{
+
+        grid-template-columns:1fr;
+
+        text-align:center;
+
+    }
+
+    .heroLeft{
+
+        order:2;
+
+    }
+
+    .heroRight{
+
+        order:1;
+
+        height:auto;
+
+    }
+
+    .heroImage{
+
+        width:100%;
+
+        max-width:650px;
+
+    }
+
+    .service{
+
+        grid-template-columns:1fr;
+
+        gap:40px;
+
+    }
+
+    .service.reverse{
+
+        direction:ltr;
+
+    }
+
+    .serviceContent{
+
+        padding:40px;
+
+    }
+
+    .serviceColumns{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .hero{
+
+        min-height:900px;
+
+    display:flex;
+
+    align-items:center;
+
+        padding:120px 0 80px;
+
+    }
+
+    .heroLeft h1{
+
+    font-size:64px;
+
+    line-height:1.05;
+
+    letter-spacing:-2px;
+
+}
+
+    .heroLeft p{
+
+        font-size:18px;
+
+    }
+
+    .serviceContent{
+
+        padding:30px;
+
+    }
+
+    .serviceContent h2{
+
+        font-size:32px;
+
+    }
+
+    .serviceContent p{
+
+        font-size:16px;
+
+    }
+
+}
+
+@keyframes tractorFloat{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-12px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+@keyframes orbitRotate{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+/*==================================================
+
+BACKGROUND DECOR
+
+==================================================*/
+
+
+.gear{
+
+    position:absolute;
+
+    background:
+
+        url("../images/icons/gear-cad.svg")
+
+        center/contain
+
+        no-repeat;
+
+    opacity:.12;
+
+}
+.gear1{
+
+    width:850px;
+
+    height:850px;
+
+    right:-260px;
+
+    bottom:-250px;
+
+    animation:rotateSlow 280s linear infinite;
+
+}
+.gear2{
+
+    width:550px;
+
+    height:550px;
+
+    left:-180px;
+
+    top:1700px;
+
+    animation:rotateReverse 320s linear infinite;
+
+}
+
+
+
+@keyframes gearRotate{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+@keyframes gearRotateReverse{
+
+    from{
+
+        transform:rotate(360deg);
+
+    }
+
+    to{
+
+        transform:rotate(0deg);
+
+    }
+
+}
+/*=========================================
+BACKGROUND
+=========================================*/
+
+.backgroundTech{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:0;
+
+}
+
+.hero,
+.services{
+
+    position:relative;
+
+    z-index:2;
+
+}
+.gridDots{
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:.05;
+
+    background-image:
+
+        radial-gradient(circle,#38c84a 1.2px,transparent 1.2px);
+
+    background-size:42px 42px;
+
+}
+.circle{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    border:1px solid rgba(56,200,74,.08);
+
+    animation:rotateSlow 240s linear infinite;
+
+}
+.circle1{
+
+    width:1200px;
+
+    height:1200px;
+
+    left:-500px;
+
+    top:700px;
+
+}
+.circle2{
+
+    width:900px;
+
+    height:900px;
+
+    right:-250px;
+
+    top:1200px;
+
+    animation-direction:reverse;
+
+}
+.circle3{
+
+    width:650px;
+
+    height:650px;
+
+    right:180px;
+
+    top:2300px;
+
+}
+.techLine{
+
+    position:absolute;
+
+    height:1px;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            transparent,
+
+            rgba(56,200,74,.12),
+
+            transparent
+
+        );
+
+}
+.line1{
+
+    width:650px;
+
+    top:950px;
+
+    right:120px;
+
+}
+.line2{
+
+    width:480px;
+
+    top:1850px;
+
+    left:160px;
+
+}
+.line3{
+
+    width:720px;
+
+    top:2800px;
+
+    right:240px;
+
+}
+@keyframes rotateSlow{
+
+    from{
+
+        transform:rotate(0);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+@keyframes rotateReverse{
+
+    from{
+
+        transform:rotate(360deg);
+
+    }
+
+    to{
+
+        transform:rotate(0);
+
+    }
+
+}
+

@@ -9,6 +9,15 @@
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/main.css">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    {% if customCSS %}
+    <link rel="stylesheet" href="{{ customCSS }}">
+    {% endif %}
 </head>
 <body>
 
@@ -19,6 +28,10 @@
     {% include "footer.html" %}
 
     <script src="/js/header.js"></script>
+
+    {% if customJS %}
+    <script src="{{ customJS }}"></script>
+    {% endif %}
 
 </body>
 </html>
