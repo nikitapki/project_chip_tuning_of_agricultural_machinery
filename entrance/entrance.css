@@ -960,7 +960,7 @@ body{
 }
 .card:hover .cardInner{
 
-    height:590px;
+    height:620px;
 
     transform:
         translateY(-340px)

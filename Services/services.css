@@ -26,6 +26,8 @@ body{
 
     overflow-x:hidden;
 
+    position:relative;
+
 }
 
 
@@ -73,9 +75,7 @@ HERO
 
     radial-gradient(circle at 10% 70%,
     rgba(54,205,77,.05),
-    transparent 45%),
-
-    #fff;
+    transparent 45%),ч
 
 }
 
@@ -156,6 +156,10 @@ LEFT
 
     display:inline-block;
 
+    position:relative;
+
+    padding-left:80px;
+
     color:#37C94E;
 
     font-size:14px;
@@ -165,6 +169,23 @@ LEFT
     letter-spacing:7px;
 
     margin-bottom:35px;
+
+}
+.heroLabel::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:50%;
+
+    width:60px;
+
+    height:2px;
+
+    background:#37C94E;
 
 }
 
@@ -263,6 +284,8 @@ TRACTOR
 
     bottom:40px;
 
+    animation:tractorFloat 5s ease-in-out infinite;
+
     z-index:8;
 
     transition:.45s;
@@ -296,6 +319,8 @@ ORBITS
 
     border:2px solid rgba(55,201,78,.22);
 
+    animation:orbitRotate 40s linear infinite;
+
     z-index:5;
 
 }
@@ -317,6 +342,7 @@ ORBITS
 
     left:-90px;
     top:100px;
+    animation-duration:55s;
 
 }
 
@@ -327,6 +353,7 @@ ORBITS
 
     left:-170px;
     top:45px;
+    animation-duration:70s;
 
 }
 
@@ -344,6 +371,9 @@ SECTION
     margin-top:80px;
 
     padding-bottom:140px;
+    position:relative;
+
+    background:transparent;
 
 }
 /*==================================================
@@ -354,6 +384,8 @@ SERVICE BLOCK
 
 .service{
 
+    position:relative;
+
     display:grid;
 
     grid-template-columns:1fr 1fr;
@@ -362,13 +394,76 @@ SERVICE BLOCK
 
     align-items:center;
 
-    margin:140px 0;
+    margin:180px 0;
+
+    overflow:visible;
+
+}
+.service::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:720px;
+
+    height:720px;
+
+    right:-260px;
+
+    top:-120px;
+
+    background:
+
+        url("../images/icons/gear-cad.svg")
+
+        center/contain
+
+        no-repeat;
+
+    opacity:.10;
+    filter:blur(.2px);
+
+    animation:rotateSlow 220s linear infinite;
+
+    pointer-events:none;
+
+}
+.service::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:1100px;
+    height:1100px;
+
+    left:-520px;
+    bottom:-900px;
+
+    border-radius:50%;
+
+    border:2px solid rgba(55,201,78,.12);
+
+    box-shadow:
+    0 0 0 80px rgba(55,201,78,.025),
+    0 0 0 180px rgba(55,201,78,.018),
+    0 0 0 300px rgba(55,201,78,.012);
+
+    pointer-events:none;
 
 }
 
 .service.reverse{
 
     direction:rtl;
+
+}
+.service.reverse::before{
+
+    left:-260px;
+
+    right:auto;
 
 }
 
@@ -388,6 +483,7 @@ IMAGE
 .serviceImage{
 
     position:relative;
+    z-index:5;
 
 }
 
@@ -423,6 +519,10 @@ CONTENT
 
 .serviceContent{
 
+    position:relative;
+
+    overflow:hidden;
+
     background:#fff;
 
     border-radius:34px;
@@ -436,6 +536,34 @@ CONTENT
     border:1px solid rgba(0,0,0,.05);
 
     transition:.35s;
+    z-index:5;
+
+}
+.serviceContent::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+
+    height:260px;
+
+    right:-120px;
+
+    top:-120px;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(circle,
+
+    rgba(55,201,78,.18),
+
+    transparent 70%);
+
+    pointer-events:none;
 
 }
 
@@ -724,6 +852,291 @@ RESPONSIVE
     .serviceContent p{
 
         font-size:16px;
+
+    }
+
+}
+
+@keyframes tractorFloat{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-12px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+@keyframes orbitRotate{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+/*==================================================
+
+BACKGROUND DECOR
+
+==================================================*/
+
+
+.gear{
+
+    position:absolute;
+
+    background:
+
+        url("../images/icons/gear-cad.svg")
+
+        center/contain
+
+        no-repeat;
+
+    opacity:.12;
+
+}
+.gear1{
+
+    width:850px;
+
+    height:850px;
+
+    right:-260px;
+
+    bottom:-250px;
+
+    animation:rotateSlow 280s linear infinite;
+
+}
+.gear2{
+
+    width:550px;
+
+    height:550px;
+
+    left:-180px;
+
+    top:1700px;
+
+    animation:rotateReverse 320s linear infinite;
+
+}
+
+
+
+@keyframes gearRotate{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+@keyframes gearRotateReverse{
+
+    from{
+
+        transform:rotate(360deg);
+
+    }
+
+    to{
+
+        transform:rotate(0deg);
+
+    }
+
+}
+/*=========================================
+BACKGROUND
+=========================================*/
+
+.backgroundTech{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:0;
+
+}
+
+.hero,
+.services{
+
+    position:relative;
+
+    z-index:2;
+
+}
+.gridDots{
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:.05;
+
+    background-image:
+
+        radial-gradient(circle,#38c84a 1.2px,transparent 1.2px);
+
+    background-size:42px 42px;
+
+}
+.circle{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    border:1px solid rgba(56,200,74,.08);
+
+    animation:rotateSlow 240s linear infinite;
+
+}
+.circle1{
+
+    width:1200px;
+
+    height:1200px;
+
+    left:-500px;
+
+    top:700px;
+
+}
+.circle2{
+
+    width:900px;
+
+    height:900px;
+
+    right:-250px;
+
+    top:1200px;
+
+    animation-direction:reverse;
+
+}
+.circle3{
+
+    width:650px;
+
+    height:650px;
+
+    right:180px;
+
+    top:2300px;
+
+}
+.techLine{
+
+    position:absolute;
+
+    height:1px;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            transparent,
+
+            rgba(56,200,74,.12),
+
+            transparent
+
+        );
+
+}
+.line1{
+
+    width:650px;
+
+    top:950px;
+
+    right:120px;
+
+}
+.line2{
+
+    width:480px;
+
+    top:1850px;
+
+    left:160px;
+
+}
+.line3{
+
+    width:720px;
+
+    top:2800px;
+
+    right:240px;
+
+}
+@keyframes rotateSlow{
+
+    from{
+
+        transform:rotate(0);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+@keyframes rotateReverse{
+
+    from{
+
+        transform:rotate(360deg);
+
+    }
+
+    to{
+
+        transform:rotate(0);
 
     }
 
