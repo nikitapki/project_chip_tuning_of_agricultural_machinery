@@ -1,13 +1,27 @@
-<header>
-    <a href="index.html" class="logo" aria-label="Комп Форт, на главную">
-        <img src="header/kompfort_logo.svg" alt="Комп Форт" width="300">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комп Форт — О компании</title>
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+
+    <header>
+    <a href="/" class="logo" aria-label="Комп Форт, на главную">
+        <img src="/images/kompfort_logo.svg" alt="Комп Форт" width="300">
     </a>
 
     <nav class="menu-links" role="tablist" aria-label="Основная навигация">
-        <a role="tab" href="index.html">Главная</a>
-        <a role="tab" href="aboutCompany.html">О компании</a>
-        <a role="tab" href="services.html">Услуги</a>
-        <a role="tab" href="contacts.html">Контакты</a>
+        <a role="tab" href="/">Главная</a>
+        <a role="tab" href="/aboutCompany/">О компании</a>
+        <a role="tab" href="/services/">Услуги</a>
+        <a role="tab" href="/contacts/">Контакты</a>
     </nav>
 
     <div class="header-actions">
@@ -35,13 +49,44 @@
         </button>
     </div>
 
+    <nav class="mobile-menu" aria-label="Мобильная навигация">
+        <a href="/">Главная</a> 
+        <a href="/aboutCompany/">О компании</a>
+        <a href="/services/">Услуги</a>
+        <a href="/contacts/">Контакты</a>
+        <hr>
+        <a href="tel:+79991234567" class="mobile-phone">+7 (999) 123-45-67</a>
+        <div class="mobile-socials">
+            <a href="https://max.ru/" class="social-icon" aria-label="MAX" target="_blank" rel="noopener">...</a>
+            <a href="https://t.me/your_channel" class="social-icon" aria-label="Telegram" target="_blank" rel="noopener">...</a>
+            <a href="https://wa.me/79991234567" class="social-icon" aria-label="WhatsApp" target="_blank" rel="noopener">...</a>
+            <a href="https://vk.com/your_page" class="social-icon" aria-label="VK" target="_blank" rel="noopener">...</a>
+        </div>
+        <hr>
+        <button class="btn-primary">Оставить заявку</button>
+    </nav>
+
 </header>
 
-<nav class="mobile-menu" aria-label="Мобильная навигация">
-    <a href="index.html">Главная</a>
-    <a href="aboutCompany.html">О компании</a>
-    <a href="services.html">Услуги</a>
-    <a href="contacts.html">Контакты</a>
-    <hr>
-    <button class="btn-primary">Оставить заявку</button>
-</nav>
+    
+<main>
+    <h1>О компании</h1>
+    <p>О компании.</p>
+</main>
+
+
+    <footer>
+    <p>© 2026 Комп Форт. Все права защищены.</p>
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="aboutCompany.html">О компании</a>
+        <a href="services.html">Услуги</a>
+        <a href="contacts.html">Контакты</a>
+    </nav>
+</footer>
+
+
+    <script src="/js/header.js"></script>
+
+</body>
+</html>

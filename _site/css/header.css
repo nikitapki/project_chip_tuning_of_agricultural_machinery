@@ -93,7 +93,7 @@ header {
 }
 
 .burger {
-    display: block;
+    display: none;
     background: none;
     border: none;
     cursor: pointer;
@@ -164,27 +164,45 @@ header {
     margin: 8px 0;
 }
 
-@media (max-width: 860px) {
-    .menu-links,
-    .icon-btn {
-        display: none;
-    }
-    .burger {
-        display: block;
-    }
-    header {
-        padding: 0 20px;
-    }
+.mobile-phone {
+    color: #333;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 12px 8px;
+    display: block;
 }
 
-@media (min-width: 861px) {
-    .mobile-menu {
-        display: none;
-    }
+.mobile-phone:hover {
+    text-decoration: underline;
 }
 
+.mobile-socials {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 8px;
+}
 
+.mobile-socials .social-icon {
+    color: #333;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
 
+.mobile-socials .social-icon svg {
+    width: 30px;
+    height: 30px;
+}
+
+.mobile-socials .social-icon:hover {
+    color: #111;
+    transform: translateY(-2px);
+}
 
 .phone-block {
     display: flex;
@@ -230,4 +248,25 @@ header {
 .social-icon svg {
     width: 30px;
     height: 30px;
+}
+
+@media (max-width: 860px) {
+    .menu-links,
+    .icon-btn,
+    .phone-block,
+    .social-links {
+        display: none;
+    }
+    .burger {
+        display: block;
+    }
+    header {
+        padding: 0 20px;
+    }
+}
+
+@media (min-width: 861px) {
+    .mobile-menu {
+        display: none;
+    }
 }
