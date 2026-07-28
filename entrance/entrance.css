@@ -365,6 +365,10 @@ body{
     z-index:40;
 
     transition:.35s;
+    text-shadow:
+
+        0 1px 2px rgba(255,255,255,.7);
+
 
 }
 
@@ -373,9 +377,9 @@ body{
 
     font-size:30px;
 
-    font-weight:800;
+     color:#18212D;
 
-    color:#18212D;
+    font-weight:800;
 
     margin-bottom:10px;
 
@@ -383,11 +387,13 @@ body{
 
 .infoText p{
 
+    color:#4E5968;
+
     font-size:18px;
 
-    line-height:1.6;
+    line-height:1.7;
 
-    color:#68717C;
+    font-weight:500;
 
 }
 
@@ -816,37 +822,8 @@ body{
         contrast(1.03);
 
 }
-.connections{
 
-    position:absolute;
 
-    inset:0;
-
-    width:100%;
-
-    height:100%;
-
-    pointer-events:none;
-
-    z-index:18;
-
-}
-
-.connect{
-
-    fill:none;
-
-    stroke:#42d85b;
-
-    stroke-width:2.5;
-
-    stroke-linecap:round;
-
-    opacity:.45;
-
-    filter:drop-shadow(0 0 8px rgba(56,200,74,.45));
-
-}
 .cardIcon{
 
     width:72px;
