@@ -1,0 +1,24 @@
+{
+  "name": "project_chip_tuning_of_agricultural_machinery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "eleventy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikitapki/project_chip_tuning_of_agricultural_machinery.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/nikitapki/project_chip_tuning_of_agricultural_machinery/issues"
+  },
+  "homepage": "https://github.com/nikitapki/project_chip_tuning_of_agricultural_machinery#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6"
+  }
+}

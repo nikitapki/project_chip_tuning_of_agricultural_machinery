@@ -1,0 +1,8 @@
+main {
+    padding: 48px 32px;
+    max-width: 900px;
+    margin-top: 40px;
+    margin-left: 20%;
+    min-height: 50vh;
+    flex: 1; /* растягивается, занимая всё свободное место и выталкивая footer вниз */
+}
