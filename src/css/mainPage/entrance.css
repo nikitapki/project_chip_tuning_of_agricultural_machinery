@@ -52,7 +52,7 @@ body{
             rgba(255,255,255,.30) 72%,
             rgba(255,255,255,0) 100%
         ),
-        url("../images/hero/hero-bg.png");
+        url("/images/hero/hero-bg.png");
 
     background-size:cover;
 
@@ -809,7 +809,7 @@ body{
         rgba(255,255,255,.92) 88%,
         #fff 100%
     ),
-    url("../images/hero/hero-bg.png");
+    url("/images/hero/hero-bg.png");
 
     background-size:115%;
 

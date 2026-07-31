@@ -253,8 +253,6 @@ RIGHT
     width:980px;
     height:430px;
 
-    background:url("../images/hero/field.jpg")
-        center bottom/cover no-repeat;
 
     border-radius:0 240px 0 0;
 
@@ -411,7 +409,7 @@ SERVICE BLOCK
 
     transform:translateY(-50%);
 
-    background:url("../images/icons/gear-cad.svg") center/contain no-repeat;
+    background:url("/images/icons/gear-cad.svg") center/contain no-repeat;
 
     opacity:.08;
 
@@ -915,7 +913,7 @@ BACKGROUND DECOR
 
     background:
 
-        url("../images/icons/gear-cad.svg")
+        url("/images/icons/gear-cad.svg")
 
         center/contain
 

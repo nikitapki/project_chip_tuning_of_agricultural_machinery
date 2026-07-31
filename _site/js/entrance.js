@@ -13,12 +13,14 @@ window.addEventListener("load", () => {
 =========================================== */
 
 
-
+const planet = document.querySelector(".earth");
+const visual = document.querySelector(".hero");
 if (planet && visual) {
 
     visual.addEventListener("mousemove", (e) => {
 
         const rect = visual.getBoundingClientRect();
+
 
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
