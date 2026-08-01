@@ -1,0 +1,354 @@
+/*==================================================
+
+HERO
+
+==================================================*/
+
+.hero {
+    position: relative;
+
+    min-height: 1020px;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(54, 205, 77, .12),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 10% 70%,
+            rgba(54, 205, 77, .05),
+            transparent 45%
+        );
+        
+}
+
+
+/*==================================================
+
+HERO CONTAINER
+
+==================================================*/
+
+.heroContainer {
+    width: 1500px;
+    max-width: 92%;
+
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 45% 55%;
+
+    align-items: center;
+
+    gap: 80px;
+}
+
+
+/*==================================================
+
+HERO GLOW
+
+==================================================*/
+
+.heroGlow {
+    position: absolute;
+
+    width: 650px;
+    height: 650px;
+
+    left: -20px;
+    top: 20px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(55, 201, 78, .25),
+            rgba(55, 201, 78, .08),
+            transparent 72%
+        );
+}
+
+
+/*==================================================
+
+HERO LEFT
+
+==================================================*/
+
+.heroLeft {
+    z-index: 20;
+
+    padding-top: 40px;
+}
+
+.heroLabel {
+    display: inline-block;
+
+    position: relative;
+
+    padding-left: 80px;
+
+    color: #37C94E;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    letter-spacing: 7px;
+
+    margin-bottom: 35px;
+}
+
+.heroLabel::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 50%;
+
+    width: 60px;
+    height: 2px;
+
+    background: #37C94E;
+}
+
+.heroLeft h1 {
+    font-size: 64px;
+
+    line-height: 1.05;
+
+    letter-spacing: -2px;
+
+    white-space: nowrap;
+}
+
+.heroLeft h1 span {
+    color: #37C94E;
+}
+
+.heroLeft p {
+    width: 620px;
+    max-width: 100%;
+
+    margin-top: 42px;
+
+    font-size: 22px;
+
+    line-height: 1.8;
+
+    color: #6F7682;
+}
+
+
+/*==================================================
+
+HERO RIGHT
+
+==================================================*/
+
+.heroRight {
+    position: relative;
+
+    height: 650px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heroField {
+    position: absolute;
+
+    left: -170px;
+    bottom: 0;
+
+    width: 980px;
+    height: 430px;
+
+    border-radius: 0 240px 0 0;
+
+    overflow: visible;
+
+    z-index: 2;
+}
+
+
+/*==================================================
+
+TRACTOR
+
+==================================================*/
+
+.heroImage {
+    position: absolute;
+
+    width: 720px;
+
+    left: 130px;
+    bottom: 40px;
+
+    z-index: 8;
+
+    transition: .45s;
+
+    filter:
+        drop-shadow(0 35px 35px rgba(0, 0, 0, .22));
+
+    animation:
+        tractorFloat 5s ease-in-out infinite;
+}
+
+.hero:hover .heroImage {
+    transform:
+        translateY(-8px)
+        scale(1.02);
+}
+
+
+/*==================================================
+
+ORBITS
+
+==================================================*/
+
+.orbit {
+    position: absolute;
+
+    border-radius: 50%;
+
+    border:
+        2px solid rgba(55, 201, 78, .22);
+
+    animation:
+        orbitRotate 40s linear infinite;
+
+    z-index: 5;
+}
+
+.orbit1 {
+    width: 670px;
+    height: 250px;
+
+    left: -10px;
+    top: 150px;
+}
+
+.orbit2 {
+    width: 840px;
+    height: 350px;
+
+    left: -90px;
+    top: 100px;
+
+    animation-duration: 55s;
+}
+
+.orbit3 {
+    width: 1010px;
+    height: 470px;
+
+    left: -170px;
+    top: 45px;
+
+    animation-duration: 70s;
+}
+
+
+/*==================================================
+
+HERO ANIMATIONS
+
+==================================================*/
+
+@keyframes tractorFloat {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
+}
+
+@keyframes orbitRotate {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/*==================================================
+
+RESPONSIVE
+
+==================================================*/
+
+@media (max-width: 1200px) {
+
+    .heroContainer {
+        grid-template-columns: 1fr;
+
+        text-align: center;
+    }
+
+    .heroLeft {
+        order: 2;
+    }
+
+    .heroRight {
+        order: 1;
+
+        height: auto;
+    }
+
+    .heroImage {
+        width: 100%;
+        max-width: 650px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .hero {
+        min-height: 900px;
+
+        display: flex;
+        align-items: center;
+
+        padding: 120px 0 80px;
+    }
+
+    .heroLeft h1 {
+        font-size: 64px;
+
+        line-height: 1.05;
+
+        letter-spacing: -2px;
+    }
+
+    .heroLeft p {
+        font-size: 18px;
+    }
+
+}
