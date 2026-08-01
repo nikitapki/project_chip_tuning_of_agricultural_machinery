@@ -28,9 +28,19 @@ COMPANY IMAGE
     overflow: hidden;
 
     border-radius: 28px;
+
+    /* ДОБАВЛЕНО: страховка от раздувания колонки картинкой */
+    min-width: 0;
 }
 
 .companyImage img {
+    /* явный width: 100% — глобальный сброс в global.css даёт
+       только max-width, этого не хватит, чтобы фото заполняло
+       всю ширину колонки, а не только "не вылезало" за неё */
+    width: 100%;
+    height: auto;
+    display: block;
+
     border-radius: 26px;
 
     box-shadow:
@@ -49,6 +59,12 @@ COMPANY IMAGE
 COMPANY CONTENT
 
 ==================================================*/
+
+.companyContent {
+    /* ДОБАВЛЕНО: без этого длинный текст мог растягивать
+       колонку шире её грид-трека */
+    min-width: 0;
+}
 
 .companyContent span {
     color: #37c94e;

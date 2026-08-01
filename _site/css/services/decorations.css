@@ -40,10 +40,35 @@ BACKGROUND DECOR
 
 BACKGROUND TECH
 
+ИСПРАВЛЕНО: было position: fixed; inset: 0 — это
+привязывает блок к размеру ВИДИМОЙ ОБЛАСТИ (viewport,
+~800-1000px), а не всей страницы. При этом gear2
+(top: 1700px), circle1 (top: 700px), circle3
+(top: 2300px), line2/line3 (top: 1850px/2800px) —
+все рассчитаны так, будто фон высотой во всю страницу
+(hero + services). С overflow: hidden на fixed-контейнере
+всё, что ниже первого экрана, физически обрезалось и
+никогда не было видно.
+
+Теперь position: absolute — блок растягивается на высоту
+СВОЕГО родителя. Родитель, в который вложены .hero и
+.services (или общий wrapper вокруг них), должен иметь
+position: relative и НЕ иметь фиксированной height —
+тогда .backgroundTech получит высоту 100% от суммарной
+высоты hero+services, и все decorations встанут на
+задуманные места.
+
+Если .backgroundTech в разметке — прямой сосед .hero/
+.services (а не их общий родитель), добавьте обёртку
+<div class="pageWrap"> вокруг hero+services+backgroundTech
+с position: relative, иначе absolute будет считаться
+от body и per-element top-значения (1700px, 2300px и т.д.)
+не совпадут с реальным расположением блоков на странице.
+
 ==================================================*/
 
 .backgroundTech {
-    position: fixed;
+    position: absolute;
 
     inset: 0;
 
@@ -197,6 +222,75 @@ BACKGROUND ANIMATIONS
 
     to {
         transform: rotate(0deg);
+    }
+
+}
+
+
+/*==================================================
+
+RESPONSIVE
+
+Эти элементы позиционируются внутри .backgroundTech,
+поэтому по горизонтали gear1/gear2/circle1-3 обрезаются
+через overflow: hidden на самом .backgroundTech — так
+что html/body overflow-x: hidden (теперь в global.css,
+безусловно) это просто вторая страховка, а не основной
+механизм. На мобильных декор больше мешает (лишняя
+нагрузка на анимацию), чем украшает — поэтому прячем.
+
+==================================================*/
+
+@media (max-width: 1200px) {
+
+    .gear1 {
+        width: 600px;
+        height: 600px;
+
+        right: -200px;
+        bottom: -180px;
+    }
+
+    .gear2 {
+        width: 400px;
+        height: 400px;
+
+        left: -140px;
+    }
+
+    .circle1 {
+        width: 900px;
+        height: 900px;
+
+        left: -400px;
+    }
+
+    .circle2 {
+        width: 680px;
+        height: 680px;
+
+        right: -200px;
+    }
+
+    .circle3 {
+        display: none;
+    }
+
+    .line1,
+    .line3 {
+        display: none;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .gear1,
+    .gear2,
+    .circle1,
+    .circle2,
+    .techLine {
+        display: none;
     }
 
 }

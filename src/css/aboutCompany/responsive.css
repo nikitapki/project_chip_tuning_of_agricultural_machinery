@@ -1,0 +1,508 @@
+/*==================================================
+
+RESPONSIVE / MOBILE ADAPTATION
+Единый файл адаптива для всех блоков сайта.
+
+ВАЖНО: подключать этот файл ПОСЛЕДНИМ в main.css
+(после decorations.css), чтобы медиа-запросы
+переопределяли базовые стили за счёт порядка каскада.
+
+==================================================*/
+
+
+/*==================================================
+
+БАЗОВАЯ ЗАЩИТА ОТ ГОРИЗОНТАЛЬНОГО СКРОЛЛА
+
+Декоративные круги и шестерёнки в decorations.css
+используют overflow: visible и огромные размеры —
+без этого на мобильных появляется скролл вбок.
+
+ПРИМЕЧАНИЕ: box-sizing: border-box и базовый сброс img
+теперь в global.css (это была основная причина overflow
+у карточек/паддингов — сброс должен применяться ко всему
+сайту, а не только к company/principles картинкам).
+
+==================================================*/
+
+html,
+body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+
+/*==================================================
+
+1440px — лёгкое сжатие крупных экранов
+
+==================================================*/
+
+@media (max-width: 1440px) {
+
+    .orbit1 {
+        width: 570px;
+        height: 210px;
+        left: 10px;
+        top: 195px;
+    }
+
+    .orbit2 {
+        width: 720px;
+        height: 300px;
+        left: -50px;
+        top: 150px;
+    }
+
+    .orbit3 {
+        width: 870px;
+        height: 400px;
+        left: -120px;
+        top: 100px;
+    }
+
+}
+
+
+/*==================================================
+
+1200px — заголовки, крупные декоративные круги
+
+==================================================*/
+
+@media (max-width: 1200px) {
+
+    .hero h1 {
+        font-size: 56px;
+    }
+
+    .circleHero {
+        width: 1100px;
+        height: 1100px;
+        right: -700px;
+        top: -150px;
+    }
+
+    .circleCompany,
+    .circlePrinciples {
+        width: 800px;
+        height: 800px;
+        left: -380px;
+    }
+
+    .circleAdvantages {
+        width: 800px;
+        height: 800px;
+        right: -380px;
+    }
+
+    .company::before {
+        width: 900px;
+        height: 900px;
+        left: -650px;
+    }
+
+    .company::after,
+    .principles::after {
+        width: 520px;
+        height: 520px;
+    }
+
+    .advantages::after {
+        width: 440px;
+        height: 440px;
+    }
+
+    .companyContainer,
+    .principlesContainer {
+        gap: 50px;
+    }
+
+}
+
+
+/*==================================================
+
+992px — переход на одну колонку (hero/company/
+advantages/principles уже ломаются на 1fr в своих
+файлах, здесь донастраиваем то, что осталось)
+
+==================================================*/
+
+@media (max-width: 992px) {
+
+    .heroRight {
+        margin-left: 0;
+        margin-top: 60px;
+        justify-content: center;
+    }
+
+    .orbit1 {
+        width: 420px;
+        height: 160px;
+        left: 20px;
+        top: 150px;
+    }
+
+    .orbit2 {
+        width: 540px;
+        height: 230px;
+        left: -40px;
+        top: 115px;
+    }
+
+    .orbit3 {
+        width: 650px;
+        height: 300px;
+        left: -95px;
+        top: 80px;
+    }
+
+    .circleHero {
+        width: 800px;
+        height: 800px;
+        right: -500px;
+        top: -100px;
+    }
+
+    .circleCompany,
+    .circleAdvantages,
+    .circlePrinciples {
+        width: 600px;
+        height: 600px;
+        box-shadow:
+            0 0 0 70px rgba(55, 201, 78, .03),
+            0 0 0 150px rgba(55, 201, 78, .02);
+    }
+
+    /* ДОБАВЛЕНО: круг .company::before раньше не уменьшался
+       дальше 900px (заданных на 1200px) и не скрывался нигде,
+       кроме собственного opacity/border — на планшетах он
+       перекрывал больше полезной площади, чем декорировал */
+    .company::before {
+        width: 700px;
+        height: 700px;
+        left: -450px;
+    }
+
+}
+
+
+/*==================================================
+
+ШЕСТЕРЁНКА В aboutCompany — ПРИВЯЗКА К ФОТО
+
+Было: .company::after — фиксированные 700px, висит у
+правого края всей секции, никак не связана с фото,
+не масштабируется вместе с ним.
+
+Стало: шестерёнка — псевдоэлемент самого .companyImage,
+отцентрована по фото, размер задан в % от фото — значит
+сама уменьшается/увеличивается вместе с ним на любой
+ширине экрана. .companyContainer подрезает её, чтобы
+не могла заехать на текстовую колонку.
+
+Правило не завязано на брейкпоинт — работает всегда.
+
+==================================================*/
+
+.company::after {
+    /* отключаем старую версию, чтобы не было двух шестерёнок сразу */
+    display: none;
+}
+
+.companyImage {
+    position: relative;
+
+    /* было overflow: hidden — обрезало бы и шестерёнку тоже.
+       Скругление углов у самого фото уже задано через
+       border-radius на <img>, так что клип контейнеру
+       больше не нужен для его вида. */
+    overflow: visible;
+}
+
+.companyImage img {
+    position: relative;
+
+    /* фото должно быть поверх шестерёнки */
+    z-index: 2;
+}
+
+.companyImage::after {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    /* % от размера .companyImage — при изменении ширины
+       фото шестерёнка пересчитывается автоматически.
+       Больше 100%, иначе полностью скроется под непрозрачным
+       фото и не будет видно даже краёв. */
+    width: 130%;
+    height: 130%;
+
+    transform: translate(-50%, -50%);
+
+    background:
+        url("/images/icons/gear-cad.svg")
+        center / contain
+        no-repeat;
+
+    opacity: .12;
+
+    animation: gearSlow 180s linear infinite;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+.companyContainer {
+    /* страховка: даже если шестерёнка захочет вылезти
+       за пределы блока — обрежется по границе контейнера,
+       не заедет на текстовую колонку */
+    overflow: hidden;
+}
+
+
+@media (max-width: 992px) {
+
+    .companyImage,
+    .principlesImage {
+        /* было: max-width: 560px — жёсткий потолок,
+           из-за которого картинка не занимала всю ширину
+           колонки и просто сжималась вместе с экраном
+           дальше вниз по брейкпоинтам.
+           Теперь занимает всю ширину доступного контейнера
+           (companyContainer уже сам ограничен через .container:
+           width: min(1280px, 92%)), так что картинка не
+           "убегает" на весь экран на широких планшетах и
+           при этом не мельчает искусственно на узких. */
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+}
+
+
+/*==================================================
+
+768px — планшеты/большие телефоны
+
+На этом брейкпоинте декоративные шестерёнки и часть
+кругов уже мешают больше, чем украшают — прячем их.
+
+==================================================*/
+
+@media (max-width: 768px) {
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .orbit1,
+    .orbit2,
+    .orbit3 {
+        display: none;
+    }
+
+    .circleHero,
+    .circleCompany,
+    .circleAdvantages,
+    .circlePrinciples {
+        display: none;
+    }
+
+    .company::after,
+    .advantages::after,
+    .principles::after {
+        display: none;
+    }
+
+    /* ДОБАВЛЕНО: раньше пропадали только круги-обводки
+       .circleCompany и т.п., а этот отдельный псевдоэлемент
+       (border-circle у самого .company) оставался видимым
+       и мог создавать лишний "воздух"/полосу сбоку на телефонах */
+    .company::before {
+        display: none;
+    }
+
+    .sectionTitle h2 {
+        font-size: 34px;
+    }
+
+    .companyContent h2 {
+        font-size: 34px;
+    }
+
+    .companyContainer,
+    .principlesContainer,
+    .advantagesGrid {
+        gap: 36px;
+    }
+
+    .advCard {
+        padding: 30px;
+    }
+
+    .principle {
+        padding: 26px 0 26px 34px;
+    }
+
+}
+
+
+/*==================================================
+
+576px — мобильные телефоны
+
+==================================================*/
+
+@media (max-width: 576px) {
+
+    section {
+        padding: 60px 0;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 100px 0 60px;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+        letter-spacing: -1px;
+        margin-bottom: 22px;
+    }
+
+    .hero p {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .heroSubtitle {
+        font-size: 12px;
+        letter-spacing: 3px;
+        margin-bottom: 18px;
+        justify-content: center;
+    }
+
+    .heroRight {
+        min-height: auto;
+        margin-top: 40px;
+    }
+
+    .sectionTitle {
+        margin-bottom: 46px;
+    }
+
+    .sectionTitle h2 {
+        font-size: 26px;
+    }
+
+    .companyContent h2 {
+        font-size: 26px;
+        margin: 18px 0 22px;
+    }
+
+    .companyContent > p {
+        margin-bottom: 30px;
+    }
+
+    .companyList {
+        gap: 18px;
+    }
+
+    .companyItem {
+        gap: 16px;
+    }
+
+    .principle {
+        padding: 20px 0 20px 30px;
+    }
+
+    .principle h3 {
+        font-size: 18px;
+    }
+
+    .principle p {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .advCard {
+        padding: 24px;
+    }
+
+    .advCard h3 {
+        font-size: 21px;
+        margin-bottom: 12px;
+    }
+
+    .advIcon {
+        width: 58px;
+        height: 58px;
+        border-radius: 16px;
+    }
+
+    .advIcon img {
+        width: 28px;
+        height: 28px;
+    }
+
+}
+
+
+/*==================================================
+
+400px — совсем маленькие экраны
+
+==================================================*/
+
+@media (max-width: 400px) {
+
+    .hero h1 {
+        font-size: 26px;
+    }
+
+    .companyContent h2,
+    .sectionTitle h2 {
+        font-size: 23px;
+    }
+
+    .advCard,
+    .principle {
+        padding-left: 0;
+    }
+
+    .principle {
+        padding: 18px 0 18px 26px;
+    }
+
+}
+
+
+/*==================================================
+
+УМЕНЬШЕНИЕ ДВИЖЕНИЯ
+
+Для пользователей, у которых в системе отключена
+анимация — гасим float/rotate/orbit, чтобы не укачивало.
+
+==================================================*/
+
+@media (prefers-reduced-motion: reduce) {
+
+    .heroVisual,
+    .heroVisual img,
+    .orbit,
+    .company::after,
+    .advantages::after,
+    .principles::after {
+        animation: none !important;
+    }
+
+}

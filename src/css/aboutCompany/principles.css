@@ -61,9 +61,17 @@ PRINCIPLES IMAGE
     overflow: hidden;
 
     border-radius: 28px;
+
+    /* ДОБАВЛЕНО: страховка от раздувания колонки */
+    min-width: 0;
 }
 
 .principlesImage img {
+    /* явный width: 100% — см. комментарий в company.css */
+    width: 100%;
+    height: auto;
+    display: block;
+
     border-radius: 26px;
 
     box-shadow:
@@ -83,6 +91,11 @@ PRINCIPLES CONTENT
 
 ==================================================*/
 
+.principlesContent {
+    /* ДОБАВЛЕНО */
+    min-width: 0;
+}
+
 .principlesContent span {
     color: #37c94e;
 
@@ -92,7 +105,14 @@ PRINCIPLES CONTENT
 }
 
 .principlesContent h2 {
-    font-size: 64px;
+    /* ИЗМЕНЕНО: было фиксированные 64px с "прыжком" сразу
+       на 34px на 768px (в responsive.css), из-за чего на
+       планшетах (768-1200px) заголовок был непропорционально
+       крупным. Теперь плавно масштабируется через clamp —
+       медиа-запросы в responsive.css для этого свойства
+       больше не нужны, но оставлены как safety net ниже 576px
+       на случай очень длинных заголовков. */
+    font-size: clamp(30px, 5vw, 64px);
 
     line-height: 1.05;
 

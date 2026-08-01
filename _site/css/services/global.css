@@ -1,0 +1,33 @@
+/*==================================================
+
+RESET / BOX MODEL
+
+Тот же фикс, что и на предыдущей странице: без
+box-sizing: border-box паддинги .serviceContent,
+.heroLeft и т.д. прибавлялись сверх ширины грид-трека
+и вызывали overflow на узких экранах.
+
+==================================================*/
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ПЕРЕНЕСЕНО из decorations.css: там overflow-x:hidden
+   стоял только внутри @media (max-width: 768px), хотя
+   декоративные элементы (gear1, circle1 и т.п.) могут
+   вызывать горизонтальный скролл и на десктопных ширинах
+   между 992px и 1400px — правило должно быть безусловным. */
+html,
+body {
+    overflow-x: hidden;
+    max-width: 100%;
+}

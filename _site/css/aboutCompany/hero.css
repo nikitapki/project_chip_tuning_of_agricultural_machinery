@@ -19,8 +19,8 @@ HERO
 
 .heroContainer {
     display: grid;
-    grid-template-columns: 620px 1fr;
-    gap: 40px;
+    grid-template-columns: minmax(280px, 620px) minmax(220px, 1fr);
+    gap: clamp(20px, 4vw, 40px);
     align-items: center;
 }
 
@@ -33,6 +33,11 @@ HERO LEFT
 
 .heroLeft {
     max-width: 700px;
+
+    /* ДОБАВЛЕНО: без этого длинные слова/заголовок могли
+       раздувать грид-колонку шире её трека (min-content
+       по умолчанию у грид-элементов) */
+    min-width: 0;
 }
 
 .heroSubtitle {
@@ -61,7 +66,7 @@ HERO LEFT
 .hero h1 {
     max-width: 650px;
 
-    font-size: 72px;
+    font-size: clamp(26px, 4.6vw, 72px);
     font-weight: 700;
     line-height: .95;
     letter-spacing: -2px;
@@ -103,16 +108,34 @@ HERO RIGHT
     justify-content: center;
     align-items: center;
 
-    min-height: 700px;
+    /* ИЗМЕНЕНО: было min-height: clamp(220px, 42vw, 700px) —
+       считалось от viewport и могло не совпадать с реальной
+       высотой .heroVisual (теперь она зависит от % родителя),
+       из-за чего появлялся лишний пустой отступ. .heroVisual
+       сам задаёт нужную высоту через aspect-ratio, здесь
+       достаточно небольшого минимума на случай пустого блока
+       до загрузки изображения. */
+    min-height: 220px;
 
-    margin-left: 150px;
+    margin-left: clamp(0px, 8vw, 150px);
+
+    min-width: 0;
 }
 
 .heroVisual {
     position: relative;
 
-    width: 700px;
-    height: 700px;
+    /* ИЗМЕНЕНО: было clamp(220px, 42vw, 700px) — размер зависел
+       от ширины ВСЕГО экрана. Из-за этого на ≤992px, когда
+       .heroRight переносится под текст и получает всю ширину
+       контейнера, картинка не увеличивалась соразмерно —
+       vw не "видел" освободившееся место в колонке.
+       Теперь % считается от ширины родителя (.heroRight),
+       поэтому при переносе колонка становится шире — и
+       картинка растёт вместе с ней. aspect-ratio держит
+       квадратную форму без отдельного clamp для height. */
+    width: clamp(220px, 90%, 700px);
+    aspect-ratio: 1 / 1;
 
     display: flex;
     justify-content: center;
@@ -126,7 +149,8 @@ HERO RIGHT
 }
 
 .heroVisual img {
-    width: 120%;
+    width: 100%;
+    height: auto;
 
     position: relative;
 
@@ -299,21 +323,33 @@ HERO ANIMATIONS
     }
 
 }
+
 /*==================================================
 
-RESPONSIVE
+БАЗОВЫЙ СТЕК НА УЗКИХ ЭКРАНАХ
+
+ИЗМЕНЕНО: брейкпоинт поднят с 992px до 1150px.
+minmax(220px, 1fr) у .heroRight в гриде не давал картинке
+схлопнуться ниже 220px, но при этом видимая колонка успевала
+стать очень узкой (кегль текста рядом ещё не центрировался,
+а картинка уже выглядела тесно прижатой). Теперь стек и
+центрирование текста, и скрытие картинки происходят
+одновременно и раньше — картинка не успевает "сжаться
+в точку" перед тем как пропасть.
 
 ==================================================*/
 
-@media (max-width: 1200px) {
+@media (max-width: 1150px) {
 
-    .hero h1 {
-        font-size: 60px;
+    .heroRight {
+        display: none;
     }
 
-}
+    .hero {
+        min-height: auto;
 
-@media (max-width: 992px) {
+        padding: 140px 0 70px;
+    }
 
     .heroContainer {
         grid-template-columns: 1fr;
@@ -324,28 +360,12 @@ RESPONSIVE
         margin: auto;
     }
 
-    .heroRight {
-        margin-top: 70px;
-    }
-
-}
-
-@media (max-width: 768px) {
-
-    .hero h1 {
-        font-size: 44px;
-    }
-
-}
-
-@media (max-width: 576px) {
-
-    .hero h1 {
-        font-size: 36px;
-    }
-
-    .hero p {
-        font-size: 16px;
+    /* ДОБАВЛЕНО: .heroSubtitle — flex-контейнер, text-align:
+       center на .heroContainer на flex не действует напрямую,
+       нужен явный justify-content — это и есть "верхний текст"
+       (лейбл над h1), который просили центрировать. */
+    .heroSubtitle {
+        justify-content: center;
     }
 
 }

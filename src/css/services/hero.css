@@ -36,8 +36,13 @@ HERO CONTAINER
 ==================================================*/
 
 .heroContainer {
-    width: 1500px;
-    max-width: 92%;
+    /* ИЗМЕНЕНО: было width: 1500px; max-width: 92% — работало
+       корректно (max-width всегда клампит явный width), но
+       для единообразия с остальными страницами переведено
+       на min(), это то же самое поведение, просто короче
+       и без риска, что кто-то потом уберёт max-width и
+       сломает адаптив. */
+    width: min(1500px, 92%);
 
     margin: auto;
 
@@ -87,6 +92,11 @@ HERO LEFT
     z-index: 20;
 
     padding-top: 40px;
+
+    /* ДОБАВЛЕНО: страховка от раздувания грид-колонки длинным
+       текстом заголовка/абзаца — тот же фикс, что и на
+       предыдущей странице */
+    min-width: 0;
 }
 
 .heroLabel {
@@ -121,13 +131,13 @@ HERO LEFT
 }
 
 .heroLeft h1 {
-    font-size: 64px;
+    font-size: clamp(28px, 4.6vw, 64px);
 
     line-height: 1.05;
 
     letter-spacing: -2px;
 
-    white-space: nowrap;
+    white-space: normal;
 }
 
 .heroLeft h1 span {
@@ -162,6 +172,9 @@ HERO RIGHT
     display: flex;
     justify-content: center;
     align-items: center;
+
+    /* ДОБАВЛЕНО */
+    min-width: 0;
 }
 
 .heroField {
@@ -303,7 +316,16 @@ RESPONSIVE
 
 ==================================================*/
 
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
+
+    /* ДОБАВЛЕНО: .heroRight (трактор/орбиты) скрывается ниже
+       по display: none, но min-height: 1020px из десктопных
+       стилей остаётся и держит под собой пустое место.
+       Из-за этого .services оказывается далеко от текста,
+       а не сразу под ним. Схлопываем блок по высоте контента. */
+    .hero {
+        min-height: auto;
+    }
 
     .heroContainer {
         grid-template-columns: 1fr;
@@ -312,18 +334,43 @@ RESPONSIVE
     }
 
     .heroLeft {
-        order: 2;
+        order: 1;
+
+        padding-top: 0;
+    }
+
+    .heroLeft p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .heroLabel {
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .heroRight {
-        order: 1;
-
-        height: auto;
+        display: none;
     }
 
-    .heroImage {
-        width: 100%;
-        max-width: 650px;
+}
+
+@media (max-width: 992px) {
+
+    .hero {
+        min-height: auto;
+
+        padding: 140px 0 70px;
+    }
+
+    .heroGlow {
+        width: 420px;
+        height: 420px;
+    }
+
+    .orbit1,
+    .orbit2 {
+        display: none;
     }
 
 }
@@ -331,24 +378,54 @@ RESPONSIVE
 @media (max-width: 768px) {
 
     .hero {
-        min-height: 900px;
+        min-height: auto;
 
-        display: flex;
-        align-items: center;
-
-        padding: 120px 0 80px;
+        padding: 120px 0 60px;
     }
 
-    .heroLeft h1 {
-        font-size: 64px;
+    .heroLabel {
+        font-size: 12px;
+        letter-spacing: 4px;
 
-        line-height: 1.05;
+        padding-left: 60px;
 
-        letter-spacing: -2px;
+        margin-bottom: 22px;
+    }
+
+    .heroLabel::before {
+        width: 44px;
     }
 
     .heroLeft p {
-        font-size: 18px;
+        margin-top: 26px;
+
+        font-size: 17px;
+        line-height: 1.75;
+    }
+
+    .heroImage {
+        max-width: 440px;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .hero {
+        padding: 100px 0 50px;
+    }
+
+    .heroLabel {
+        letter-spacing: 3px;
+    }
+
+    .heroImage {
+        max-width: 320px;
+    }
+
+    .heroGlow {
+        width: 300px;
+        height: 300px;
     }
 
 }

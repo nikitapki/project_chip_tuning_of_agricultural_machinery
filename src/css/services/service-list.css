@@ -5,16 +5,18 @@ SERVICES
 ==================================================*/
 
 .services {
-    width: 1500px;
-    max-width: 92%;
-
+    width: min(1500px, 92%);
     margin: 80px auto 0;
-
     padding-bottom: 140px;
-
     position: relative;
-
     background: transparent;
+
+    /* ДОБАВЛЕНО: .service::before/::after вылезают на сотни px
+       за пределы контейнера (right:-320px, left:-520px и т.д.)
+       и создают горизонтальный overflow страницы во время
+       ресайза, пока html/body overflow-x:hidden не успевает
+       "подрезать" — вешаем клиппинг прямо на контейнер. */
+    overflow-x: clip;
 }
 
 
@@ -129,6 +131,9 @@ SERVICE IMAGE
 
     border-radius: 34px;
     overflow: hidden;
+
+    /* ДОБАВЛЕНО: страховка от раздувания колонки */
+    min-width: 0;
 }
 
 .serviceImage img {
@@ -172,6 +177,10 @@ SERVICE CONTENT
     transition: .35s;
 
     z-index: 5;
+
+    /* ДОБАВЛЕНО: длинный текст в .serviceContent p мог
+       раздувать колонку шире грид-трека */
+    min-width: 0;
 }
 
 .serviceContent::before {
@@ -343,12 +352,43 @@ RESPONSIVE
 
 ==================================================*/
 
+@media (max-width: 1400px) {
+
+    .service::before {
+        width: 560px;
+        height: 560px;
+        right: -260px;
+    }
+
+    .service::after {
+        width: 850px;
+        height: 850px;
+        left: -400px;
+    }
+
+    .service.reverse::before {
+        left: -260px;
+    }
+
+    .service.reverse::after {
+        right: -400px;
+    }
+
+}
+
 @media (max-width: 1200px) {
+
+    .services {
+        margin-top: 40px;
+        padding-bottom: 90px;
+    }
 
     .service {
         grid-template-columns: 1fr;
 
         gap: 40px;
+
+        margin: 110px 0;
     }
 
     .service.reverse {
@@ -363,9 +403,22 @@ RESPONSIVE
         grid-template-columns: 1fr;
     }
 
+    .service::before,
+    .service::after,
+    .service.reverse::before,
+    .service.reverse::after {
+        display: none;
+    }
+
 }
 
 @media (max-width: 768px) {
+
+    .service {
+        margin: 70px 0;
+
+        gap: 30px;
+    }
 
     .serviceContent {
         padding: 30px;
@@ -377,6 +430,44 @@ RESPONSIVE
 
     .serviceContent p {
         font-size: 16px;
+
+        margin-bottom: 28px;
+    }
+
+    .serviceIcon {
+        width: 62px;
+        height: 62px;
+
+        border-radius: 18px;
+
+        margin-bottom: 18px;
+    }
+
+    .serviceIcon img {
+        width: 30px;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .service {
+        margin: 50px 0;
+    }
+
+    .serviceContent {
+        padding: 24px;
+
+        border-radius: 24px;
+    }
+
+    .serviceContent h2 {
+        font-size: 26px;
+    }
+
+    .serviceImage,
+    .serviceImage img {
+        border-radius: 22px;
     }
 
 }
