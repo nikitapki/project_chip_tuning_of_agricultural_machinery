@@ -1,0 +1,70 @@
+/*==================================================
+
+GLOBAL
+
+==================================================*/
+
+.container {
+    width: min(1280px, 92%);
+    margin: auto;
+}
+
+section {
+    position: relative;
+    padding: 140px 0;
+}
+
+.sectionTitle {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.sectionTitle span {
+    display: inline-block;
+
+    color: #39c44a;
+
+    font-weight: 700;
+    letter-spacing: 3px;
+    font-size: 13px;
+
+    margin-bottom: 20px;
+}
+
+.sectionTitle h2 {
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1px;
+}
+
+h1,
+h2,
+h3 {
+    color: #1d1d1d;
+}
+/*==================================================
+
+RESPONSIVE
+
+==================================================*/
+
+@media (max-width: 768px) {
+
+    .sectionTitle h2 {
+        font-size: 38px;
+    }
+
+    section {
+        padding: 90px 0;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .sectionTitle h2 {
+        font-size: 32px;
+    }
+
+}
