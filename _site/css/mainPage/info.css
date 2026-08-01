@@ -1,0 +1,133 @@
+/*==================================================
+                    INFO BLOCKS
+==================================================*/
+
+.info {
+    position: absolute;
+
+    z-index: 40;
+
+    transition: .35s;
+
+    text-shadow:
+        0 1px 2px rgba(255,255,255,.7);
+}
+
+
+/*==================================================
+                    INFO TEXT
+==================================================*/
+
+.infoText h3 {
+    font-size: 30px;
+
+    color: #18212D;
+
+    font-weight: 800;
+
+    margin-bottom: 10px;
+}
+
+.infoText p {
+    color: #4E5968;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    font-weight: 500;
+}
+
+
+/*==================================================
+                    INFO DOT
+==================================================*/
+
+.infoDot {
+    width: 16px;
+    height: 16px;
+
+    border-radius: 50%;
+
+    background: #38C84A;
+
+    box-shadow:
+        0 0 10px #38C84A,
+        0 0 30px rgba(56,200,74,.55);
+}
+
+
+/*==================================================
+                    INFO TOP
+==================================================*/
+
+.infoTop {
+    top: 115px;
+
+    left: 54%;
+
+    transform: translateX(-50%);
+}
+
+.infoTop::before {
+    width: 2px;
+    height: 110px;
+
+    left: -26px;
+    top: 16px;
+}
+
+.infoTop .infoDot {
+    left: -36px;
+    top: 10px;
+}
+
+
+/*==================================================
+                    INFO LEFT
+==================================================*/
+
+.infoLeft {
+    left: 130px;
+    top: 500px;
+}
+
+.infoLeft .infoDot {
+    right: -35px;
+    top: 18px;
+}
+
+
+/*==================================================
+                    INFO RIGHT
+==================================================*/
+
+.infoRight {
+    right: 120px;
+    top: 500px;
+
+    text-align: right;
+}
+
+.infoRight .infoDot {
+    left: -35px;
+    top: 18px;
+}
+
+
+/*==================================================
+                    INFO BOTTOM
+==================================================*/
+
+.infoBottom {
+    left: 54%;
+    bottom: 135px;
+
+    transform: translateX(-50%);
+}
+
+.infoBottom .infoDot {
+    left: -36px;
+    top: -10px;
+}
+    
