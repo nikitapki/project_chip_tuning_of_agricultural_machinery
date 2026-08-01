@@ -1,0 +1,165 @@
+/*==================================================
+
+COMPANY
+
+==================================================*/
+
+.company {
+    position: relative;
+}
+
+.companyContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 90px;
+    align-items: center;
+}
+
+
+/*==================================================
+
+COMPANY IMAGE
+
+==================================================*/
+
+.companyImage {
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 28px;
+}
+
+.companyImage img {
+    border-radius: 26px;
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, .12);
+
+    transition: .7s;
+}
+
+.companyImage:hover img {
+    transform: scale(1.05);
+}
+
+
+/*==================================================
+
+COMPANY CONTENT
+
+==================================================*/
+
+.companyContent span {
+    color: #37c94e;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+}
+
+.companyContent h2 {
+    font-size: 52px;
+
+    margin: 25px 0 35px;
+
+    line-height: 1.15;
+
+    letter-spacing: -1px;
+}
+
+.companyContent > p {
+    color: #666;
+
+    line-height: 1.9;
+
+    margin-bottom: 45px;
+}
+
+
+/*==================================================
+
+COMPANY LIST
+
+==================================================*/
+
+.companyList {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 26px;
+}
+
+.companyItem {
+    display: flex;
+
+    gap: 24px;
+
+    align-items: flex-start;
+}
+
+.check {
+    width: 18px;
+    height: 18px;
+
+    border-radius: 50%;
+
+    background: #37c94e;
+
+    margin-top: 7px;
+
+    flex-shrink: 0;
+
+    box-shadow:
+        0 0 18px rgba(55, 201, 78, .45);
+}
+
+.companyItem h3 {
+    margin-bottom: 10px;
+
+    font-size: 20px;
+}
+
+.companyItem p {
+    color: #666;
+
+    line-height: 1.8;
+}
+/*==================================================
+
+RESPONSIVE
+
+==================================================*/
+
+@media (max-width: 1200px) {
+
+    .companyContainer {
+        gap: 60px;
+    }
+
+}
+
+@media (max-width: 992px) {
+
+    .companyContainer {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .companyContent h2 {
+        font-size: 38px;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .companyContent h2 {
+        font-size: 32px;
+    }
+
+}
