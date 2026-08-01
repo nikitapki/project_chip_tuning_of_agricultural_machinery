@@ -1,0 +1,347 @@
+/*==================================================
+                    HERO
+==================================================*/
+
+.hero {
+    position: relative;
+
+    width: 100%;
+    min-height: 980px;
+
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(255,255,255,.96) 48%,
+            rgba(255,255,255,.78) 58%,
+            rgba(255,255,255,.30) 72%,
+            rgba(255,255,255,0) 100%
+        ),
+        url("/images/hero/hero-bg.png");
+
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    
+}
+
+
+/*==================================================
+                CENTER GLOW
+==================================================*/
+
+.centerGlow {
+    position: absolute;
+
+    width: 820px;
+    height: 820px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(60,200,90,.12),
+            rgba(60,200,90,.04),
+            transparent 72%
+        );
+
+    z-index: 5;
+}
+
+
+/*==================================================
+                    SVG
+==================================================*/
+
+.heroSvg {
+    position: absolute;
+
+    width: 1500px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 10;
+
+    pointer-events: none;
+}
+
+
+/*==================================================
+                    PLANET
+==================================================*/
+
+.earth {
+    position: absolute;
+
+    width: 610px;
+
+    left: 50%;
+    top: 49%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 20;
+
+    filter:
+        drop-shadow(0 0 35px rgba(20,120,60,.35))
+        drop-shadow(0 0 90px rgba(20,120,60,.20));
+
+    animation: planetFloat 8s ease-in-out infinite;
+}
+
+
+/*==================================================
+                    LOGO TOP
+==================================================*/
+
+.logoTop {
+    position: absolute;
+
+    left: 340px;
+    top: 270px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 0;
+
+    z-index: 30;
+}
+
+.logoTop::before {
+    content: "";
+
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    left: -40px;
+    top: -70px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(57,216,74,.10),
+            transparent 70%
+        );
+
+    z-index: -1;
+}
+
+.logoTop::after {
+    content: "";
+
+    position: absolute;
+
+    left: 22px;
+    bottom: -18px;
+
+    width: 170px;
+    height: 3px;
+
+    background: #39D84A;
+
+    border-radius: 30px;
+}
+
+
+/*==================================================
+                LOGO BOTTOM
+==================================================*/
+
+.logoBottom {
+    position: absolute;
+
+    right: 420px;
+    bottom: 240px;
+
+    display: flex;
+    align-items: center;
+
+    z-index: 100;
+}
+
+.logoBottom::before {
+    content: "";
+
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    right: -40px;
+    top: -70px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(57,216,74,.10),
+            transparent 70%
+        );
+
+    z-index: -1;
+}
+
+.logoBottom::after {
+    content: "";
+
+    position: absolute;
+
+    right: 22px;
+    bottom: -18px;
+
+    width: 170px;
+    height: 3px;
+
+    background: #39D84A;
+
+    border-radius: 30px;
+}
+
+
+/*==================================================
+                LOGO TEXT
+==================================================*/
+
+.logoDark {
+    font-family: "Exo 2", sans-serif;
+
+    font-size: 98px;
+    font-weight: 800;
+    font-style: italic;
+
+    letter-spacing: -4px;
+
+    color: #18212D;
+
+    line-height: 1;
+}
+
+.logoO {
+    font-family: "Exo 2", sans-serif;
+
+    font-size: 98px;
+    font-weight: 800;
+    font-style: italic;
+
+    letter-spacing: -4px;
+
+    color: #39D84A;
+
+    margin: 0 -3px;
+
+    text-shadow:
+        0 0 12px rgba(57,216,74,.45),
+        0 0 28px rgba(57,216,74,.30);
+}
+
+
+/*==================================================
+                HERO PHOTO
+==================================================*/
+
+.heroPhoto {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 340px;
+
+    z-index: 3;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(255,255,255,0) 0%,
+            rgba(255,255,255,.10) 25%,
+            rgba(255,255,255,.35) 50%,
+            rgba(255,255,255,.70) 72%,
+            rgba(255,255,255,.92) 88%,
+            #fff 100%
+        ),
+        url("/images/hero/hero-bg.png");
+
+    background-size: 115%;
+    background-position: 18% bottom;
+    background-repeat: no-repeat;
+
+    filter:
+        saturate(1.08)
+        contrast(1.03);
+}
+
+
+/*==================================================
+                HERO ANIMATION
+==================================================*/
+
+@keyframes planetFloat {
+
+    0% {
+        transform: translate(-50%, -50%);
+    }
+
+    50% {
+        transform: translate(-50%, calc(-50% - 12px));
+    }
+
+    100% {
+        transform: translate(-50%, -50%);
+    }
+
+}
+/*==================================================
+                RESPONSIVE
+==================================================*/
+
+@media (max-width: 1500px) {
+
+    .heroSvg {
+        width: 1250px;
+    }
+
+}
+
+@media (max-width: 1200px) {
+
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding-bottom: 380px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .heroSvg {
+        width: 900px;
+    }
+
+    .earth {
+        width: 260px;
+    }
+
+}
