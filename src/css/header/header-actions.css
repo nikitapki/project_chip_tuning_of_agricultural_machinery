@@ -1,0 +1,202 @@
+/*==================================================
+
+HEADER ACTIONS
+
+==================================================*/
+
+.header-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    flex-shrink: 0;
+}
+
+
+/*==================================================
+
+BUTTON
+
+==================================================*/
+
+.btn-primary {
+    padding: 10px 22px;
+
+    border-radius: 8px;
+
+    font-size: 17px;
+    font-weight: 500;
+    font-family: inherit;
+
+    cursor: pointer;
+
+    border: none;
+
+    background: #4a7a4a;
+    color: #fff;
+
+    white-space: nowrap;
+
+    transition: background .2s ease;
+}
+
+.btn-primary:hover {
+    background: #3d663d;
+}
+
+
+/*==================================================
+
+PHONE
+
+==================================================*/
+
+.phone-block {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    position: relative;
+}
+
+.phone-link {
+    color: #eee;
+
+    text-decoration: none;
+
+    font-size: 20px;
+    font-weight: 500;
+
+    white-space: nowrap;
+
+    transition: color .2s ease;
+}
+
+.phone-link:hover {
+    color: #37c94e;
+}
+
+
+/*==================================================
+
+SOCIALS
+
+==================================================*/
+
+.social-links {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* ИЗМЕНЕНО: было единое color: #eee для всех — из-за
+       fill="currentColor" в SVG все иконки красились в один
+       светло-серый цвет вместо фирменных. Базовый цвет здесь
+       больше не нужен, каждая иконка получает свой ниже. */
+    transition: transform .2s ease, filter .2s ease;
+}
+
+/* ДОБАВЛЕНО: фирменные цвета сервисов вместо currentColor:#eee.
+   MAX — официальный синий из брендбука (go.max.ru/brandbook,
+   "Синий гигант" #471AFF). Telegram/WhatsApp/VK — официальные
+   брендовые цвета. Требует классов icon-max/icon-telegram/
+   icon-whatsapp/icon-vk на ссылках (см. обновлённый HTML). */
+.icon-max {
+    color: #471aff;
+}
+
+.icon-telegram {
+    color: #229ed9;
+}
+
+.icon-whatsapp {
+    color: #25d366;
+}
+
+.icon-vk {
+    color: #0077ff;
+}
+
+.social-icon:hover {
+    /* ИЗМЕНЕНО: раньше hover менял цвет на общий акцент #37c94e,
+       что перебивало бы фирменный цвет каждой иконки. Теперь
+       hover — лёгкая подсветка яркости + подъём, без смены цвета */
+    filter: brightness(1.2);
+
+    transform: translateY(-2px);
+}
+
+.social-icon svg {
+    width: 30px;
+    height: 30px;
+}
+
+
+/*==================================================
+
+RESPONSIVE
+
+ДОБАВЛЕНО: промежуточный брейкпоинт 1200px. Без JS браузер
+не знает точную ширину контента — 860px это угаданное
+значение, и если логотип/меню чуть шире предполагаемого,
+в диапазоне между десктопом и 860px контент мог упираться
+в overflow: hidden хедера, и крайняя иконка соцсетей
+обрезалась по краю ДО того, как сработает финальный
+брейкпоинт. Плавно уменьшаем gap и размеры иконок/телефона
+заранее — это снижает нужную ширину контента заблаговременно
+и оставляет запас прочности перед переходом в бургер.
+
+==================================================*/
+
+@media (max-width: 1200px) {
+
+    .header-actions {
+        gap: 6px;
+    }
+
+    .social-links {
+        gap: 6px;
+    }
+
+    .social-icon {
+        width: 34px;
+        height: 34px;
+    }
+
+    .social-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .phone-link {
+        font-size: 17px;
+    }
+
+    .btn-primary {
+        padding: 8px 16px;
+
+        font-size: 15px;
+    }
+
+}
+
+@media (max-width: 900px) {
+
+    .phone-block,
+    .social-links,
+    .btn-primary {
+        display: none;
+    }
+
+}

@@ -1,0 +1,105 @@
+/*==================================================
+
+HEADER BASE
+
+==================================================*/
+
+header {
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 24px;
+
+    height: 76px;
+
+    padding: 0 32px;
+
+    background: linear-gradient(90deg, rgba(89, 132, 162, .85), rgba(50, 99, 133, .85));
+
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+
+    border-bottom: 1px solid rgba(0, 0, 0, .08);
+
+    /* ДОБАВЛЕНО: logo/menu-links/header-actions — все
+       flex-shrink: 0 (см. nav-menu.css), то есть не сжимаются
+       сами по себе вплоть до брейкпоинта 860px, где всё сразу
+       уходит в бургер. Если на каком-то экране между полным
+       десктопом и 860px контента всё же чуть больше, чем
+       ширина хедера, — overflow: hidden не даёт этому вызвать
+       горизонтальный скролл страницы. */
+    overflow: hidden;
+}
+
+
+/*==================================================
+
+LOGO
+
+ИСПРАВЛЕНО: было height: 120px при высоте хедера 76px —
+логотип физически не помещался в хедер и вылезал за его
+границы (или обрезался overflow, если он есть выше по
+дереву). Ограничиваем логотип высотой хедера с отступом
+сверху/снизу, ширина следует пропорционально.
+
+==================================================*/
+
+.logo {
+    display: flex;
+    align-items: center;
+
+    text-decoration: none;
+
+    flex-shrink: 0;
+}
+
+.logo img {
+    height: 48px;
+    width: auto;
+
+    display: block;
+}
+
+
+/*==================================================
+
+RESPONSIVE
+
+==================================================*/
+
+@media (max-width: 900px) {
+
+    header {
+        padding: 0 20px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    /* ИЗМЕНЕНО: header height была захардкожена 76px на всех
+       ширинах, а .mobile-menu (mobile-menu.css) ожидает
+       top: 64px именно на этом брейкпоинте — синхронизируем,
+       иначе между хедером и мобильным меню появится/пропадёт
+       щель ровно на 480px. */
+    header {
+        height: 64px;
+
+        padding: 0 16px;
+    }
+
+    .logo img {
+        height: 34px;
+    }
+
+}

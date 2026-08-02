@@ -1,0 +1,219 @@
+/*==================================================
+
+MOBILE MENU
+
+==================================================*/
+
+.mobile-menu {
+    position: fixed;
+
+    top: 76px;
+    left: 0;
+    right: 0;
+
+    background: #fff;
+
+    border-bottom: 1px solid rgba(0, 0, 0, .08);
+
+    padding: 12px 20px 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+
+    transform: translateY(-8px);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: transform .2s ease, opacity .2s ease;
+
+    z-index: 999;
+
+    max-height: calc(100vh - 76px);
+
+    overflow-y: auto;
+}
+
+.mobile-menu.open {
+    transform: translateY(0);
+
+    opacity: 1;
+
+    pointer-events: auto;
+}
+
+.mobile-menu a {
+    border: none;
+    background: transparent;
+
+    text-align: left;
+    text-decoration: none;
+
+    display: block;
+
+    font-size: 20px;
+    font-weight: 500;
+    font-family: inherit;
+
+    color: #333;
+
+    padding: 12px 8px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    opacity: 0;
+    transform: translateX(-12px);
+
+    transition: opacity .35s ease, transform .35s ease,
+                color .2s ease, background .2s ease;
+}
+
+.mobile-menu a:hover {
+    color: #37c94e;
+}
+
+.mobile-menu a.active {
+    background: #111;
+    color: #fff;
+}
+
+.mobile-menu hr {
+    border: none;
+    border-top: 1px solid #eee;
+
+    margin: 8px 0;
+}
+
+
+/*==================================================
+
+ПОСТЕПЕННОЕ ПОЯВЛЕНИЕ (STAGGER)
+
+Пункты меню при открытии бургера проявляются по очереди
+сверху вниз, а не все разом.
+
+==================================================*/
+
+.mobile-menu.open a,
+.mobile-menu.open .mobile-phone,
+.mobile-menu.open .mobile-socials {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.mobile-menu a:nth-child(1) { transition-delay: .05s; }
+.mobile-menu a:nth-child(2) { transition-delay: .1s; }
+.mobile-menu a:nth-child(3) { transition-delay: .15s; }
+.mobile-menu a:nth-child(4) { transition-delay: .2s; }
+.mobile-menu a:nth-child(5) { transition-delay: .25s; }
+.mobile-menu a:nth-child(6) { transition-delay: .3s; }
+.mobile-menu a:nth-child(n+7) { transition-delay: .35s; }
+
+.mobile-menu:not(.open) a {
+    transition-delay: 0s;
+}
+
+
+/*==================================================
+
+MOBILE PHONE / SOCIALS
+
+==================================================*/
+
+.mobile-phone {
+    color: #333;
+
+    font-size: 20px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    padding: 12px 8px;
+
+    display: block;
+
+    opacity: 0;
+    transform: translateX(-12px);
+
+    transition: opacity .35s ease .3s, transform .35s ease .3s;
+}
+
+.mobile-phone:hover {
+    color: #37c94e;
+}
+
+.mobile-socials {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 8px;
+
+    opacity: 0;
+    transform: translateX(-12px);
+
+    transition: opacity .35s ease .35s, transform .35s ease .35s;
+}
+
+.mobile-socials .social-icon {
+    /* ИЗМЕНЕНО: было единое color: #333 для всех — та же причина,
+       что и в header-actions.css: fill="currentColor" в SVG
+       красился в цвет .social-icon, а не в фирменный цвет
+       сервиса. Цвет теперь задают классы icon-max/icon-telegram/
+       icon-whatsapp/icon-vk на самой ссылке (общие с десктопом). */
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: transform .2s ease, filter .2s ease;
+}
+
+.mobile-socials .social-icon svg {
+    width: 30px;
+    height: 30px;
+}
+
+.mobile-socials .social-icon:hover {
+    filter: brightness(1.2);
+
+    transform: translateY(-2px);
+}
+
+
+/*==================================================
+
+RESPONSIVE
+
+==================================================*/
+
+@media (min-width: 901px) {
+
+    .mobile-menu {
+        display: none;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .mobile-menu {
+        top: 64px;
+
+        max-height: calc(100vh - 64px);
+    }
+
+    .mobile-menu a,
+    .mobile-phone {
+        font-size: 17px;
+    }
+
+}
