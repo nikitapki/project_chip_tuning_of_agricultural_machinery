@@ -485,24 +485,3 @@ advantages/principles уже ломаются на 1fr в своих
 }
 
 
-/*==================================================
-
-УМЕНЬШЕНИЕ ДВИЖЕНИЯ
-
-Для пользователей, у которых в системе отключена
-анимация — гасим float/rotate/orbit, чтобы не укачивало.
-
-==================================================*/
-
-@media (prefers-reduced-motion: reduce) {
-
-    .heroVisual,
-    .heroVisual img,
-    .orbit,
-    .company::after,
-    .advantages::after,
-    .principles::after {
-        animation: none !important;
-    }
-
-}

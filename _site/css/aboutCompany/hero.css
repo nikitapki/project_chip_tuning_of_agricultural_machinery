@@ -149,10 +149,12 @@ HERO RIGHT
 }
 
 .heroVisual img {
-    width: 100%;
+    width: 155%;
+    max-width: none;
     height: auto;
 
     position: relative;
+     left: 65px;
 
     z-index: 10;
 
