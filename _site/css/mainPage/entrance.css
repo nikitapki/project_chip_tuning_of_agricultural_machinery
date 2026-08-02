@@ -2,3 +2,12 @@
 @import url("./info.css");
 @import url("./cards.css");
 
+/*==================================================
+                FIX MAIN PAGE
+==================================================*/
+
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}

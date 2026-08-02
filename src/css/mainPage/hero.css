@@ -6,7 +6,8 @@
     position: relative;
 
     width: 100%;
-    min-height: 980px;
+    height: calc(100vh + 30px);
+    min-height: 0;
 
     overflow: hidden;
 
@@ -14,22 +15,21 @@
     justify-content: center;
     align-items: center;
 
-    background:
-        linear-gradient(
-            to top,
-            rgba(255,255,255,.96) 48%,
-            rgba(255,255,255,.78) 58%,
-            rgba(255,255,255,.30) 72%,
-            rgba(255,255,255,0) 100%
-        ),
-        url("/images/hero/hero-bg.png");
-
-    background-size: cover;
-    background-position: center bottom;
-    background-repeat: no-repeat;
-    
+    background: #f7f8f5;
 }
+.hero::before {
+    content: "";
 
+    position: absolute;
+    inset: 0;
+
+    background-image: url("/images/hero/main-bg.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+
+    z-index: 0;
+}
 
 /*==================================================
                 CENTER GLOW

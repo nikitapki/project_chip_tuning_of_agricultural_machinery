@@ -3,16 +3,20 @@
 ==================================================*/
 
 .cards {
-    width: 1500px;
-    max-width: 94%;
+    position: absolute;
 
-    margin: -120px auto 80px;
+    left: 50%;
+    bottom: 28px;
+
+    transform: translateX(-50%);
+
+    width: 1500px;
+    max-width: 92%;
 
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 28px;
+    gap: 14px;
 
-    position: relative;
     z-index: 300;
 }
 
@@ -24,196 +28,391 @@
 .card {
     position: relative;
 
-    height: 280px;
+    height: 150px;
 
-    overflow: visible;
-
-    transition: .45s;
-
-    transform-origin: bottom center;
+    z-index: 1;
 }
 
-.card::before {
-    content: "";
 
-    position: absolute;
+/* активная карточка должна быть выше соседних */
 
-    left: 0;
-    top: 0;
-
-    width: 100%;
-    height: 5px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #32d74b,
-            #57ff7d
-        );
-}
-
-.card::after {
-    content: "";
-
-    position: absolute;
-
-    right: -70px;
-    top: -70px;
-
-    width: 170px;
-    height: 170px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(56,200,74,.18),
-            transparent 70%
-        );
+.card:hover {
+    z-index: 1000;
 }
 
 
 /*==================================================
-                    CARD TEXT
-==================================================*/
-
-.card h2 {
-    font-size: 24px;
-
-    line-height: 1.2;
-
-    margin-bottom: 22px;
-
-    font-weight: 800;
-
-    color: #1B2432;
-}
-
-.card p {
-    font-size: 18px;
-
-    line-height: 1.8;
-
-    color: #707B8D;
-}
-
-
-/*==================================================
-                    CARD ICON
-==================================================*/
-
-.cardIcon {
-    width: 72px;
-    height: 72px;
-
-    margin-bottom: 28px;
-
-    border-radius: 20px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 34px;
-
-    background: #EFFBF1;
-
-    color: #31d455;
-
-    box-shadow:
-        0 10px 25px rgba(56,200,74,.18);
-}
-
-
-/*==================================================
-                    CARD CONTENT
-==================================================*/
-
-.cardContent {
-    position: relative;
-
-    z-index: 2;
-}
-
-.short {
-    transition: .35s;
-}
-
-.more {
-    opacity: 0;
-
-    transform: translateY(25px);
-
-    transition:
-        opacity .45s,
-        transform .45s;
-}
-
-
-/*==================================================
-                    CARD INNER
+                CARD INNER
 ==================================================*/
 
 .cardInner {
     position: absolute;
 
-    left: 0;
-    right: 0;
+    left: 50%;
     bottom: 0;
 
-    height: 280px;
+    width: 100%;
+    height: 150px;
 
-    padding: 42px 34px;
+    transform: translateX(-50%);
 
-    background: rgba(255,255,255,.92);
+    padding: 22px 24px;
 
-    backdrop-filter: blur(18px);
+    border-radius: 20px;
 
-    border-radius: 28px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(66, 94, 76, .92),
+            rgba(43, 76, 60, .94)
+        );
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    border: 1px solid rgba(255,255,255,.20);
 
     box-shadow:
-        0 25px 60px rgba(15,35,20,.12);
+        0 12px 35px rgba(0,0,0,.14);
 
-    transition: .45s;
+    overflow: hidden;
 
-    overflow-y: auto;
-    overflow-x: hidden;
-
-    scrollbar-width: none;
+    transition:
+        width .45s cubic-bezier(.2,.8,.2,1),
+        height .45s cubic-bezier(.2,.8,.2,1),
+        transform .45s cubic-bezier(.2,.8,.2,1),
+        background .35s,
+        box-shadow .35s;
 }
 
-.cardInner::-webkit-scrollbar {
-    display: none;
+
+/* зелёный верхний акцент */
+
+.cardInner::before {
+    content: "";
+
+    position: absolute;
+
+    left: 24px;
+    top: 0;
+
+    width: 42px;
+    height: 3px;
+
+    background: #48e768;
+
+    border-radius: 0 0 4px 4px;
+
+    box-shadow:
+        0 0 12px rgba(72,231,104,.65);
+
+    transition: width .4s ease;
+
+    z-index: 10;
 }
 
 
 /*==================================================
-                    CARD HOVER
+                SHORT CONTENT
 ==================================================*/
 
-.card:hover {
-    transform: translateY(-20px) scale(1.06);
+.cardShort {
+    position: relative;
 
-    min-height: 390px;
+    z-index: 5;
 
-    box-shadow:
-        0 40px 90px rgba(20,40,25,.18);
+    transition:
+        opacity .22s ease,
+        transform .35s ease;
 }
 
-.card:hover .more {
+
+.cardShort h2 {
+    margin: 0 0 12px;
+
+    color: #fff;
+
+    font-size: 20px;
+    line-height: 1.15;
+
+    font-weight: 800;
+}
+
+
+.cardShort p {
+    margin: 0;
+
+    color: rgba(255,255,255,.72);
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/*==================================================
+                EXPANDED CONTENT
+==================================================*/
+
+.cardExpanded {
+    position: absolute;
+
+    inset: 0;
+
+    padding: 32px;
+
+    display: grid;
+
+    grid-template-columns: 48% 52%;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(25px);
+
+    transition:
+        opacity .25s ease .12s,
+        transform .35s ease .12s,
+        visibility .25s;
+
+    z-index: 4;
+}
+
+
+/*==================================================
+                    IMAGE
+==================================================*/
+
+.cardImage {
+    position: relative;
+
+    height: 100%;
+
+    overflow: hidden;
+
+    border-radius: 15px;
+}
+
+
+.cardImage img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform .7s ease;
+}
+
+
+/* затемнение картинки */
+
+.cardImage::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 50%,
+            rgba(24,50,41,.18)
+        );
+
+    pointer-events: none;
+}
+
+
+/*==================================================
+                DETAILS
+==================================================*/
+
+.cardDetails {
+    padding: 18px 20px 18px 38px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+
+.cardLabel {
+    display: block;
+
+    margin-bottom: 15px;
+
+    color: #72f28a;
+
+    font-size: 16px;
+    line-height: 1;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.8px;
+}
+
+
+.cardDetails h3 {
+    margin: 0 0 22px;
+
+    color: #fff;
+
+    font-size: 34px;
+    line-height: 1.15;
+
+    font-weight: 800;
+}
+
+
+.cardDetails p {
+    margin: 0 0 25px;
+
+    color: rgba(255,255,255,.82);
+
+    font-size: 19px;
+    line-height: 1.65;
+
+    font-weight: 400;
+}
+
+
+.cardDetails ul {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+
+.cardDetails li {
+    position: relative;
+
+    margin-bottom: 13px;
+
+    padding-left: 25px;
+
+    color: rgba(255,255,255,.92);
+
+    font-size: 17px;
+    line-height: 1.5;
+
+    font-weight: 500;
+}
+
+
+.cardDetails li::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 9px;
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #65ed7d;
+
+    box-shadow:
+        0 0 10px rgba(101,237,125,.7);
+}
+
+
+/*==================================================
+                    HOVER
+==================================================*/
+
+.card:hover .cardInner {
+
+    width: 900px;
+    height: 580px;
+
+    transform:
+        translateX(-50%)
+        translateY(-28px);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(61, 94, 73, .98),
+            rgba(35, 72, 55, .98)
+        );
+
+    border-color: rgba(92,235,116,.55);
+
+    box-shadow:
+        0 45px 120px rgba(0,0,0,.34),
+        0 0 45px rgba(57,216,74,.15);
+}
+
+
+.card:hover .cardInner::before {
+    width: 110px;
+}
+
+
+/* убираем короткую версию */
+
+.card:hover .cardShort {
+    opacity: 0;
+
+    transform: translateY(-20px);
+
+    pointer-events: none;
+}
+
+
+/* показываем подробную */
+
+.card:hover .cardExpanded {
     opacity: 1;
+
+    visibility: visible;
 
     transform: translateY(0);
 }
 
-.card:hover .cardInner {
-    height: 620px;
+
+.card:hover .cardImage img {
+    transform: scale(1.05);
+}
+
+
+/*==================================================
+        EDGE CARDS POSITION CORRECTION
+==================================================*/
+
+/*
+Первая и последняя карточки не должны
+вылетать за границы экрана.
+*/
+
+.card:first-child:hover .cardInner {
+    left: 0;
 
     transform:
-        translateY(-340px)
-        scale(1.05);
+        translateX(0)
+        translateY(-28px);
 }
+
+.card:last-child:hover .cardInner {
+    left: auto;
+    right: 0;
+
+    transform:
+        translateX(0)
+        translateY(-28px);
+}
+
+
 /*==================================================
                 RESPONSIVE
 ==================================================*/
@@ -221,15 +420,30 @@
 @media (max-width: 1200px) {
 
     .cards {
+        width: 94%;
+
         grid-template-columns: repeat(2, 1fr);
-        width: 95%;
+    }
+
+    .card:hover .cardInner {
+        width: 500px;
     }
 
 }
 
+
 @media (max-width: 768px) {
 
     .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .card:hover .cardInner {
+        width: 100%;
+        height: 430px;
+    }
+
+    .cardExpanded {
         grid-template-columns: 1fr;
     }
 
