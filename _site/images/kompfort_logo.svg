@@ -1,20 +1,224 @@
-<svg width="100%" viewBox="0 0 400 150" role="img" style="" xmlns="http://www.w3.org/2000/svg">
-<title style="fill:rgb(0, 0, 0);stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">Логотип Комп Форт</title>
-<desc style="fill:rgb(0, 0, 0);stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">Логотип с текстом Комп, эмблемой в виде колеса вместо буквы О, и текстом орт</desc>
-<text x="20" y="95" font-family="Georgia, serif" font-size="52" font-weight="700" fill="#1a2440" style="fill:rgb(26, 36, 64);stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Georgia, serif;font-size:52px;font-weight:700;text-anchor:start;dominant-baseline:auto">Комп</text>
-<g transform="translate(200,68)" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
-<circle r="26" fill="none" stroke="#1a2440" stroke-width="5" style="fill:none;stroke:rgb(26, 36, 64);color:rgb(11, 11, 11);stroke-width:5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-<g stroke="#1a2440" stroke-width="3" stroke-linecap="round" style="fill:rgb(0, 0, 0);stroke:rgb(26, 36, 64);color:rgb(11, 11, 11);stroke-width:3px;stroke-linecap:round;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
-<line x1="0" y1="-26" x2="0" y2="-16" style="fill:rgb(0, 0, 0);stroke:rgb(26, 36, 64);color:rgb(11, 11, 11);stroke-width:3px;stroke-linecap:round;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-<line x1="0" y1="26" x2="0" y2="16" style="fill:rgb(0, 0, 0);stroke:rgb(26, 36, 64);color:rgb(11, 11, 11);stroke-width:3px;stroke-linecap:round;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-<line x1="-26" y1="0" x2="-16" y2="0" style="fill:rgb(0, 0, 0);stroke:rgb(26, 36, 64);color:rgb(11, 11, 11);stroke-width:3px;stroke-linecap:round;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-<line x1="26" y1="0" x2="16" y2="0" style="fill:rgb(0, 0, 0);stroke:rgb(26, 36, 64);color:rgb(11, 11, 11);stroke-width:3px;stroke-linecap:round;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-<line x1="-18" y1="-18" x2="-11" y2="-11" style="fill:rgb(0, 0, 0);stroke:rgb(26, 36, 64);color:rgb(11, 11, 11);stroke-width:3px;stroke-linecap:round;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-<line x1="18" y1="-18" x2="11" y2="-11" style="fill:rgb(0, 0, 0);stroke:rgb(26, 36, 64);color:rgb(11, 11, 11);stroke-width:3px;stroke-linecap:round;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-<line x1="-18" y1="18" x2="-11" y2="11" style="fill:rgb(0, 0, 0);stroke:rgb(26, 36, 64);color:rgb(11, 11, 11);stroke-width:3px;stroke-linecap:round;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-<line x1="18" y1="18" x2="11" y2="11" style="fill:rgb(0, 0, 0);stroke:rgb(26, 36, 64);color:rgb(11, 11, 11);stroke-width:3px;stroke-linecap:round;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="620"
+    height="120"
+    viewBox="0 0 620 120"
+    fill="none"
+>
+
+    <!--
+        КОМПФОРТ
+        Основной цвет: #071B38
+        Акцент: #28C840
+    -->
+
+    <!-- К -->
+    <path
+        d="M15 22 H29 V98 H15 Z
+           M29 60 L67 22 H87 L48 60 L89 98 H68 Z"
+        fill="#071B38"
+    />
+
+    <!-- о -->
+    <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="
+        M94 42
+        Q94 31 106 31
+        H145
+        Q157 31 157 42
+        V78
+        Q157 89 145 89
+        H106
+        Q94 89 94 78
+        Z
+
+        M110 45
+        Q106 45 106 49
+        V71
+        Q106 75 110 75
+        H141
+        Q145 75 145 71
+        V49
+        Q145 45 141 45
+        Z"
+        fill="#071B38"
+    />
+
+    <!-- зелёная точка первой О -->
+    <rect
+        x="120"
+        y="55"
+        width="12"
+        height="12"
+        rx="1"
+        fill="#28C840"
+    />
+
+
+    <!-- м -->
+    <path
+        d="
+        M169 31
+        H185
+        L207 58
+        L229 31
+        H245
+        V89
+        H230
+        V53
+        L211 76
+        H203
+        L184 53
+        V89
+        H169
+        Z"
+        fill="#071B38"
+    />
+
+
+    <!-- п -->
+    <path
+        d="
+        M258 31
+        H319
+        V89
+        H304
+        V45
+        H273
+        V89
+        H258
+        Z"
+        fill="#071B38"
+    />
+
+
+    <!-- Ф -->
+<g transform="translate(10 0)">
+    <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="
+        M355 20
+        H370
+        V30
+
+        H390
+        Q410 30 410 50
+        V68
+        Q410 88 390 88
+
+        H370
+        V100
+        H355
+        V88
+
+        H335
+        Q315 88 315 68
+        V50
+        Q315 30 335 30
+
+        H355
+        Z
+
+        M355 44
+        H337
+        Q330 44 330 51
+        V67
+        Q330 74 337 74
+        H355
+        Z
+
+        M370 44
+        V74
+        H388
+        Q395 74 395 67
+        V51
+        Q395 44 388 44
+        Z"
+        fill="#071B38"
+    />
 </g>
-<circle r="12" fill="#5aa634" style="fill:rgb(90, 166, 52);stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-</g>
-<text x="234" y="95" font-family="Georgia, serif" font-size="52" font-weight="700" fill="#1a2440" font-style="italic" style="fill:rgb(26, 36, 64);stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Georgia, serif;font-size:52px;font-weight:700;font-style:italic;text-anchor:start;dominant-baseline:auto">орт</text>
+
+
+    <!-- о -->
+    <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="
+        M420 42
+        Q420 31 432 31
+        H471
+        Q483 31 483 42
+        V78
+        Q483 89 471 89
+        H432
+        Q420 89 420 78
+        Z
+
+        M436 45
+        Q432 45 432 49
+        V71
+        Q432 75 436 75
+        H467
+        Q471 75 471 71
+        V49
+        Q471 45 467 45
+        Z"
+        fill="#071B38"
+    />
+
+    <!-- зелёная точка второй О -->
+    <rect
+        x="446"
+        y="55"
+        width="12"
+        height="12"
+        rx="1"
+        fill="#28C840"
+    />
+
+
+    <!-- р -->
+    <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="
+        M495 31
+        H541
+        Q555 31 555 45
+        V62
+        Q555 76 541 76
+        H510
+        V100
+        H495
+        Z
+
+        M510 45
+        V62
+        H536
+        Q540 62 540 58
+        V49
+        Q540 45 536 45
+        Z"
+        fill="#071B38"
+    />
+
+
+    <!-- т -->
+    <path
+        d="
+        M562 31
+        H617
+        V45
+        H597
+        V89
+        H582
+        V45
+        H562
+        Z"
+        fill="#071B38"
+    />
+
 </svg>

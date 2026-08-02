@@ -28,7 +28,9 @@
 
         {{ content }}
 
-        {% include "footer.html" %}
+        {% if hideFooter != true %}
+            {% include "footer.html" %}
+        {% endif %}
 
         <script src="/js/header.js"></script>
 
