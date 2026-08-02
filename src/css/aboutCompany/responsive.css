@@ -252,7 +252,7 @@ advantages/principles уже ломаются на 1fr в своих
 
     opacity: .12;
 
-    animation: gearSlow 180s linear infinite;
+    animation: gearImageRotate 30s linear infinite;
 
     pointer-events: none;
 

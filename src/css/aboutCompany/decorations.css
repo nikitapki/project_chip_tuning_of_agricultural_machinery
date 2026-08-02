@@ -298,3 +298,12 @@ PRINCIPLES CIRCLE
         0 0 0 260px rgba(55, 201, 78, .02),
         0 0 0 420px rgba(55, 201, 78, .015);
 }
+@keyframes gearImageRotate {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
