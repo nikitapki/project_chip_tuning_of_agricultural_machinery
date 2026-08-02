@@ -82,13 +82,12 @@
         });
     }
 
-    // НОВОЕ: сброс инлайн-стилей, которые layoutTabs()/expandMobile()
+    // Сброс инлайн-стилей, которые layoutTabs()/expandMobile()
     // проставляют карточкам в мобильном режиме (left/right/top/width/
     // height, data-side). Эти инлайн-стили сильнее любых правил из
     // @media, поэтому при возврате на широкий экран их обязательно
-    // нужно чистить вручную — иначе .cards-грид (десктопная раскладка,
-    // а вместе с ней и иконки/карточки) не может вернуться на место
-    // и остаётся "запертым" в размерах и координатах вкладки.
+    // нужно чистить вручную — иначе десктопная раскладка (иконки в
+    // сетке) не может вернуться на место.
     function resetDesktopLayout() {
         cards.forEach(card => {
             if (card.classList.contains('is-expanded')) return;
@@ -106,10 +105,19 @@
 
     function getMobilePanelRect() {
         const headerH = getHeaderHeight();
-        const availWidth = window.innerWidth - PANEL_SIDE_MARGIN * 2;
+
+        // ВАЖНО: берём document.documentElement.clientWidth, а НЕ
+        // window.innerWidth. innerWidth включает в себя ширину
+        // системного полосы прокрутки (если она есть), из-за чего
+        // ширина панели могла на несколько пикселей превышать
+        // реально видимую область экрана — именно это и вызывало
+        // горизонтальный скролл у раскрытых карточек на мобильном.
+        const viewportWidth = document.documentElement.clientWidth;
+
+        const availWidth = viewportWidth - PANEL_SIDE_MARGIN * 2;
         const availHeight = window.innerHeight - headerH - PANEL_VERT_MARGIN * 2;
 
-        const width = Math.min(window.innerWidth * PANEL_MAX_WIDTH_RATIO, availWidth);
+        const width = Math.min(viewportWidth * PANEL_MAX_WIDTH_RATIO, availWidth);
         const height = Math.min(window.innerHeight * PANEL_MAX_HEIGHT_RATIO, availHeight);
         const top = headerH + Math.max(PANEL_VERT_MARGIN, (availHeight - height) / 2);
 
@@ -219,7 +227,7 @@
         const inner = card.querySelector('.cardInner');
         const side = card.dataset.side;
 
-        // ВАЖНО: запоминаем ТОЧНЫЕ координаты вкладки до её изменения —
+        // Запоминаем ТОЧНЫЕ координаты вкладки до её изменения —
         // именно сюда карточка должна вернуться при закрытии.
         const rect = card.getBoundingClientRect();
         card._homeRect = {
@@ -283,11 +291,10 @@
             // после завершения анимации синхронизируем со всеми
             // остальными вкладками — на случай, если пока карточка
             // была открыта, поменялась высота хедера/окна.
-            // Но только если экран всё ещё мобильный: если пока
-            // карточка была раскрыта, пользователь успел развернуть
-            // окно на десктоп, layoutTabs() тут же вернул бы мобильные
-            // инлайн-стили обратно — а нам, наоборот, нужно их
-            // почистить через resetDesktopLayout().
+            // Проверяем текущий режим: если пока карточка была
+            // раскрыта пользователь успел развернуть окно на
+            // десктоп — чистим мобильные стили вместо того, чтобы
+            // заново расставлять вкладки.
             if (isMobile()) {
                 layoutTabs();
             } else {
@@ -372,12 +379,9 @@
                 activeCard.style.height = panel.height + 'px';
             }
         } else if (!activeCard) {
-            // ГЛАВНЫЙ ФИКС: раньше при переходе mobile -> desktop без
-            // раскрытой карточки не происходило вообще ничего, поэтому
-            // инлайн-стили от layoutTabs() (узкие размеры вкладки,
-            // top/left/right) оставались висеть на карточках, и
-            // десктопная grid-раскладка (а с ней иконки) не могла
-            // вернуться на место.
+            // При переходе mobile -> desktop без раскрытой карточки
+            // нужно почистить инлайн-стили, оставшиеся от layoutTabs(),
+            // иначе десктопная раскладка (иконки в сетке) не вернётся.
             resetDesktopLayout();
         } else {
             const target = getDesktopTargetRect();
