@@ -6,39 +6,30 @@ HEADER BASE
 
 header {
     position: fixed;
-
     left: 0;
     top: 0;
-
     width: 100%;
-
     z-index: 1000;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     gap: 24px;
 
     height: 76px;
-
     padding: 0 32px;
 
     background: linear-gradient(90deg, rgba(89, 132, 162, .85), rgba(50, 99, 133, .85));
-
     backdrop-filter: blur(1px);
     -webkit-backdrop-filter: blur(1px);
-
     border-bottom: 1px solid rgba(0, 0, 0, .08);
 
-    /* ДОБАВЛЕНО: logo/menu-links/header-actions — все
-       flex-shrink: 0 (см. nav-menu.css), то есть не сжимаются
-       сами по себе вплоть до брейкпоинта 860px, где всё сразу
-       уходит в бургер. Если на каком-то экране между полным
-       десктопом и 860px контента всё же чуть больше, чем
-       ширина хедера, — overflow: hidden не даёт этому вызвать
-       горизонтальный скролл страницы. */
-    overflow: hidden;
+    /* УБРАНО: overflow: hidden клипал .mobile-menu (position: fixed),
+       т.к. это DOM-потомок header — фиксированные элементы всё равно
+       обрезаются по границе родителя с overflow:hidden, даже если
+       позиционируются относительно viewport. Меню "выводилось",
+       но было обрезано по высоте header (76px). Убираем клип отсюда
+       и переносим страховку от горизонтального скролла на html/body. */
 }
 
 
