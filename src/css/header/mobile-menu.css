@@ -11,7 +11,9 @@ MOBILE MENU
     left: 0;
     right: 0;
 
-    background: #fff;
+    background:
+    radial-gradient(circle at 90% 45%, rgba(55, 201, 78, .14), transparent 45%),
+    linear-gradient(135deg, #dce8ee 0%, #d5e7e0 55%, #cfe6d5 100%);
 
     border-bottom: 1px solid rgba(0, 0, 0, .08);
 
@@ -35,6 +37,28 @@ MOBILE MENU
     max-height: calc(100vh - 76px);
 
     overflow-y: auto;
+    overflow: hidden;
+    isolation: isolate;
+}
+.mobile-menu::before {
+    content: "";
+    position: absolute;
+
+    width: 330px;
+    height: 330px;
+
+    right: -145px;
+    top: 65px;
+
+    background: url("/images/icons/gear-cad.svg") center / contain no-repeat;
+
+    opacity: .16;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    animation: mobileGearRotate 35s linear infinite;
 }
 
 .mobile-menu.open {
@@ -78,8 +102,12 @@ MOBILE MENU
 }
 
 .mobile-menu a.active {
-    background: #111;
+    background: linear-gradient(90deg, #24983a, #37c94e);
     color: #fff;
+
+    box-shadow: 0 5px 18px rgba(55, 201, 78, .18);
+
+    font-weight: 600;
 }
 
 .mobile-menu hr {
@@ -162,24 +190,28 @@ MOBILE PHONE / SOCIALS
 }
 
 .mobile-socials .social-icon {
-    /* ИЗМЕНЕНО: было единое color: #333 для всех — та же причина,
-       что и в header-actions.css: fill="currentColor" в SVG
-       красился в цвет .social-icon, а не в фирменный цвет
-       сервиса. Цвет теперь задают классы icon-max/icon-telegram/
-       icon-whatsapp/icon-vk на самой ссылке (общие с десктопом). */
     width: 40px;
     height: 40px;
 
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    margin: 0;
+
+    line-height: 0;
 
     transition: transform .2s ease, filter .2s ease;
 }
 
 .mobile-socials .social-icon svg {
-    width: 30px;
-    height: 30px;
+    width: 26px;
+    height: 26px;
+
+    display: block;
+
+    flex-shrink: 0;
 }
 
 .mobile-socials .social-icon:hover {
@@ -216,4 +248,14 @@ RESPONSIVE
         font-size: 17px;
     }
 
+}
+
+@keyframes mobileGearRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
