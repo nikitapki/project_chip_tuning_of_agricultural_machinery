@@ -26,9 +26,11 @@ img {
    декоративные элементы (gear1, circle1 и т.п.) могут
    вызывать горизонтальный скролл и на десктопных ширинах
    между 992px и 1400px — правило должно быть безусловным. */
-html,
+html {
+    overflow-x: clip;
+}
+
 body {
+    margin: 0;
     overflow-x: hidden;
-    max-width: 100%;
-    scrollbar-gutter: stable;
 }

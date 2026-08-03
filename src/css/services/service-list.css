@@ -16,7 +16,7 @@ SERVICES
        и создают горизонтальный overflow страницы во время
        ресайза, пока html/body overflow-x:hidden не успевает
        "подрезать" — вешаем клиппинг прямо на контейнер. */
-    overflow-x: clip;
+    overflow: clip;
 }
 
 
