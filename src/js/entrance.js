@@ -102,10 +102,15 @@
             const slot = side === 'left' ? leftCount++ : rightCount++;
             const top = topStart + slot * (TAB_HEIGHT + TAB_GAP);
 
+            // левый край считаем явным числом даже для правой
+            // стороны — чтобы при повороте transition анимировал
+            // именно left, а не прыгал через right -> auto
+            const left = side === 'left' ? 0 : (window.innerWidth - TAB_WIDTH);
+
             card.dataset.side = side;
 
-            card.style.left = side === 'left' ? '0px' : '';
-            card.style.right = side === 'right' ? '0px' : '';
+            card.style.left = left + 'px';
+            card.style.right = '';
             card.style.bottom = '';
             card.style.top = top + 'px';
             card.style.width = TAB_WIDTH + 'px';
@@ -130,6 +135,10 @@
             (window.innerWidth - totalWidth) / 2
         );
 
+        // top вместо bottom — по той же причине: чтобы transition
+        // анимировал числовое значение, а не auto <-> px
+        const top = window.innerHeight - TAB_HEIGHT_LANDSCAPE;
+
         visibleCards.forEach((card, slot) => {
             const left = startLeft + slot * (TAB_WIDTH_LANDSCAPE + TAB_GAP_LANDSCAPE);
 
@@ -137,8 +146,8 @@
 
             card.style.left = left + 'px';
             card.style.right = '';
-            card.style.top = '';
-            card.style.bottom = '0px';
+            card.style.top = top + 'px';
+            card.style.bottom = '';
             card.style.width = TAB_WIDTH_LANDSCAPE + 'px';
             card.style.height = TAB_HEIGHT_LANDSCAPE + 'px';
         });

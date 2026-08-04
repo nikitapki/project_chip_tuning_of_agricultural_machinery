@@ -426,10 +426,10 @@
         box-sizing: border-box;
 
         transition:
+            left .4s cubic-bezier(.2,.8,.2,1),
             width .4s cubic-bezier(.2,.8,.2,1),
             height .4s cubic-bezier(.2,.8,.2,1),
             top .4s cubic-bezier(.2,.8,.2,1),
-            bottom .4s cubic-bezier(.2,.8,.2,1),
             border-radius .4s cubic-bezier(.2,.8,.2,1);
     }
 
