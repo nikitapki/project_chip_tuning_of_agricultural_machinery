@@ -153,6 +153,75 @@
         });
     }
 
+
+    function layoutTabsAnimated() {
+        if (!isMobile()) return;
+
+        // ДО пересчёта запоминаем текущее положение каждой вкладки
+        const firstRects = new Map();
+        cards.forEach(card => {
+            if (card.classList.contains('is-expanded')) return;
+            firstRects.set(card, card.getBoundingClientRect());
+        });
+
+        // мгновенно (без transition) ставим карточки в финальную
+        // позицию — именно left/top/width/height, transition на них
+        // всё равно не сработает во время поворота экрана, поэтому
+        // даже не пытаемся его использовать
+        cards.forEach(card => {
+            if (!card.classList.contains('is-expanded')) {
+                card.style.transition = 'none';
+            }
+        });
+
+        layoutTabs();
+
+        // FLIP: инвертируем — временно "возвращаем" карточку туда,
+        // где она была визуально, через transform (не layout!)
+        cards.forEach(card => {
+            if (card.classList.contains('is-expanded')) return;
+
+            const first = firstRects.get(card);
+            if (!first) return;
+
+            const last = card.getBoundingClientRect();
+            if (!last.width || !last.height) return;
+
+            const dx = first.left - last.left;
+            const dy = first.top - last.top;
+            const sx = first.width / last.width;
+            const sy = first.height / last.height;
+
+            card.style.transformOrigin = 'top left';
+            card.style.transform =
+                `translate(${dx}px, ${dy}px) scale(${sx}, ${sy})`;
+        });
+
+        // форсируем reflow, чтобы браузер зафиксировал это
+        // "инвертированное" положение перед тем, как включим анимацию
+        void document.body.offsetHeight;
+
+        // PLAY: включаем transition ТОЛЬКО на transform и убираем его —
+        // карточка плавно "доезжает" из старого места в новое
+        cards.forEach(card => {
+            if (card.classList.contains('is-expanded')) return;
+
+            card.style.transition = 'transform .4s cubic-bezier(.2,.8,.2,1)';
+            card.style.transform = '';
+        });
+
+        cards.forEach(card => {
+            card.addEventListener('transitionend', function onEnd(e) {
+                if (e.propertyName !== 'transform' || e.target !== card) return;
+                card.style.transition = '';
+                card.style.transform = '';
+                card.style.transformOrigin = '';
+                card.removeEventListener('transitionend', onEnd);
+            });
+        });
+    }
+
+
     // Сброс инлайн-стилей, которые layoutTabs()/expandMobile()
     // проставляют карточкам в мобильном режиме (left/right/top/
     // bottom/width/height, data-side). Эти инлайн-стили сильнее
@@ -470,7 +539,7 @@
 
         if (isMobile()) {
             if (!activeCard) {
-                layoutTabs();
+                layoutTabsAnimated();   // было: layoutTabs();
             } else {
                 const panel = getMobilePanelRect();
                 applyMobilePanelPosition(activeCard, panel, activeCard.dataset.side);
