@@ -31,6 +31,9 @@
     height: 150px;
 
     z-index: 1;
+
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .card.is-expanded {
@@ -73,6 +76,8 @@
         0 12px 35px rgba(0,0,0,.14);
 
     overflow: hidden;
+
+    box-sizing: border-box;
 
     transition:
         left .45s cubic-bezier(.2,.8,.2,1),
@@ -409,15 +414,17 @@
 
     /* базовое положение и размер каждой вкладки полностью
        вычисляет и подставляет JS (layoutTabs()) — здесь только
-       то, что не завязано на конкретные координаты */
+       то, что не завязано на конкретные координаты.
+       max-width/box-sizing — страховка от горизонтального
+       скролла при увеличенной ширине вкладки. */
     .card {
         position: fixed;
 
         border-radius: 0;
 
-        /* ДОБАВЛЕНО border-radius — скругление угла теперь
-           плавно анимируется вместе с шириной/высотой,
-           а не переключается скачком */
+        max-width: 100vw;
+        box-sizing: border-box;
+
         transition:
             width .4s cubic-bezier(.2,.8,.2,1),
             height .4s cubic-bezier(.2,.8,.2,1),
@@ -448,7 +455,7 @@
 
         border-radius: inherit;
 
-        padding: 16px 10px;
+        padding: 14px 8px;
 
         box-shadow:
             0 8px 24px rgba(0,0,0,.22),
@@ -497,16 +504,17 @@
         width: 4px;
     }
 
-    /* --- содержимое свёрнутой вкладки: вертикальный текст + стрелка --- */
+    /* --- содержимое свёрнутой вкладки: прямой (не повёрнутый)
+       вертикальный текст + пульсирующая метка "нажми меня" --- */
 
     .cardShort {
         height: 100%;
 
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 10px;
+
+        overflow: hidden; /* страховка от горизонтального скролла */
     }
 
     .cardShort p {
@@ -514,36 +522,94 @@
     }
 
     .cardShort h2 {
+        /* upright вместо mixed: буквы не поворачиваются на 90°,
+           а стоят прямо, одна под другой */
         writing-mode: vertical-rl;
-        text-orientation: mixed;
+        text-orientation: upright;
 
-        font-size: 13px;
-        letter-spacing: .5px;
-        white-space: nowrap;
+        /* фиксированная height работает как "длина строки" для
+           вертикального текста: если слово не помещается по
+           высоте, браузер сам переносит остаток в новый столбец
+           СЛЕВА — это и даёт эффект "в два слоя" без лишнего кода */
+        height: 84px;
+        max-height: 100%;
+        flex: 0 0 auto;
 
         margin: 0;
+
+        font-size: 13px;
+        font-weight: 800;
+        line-height: 1.15;       /* зазор МЕЖДУ столбцами */
+        letter-spacing: 1px;     /* зазор между буквами по вертикали — сужен, чтобы всё слово помещалось */
+
+        white-space: normal;     /* разрешаем перенос в новый столбец */
+        text-align: start;
+        word-break: keep-all;
     }
 
-    /* стрелка-подсказка "нажми меня" */
-
-    .cardShort::after {
-        content: "";
-
-        width: 7px;
-        height: 7px;
-
-        border-right: 2px solid rgba(255,255,255,.55);
-        border-bottom: 2px solid rgba(255,255,255,.55);
-
-        opacity: .85;
+    /* правая вкладка: столбцы растут вправо, а не влево —
+   чтобы первое слово (с заглавной буквы) шло раньше второго */
+    .card[data-side="right"] .cardShort h2 {
+        writing-mode: vertical-lr;
     }
 
-    .card[data-side="left"] .cardShort::after {
-        transform: rotate(-45deg);
+    /* ЗАМЕНА стрелки: круглый бейдж с "+" и лёгкой пульсацией.
+       ВАЖНО: живёт отдельно на .cardInner (абсолютное
+       позиционирование у нижнего края), а не внутри .cardShort —
+       поэтому не делит место по вертикали с текстом и не может
+       на него наехать, сколько бы места текст ни занимал. */
+    .cardInner::after {
+        content: "+";
+
+        position: absolute;
+
+        left: 50%;
+        top: 10px;
+
+        width: 22px;
+        height: 22px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 50%;
+
+        border: 1.5px solid #72f28a;
+        background: rgba(114, 242, 138, .14);
+
+        color: #72f28a;
+        font-size: 15px;
+        font-weight: 800;
+        line-height: 1;
+
+        transform: translateX(-50%);
+
+        z-index: 6;
+
+        animation: tapHint 2.2s ease-in-out infinite;
+        transition: opacity .25s ease;
     }
 
-    .card[data-side="right"] .cardShort::after {
-        transform: rotate(135deg);
+    @keyframes tapHint {
+        0%, 100% {
+            transform: translateX(-50%) scale(1);
+            box-shadow: 0 0 0 0 rgba(114, 242, 138, .45);
+        }
+        50% {
+            transform: translateX(-50%) scale(1.12);
+            box-shadow: 0 0 0 7px rgba(114, 242, 138, 0);
+        }
+    }
+
+    .cardInner.is-expanded::after {
+        opacity: 0;
+    }
+
+    /* на паузу при тапе — чтобы не отвлекала анимация, пока
+       вкладка уже открывается */
+    .card:active .cardInner::after {
+        animation-play-state: paused;
     }
 
     .cardInner.is-expanded .cardShort {
@@ -563,13 +629,32 @@
             );
     }
 
-    /* --- развёрнутая панель --- */
+    /* --- развёрнутая панель ---
+       flex + space-between "растягивает" картинку и текст на
+       всю доступную высоту панели (максимально отдаляет их
+       друг от друга), а не складывает их плотно сверху с
+       обязательным скроллом до конца */
 
     .cardExpanded {
-        grid-template-columns: 1fr;
-        padding: 22px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 14px;
+
+        padding: 20px;
 
         overflow-y: auto;
+        overflow-x: hidden;
+
+        /* скролл остаётся рабочим (на случай очень маленького
+           экрана или длинного текста), но сам ползунок визуально
+           скрыт на устройстве пользователя */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .cardExpanded::-webkit-scrollbar {
+        display: none;
     }
 
     .cardInner.is-expanded .cardExpanded {
@@ -579,15 +664,22 @@
     }
 
     .cardImage {
-        height: 42vw;
-        max-height: 200px;
+        flex: 1 1 auto;
+        min-height: 0;
 
-        margin-bottom: 6px;
+        height: auto;
+        max-height: 38vw;
+    }
+
+    .cardDetails {
+        flex: 0 0 auto;
+
+        padding: 0;
     }
 }
 
 /*==================================================
-        SCROLLBAR внутри развёрнутой карточки
+    SCROLLBAR внутри развёрнутой карточки (десктоп)
 ==================================================*/
 
 /* Chrome, Edge, Safari */

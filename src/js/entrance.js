@@ -10,8 +10,8 @@
     const MAX_HEIGHT = 580;
     const MARGIN     = 24;
 
-    const TAB_WIDTH   = 46;
-    const TAB_HEIGHT  = 118;
+    const TAB_WIDTH   = 64;
+    const TAB_HEIGHT  = 152;
     const TAB_GAP     = 16;
     const TAB_TOP_MARGIN = 16;
 
