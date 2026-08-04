@@ -429,6 +429,7 @@
             width .4s cubic-bezier(.2,.8,.2,1),
             height .4s cubic-bezier(.2,.8,.2,1),
             top .4s cubic-bezier(.2,.8,.2,1),
+            bottom .4s cubic-bezier(.2,.8,.2,1),
             border-radius .4s cubic-bezier(.2,.8,.2,1);
     }
 
@@ -548,7 +549,7 @@
     }
 
     /* правая вкладка: столбцы растут вправо, а не влево —
-   чтобы первое слово (с заглавной буквы) шло раньше второго */
+       чтобы первое слово (с заглавной буквы) шло раньше второго */
     .card[data-side="right"] .cardShort h2 {
         writing-mode: vertical-lr;
     }
@@ -677,6 +678,73 @@
         padding: 0;
     }
 }
+
+
+/*==================================================
+    MOBILE / TABLET — АЛЬБОМНАЯ ОРИЕНТАЦИЯ
+    Вкладки выглядывают СНИЗУ экрана в один ряд, а не
+    столбиками слева/справа. Координаты (left/width/
+    height/bottom) считает JS (layoutTabsBottom()) —
+    здесь только визуальное поведение самой вкладки.
+==================================================*/
+
+@media (max-width: 1024px) and (orientation: landscape) {
+
+    /* скруглены только верхние углы — вкладка "торчит"
+       вверх от нижнего края экрана */
+    .card[data-side="bottom"] {
+        border-radius: 16px 16px 0 0;
+    }
+
+    .card[data-side="bottom"] .cardInner {
+        box-shadow:
+            0 -8px 24px rgba(0,0,0,.22),
+            0 -2px 14px rgba(0,0,0,.10);
+    }
+
+    /* акцентная полоска — снова горизонтальная, у верхнего
+       (видимого) края вкладки, вместо вертикальной у бокового
+       края, как в портретной раскладке */
+    .card[data-side="bottom"] .cardInner::before {
+        left: 50%;
+        top: 0;
+        right: auto;
+
+        width: 34px;
+        height: 3px;
+
+        border-radius: 0 0 4px 4px;
+
+        transform: translateX(-50%);
+
+        transition: width .4s ease;
+    }
+
+    .card[data-side="bottom"] .cardInner.is-expanded::before {
+        width: 90px;
+        height: 3px;
+    }
+
+    /* текст в свёрнутом виде — снова горизонтальный: вкладка
+       теперь широкая и невысокая, а не узкая и высокая, поэтому
+       вертикальное письмо ей больше не подходит */
+    .card[data-side="bottom"] .cardShort h2 {
+        writing-mode: horizontal-tb;
+        text-orientation: mixed;
+
+        height: auto;
+        max-height: 100%;
+
+        font-size: 12px;
+        line-height: 1.2;
+        letter-spacing: normal;
+
+        text-align: center;
+        white-space: normal;
+        word-break: normal;
+    }
+}
+
 
 /*==================================================
     SCROLLBAR внутри развёрнутой карточки (десктоп)

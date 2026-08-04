@@ -15,6 +15,13 @@
     const TAB_GAP     = 16;
     const TAB_TOP_MARGIN = 16;
 
+    /* Альбомная ориентация: вкладки выглядывают СНИЗУ экрана
+       в один ряд, а не столбиками слева/справа. */
+    const TAB_WIDTH_LANDSCAPE       = 140;
+    const TAB_HEIGHT_LANDSCAPE      = 64;
+    const TAB_GAP_LANDSCAPE         = 14;
+    const TAB_SIDE_MARGIN_LANDSCAPE = 16;
+
     const PANEL_MAX_WIDTH_RATIO  = .88;
     const PANEL_MAX_HEIGHT_RATIO = .78;
     const PANEL_SIDE_MARGIN = 12;
@@ -27,6 +34,14 @@
 
     function isMobile() {
         return window.innerWidth <= MOBILE_BREAKPOINT;
+    }
+
+    // Альбомная ориентация телефона/планшета: ширина больше
+    // высоты. Проверяем именно фактические размеры окна, а не
+    // matchMedia('orientation'), чтобы не зависеть от того, как
+    // конкретный браузер трактует orientation на десктопе.
+    function isLandscapeMobile() {
+        return isMobile() && window.innerWidth > window.innerHeight;
     }
 
     function getHeaderHeight() {
@@ -61,6 +76,15 @@
     function layoutTabs() {
         if (!isMobile()) return;
 
+        if (isLandscapeMobile()) {
+            layoutTabsBottom();
+        } else {
+            layoutTabsSide();
+        }
+    }
+
+    // ПОРТРЕТ — прежнее поведение: столбики вкладок слева/справа.
+    function layoutTabsSide() {
         const topStart = getHeaderHeight() + TAB_TOP_MARGIN;
         let leftCount = 0;
         let rightCount = 0;
@@ -76,18 +100,51 @@
 
             card.style.left = side === 'left' ? '0px' : '';
             card.style.right = side === 'right' ? '0px' : '';
+            card.style.bottom = '';
             card.style.top = top + 'px';
             card.style.width = TAB_WIDTH + 'px';
             card.style.height = TAB_HEIGHT + 'px';
         });
     }
 
+    // ЛАНДШАФТ — вкладки в один ряд, выглядывают снизу экрана.
+    function layoutTabsBottom() {
+        const visibleCards = cards.filter(
+            card => !card.classList.contains('is-expanded')
+        );
+        const count = visibleCards.length;
+        if (!count) return;
+
+        const totalWidth =
+            count * TAB_WIDTH_LANDSCAPE +
+            Math.max(0, count - 1) * TAB_GAP_LANDSCAPE;
+
+        const startLeft = Math.max(
+            TAB_SIDE_MARGIN_LANDSCAPE,
+            (window.innerWidth - totalWidth) / 2
+        );
+
+        visibleCards.forEach((card, slot) => {
+            const left = startLeft + slot * (TAB_WIDTH_LANDSCAPE + TAB_GAP_LANDSCAPE);
+
+            card.dataset.side = 'bottom';
+
+            card.style.left = left + 'px';
+            card.style.right = '';
+            card.style.top = '';
+            card.style.bottom = '0px';
+            card.style.width = TAB_WIDTH_LANDSCAPE + 'px';
+            card.style.height = TAB_HEIGHT_LANDSCAPE + 'px';
+        });
+    }
+
     // Сброс инлайн-стилей, которые layoutTabs()/expandMobile()
-    // проставляют карточкам в мобильном режиме (left/right/top/width/
-    // height, data-side). Эти инлайн-стили сильнее любых правил из
-    // @media, поэтому при возврате на широкий экран их обязательно
-    // нужно чистить вручную — иначе десктопная раскладка (иконки в
-    // сетке) не может вернуться на место.
+    // проставляют карточкам в мобильном режиме (left/right/top/
+    // bottom/width/height, data-side). Эти инлайн-стили сильнее
+    // любых правил из @media, поэтому при возврате на широкий
+    // экран их обязательно нужно чистить вручную — иначе
+    // десктопная раскладка (иконки в сетке) не может вернуться
+    // на место.
     function resetDesktopLayout() {
         cards.forEach(card => {
             if (card.classList.contains('is-expanded')) return;
@@ -95,6 +152,7 @@
             card.style.left = '';
             card.style.right = '';
             card.style.top = '';
+            card.style.bottom = '';
             card.style.width = '';
             card.style.height = '';
 
@@ -223,6 +281,33 @@
             ОТКРЫТИЕ / ЗАКРЫТИЕ — МОБИЛЬНЫЙ
     ================================================== */
 
+    // Единая функция позиционирования развёрнутой панели на
+    // мобильном — используется и при открытии, и при resize/
+    // повороте экрана, чтобы не дублировать логику для каждого
+    // из трёх вариантов исходной стороны (left/right/bottom).
+    function applyMobilePanelPosition(card, panel, side) {
+        card.style.width = panel.width + 'px';
+        card.style.height = panel.height + 'px';
+
+        if (side === 'bottom') {
+            card.style.left = ((window.innerWidth - panel.width) / 2) + 'px';
+            card.style.right = '';
+            card.style.top = panel.top + 'px';
+            card.style.bottom = '';
+        } else {
+            card.style.top = panel.top + 'px';
+            card.style.bottom = '';
+
+            if (side === 'left') {
+                card.style.left = '0px';
+                card.style.right = '';
+            } else {
+                card.style.right = '0px';
+                card.style.left = '';
+            }
+        }
+    }
+
     function expandMobile(card) {
         const inner = card.querySelector('.cardInner');
         const side = card.dataset.side;
@@ -234,6 +319,7 @@
             left: rect.left,
             right: window.innerWidth - rect.right,
             top: rect.top,
+            bottom: window.innerHeight - rect.bottom,
             width: rect.width,
             height: rect.height
         };
@@ -242,18 +328,7 @@
         inner.classList.add('is-expanded');
 
         const panel = getMobilePanelRect();
-
-        card.style.top = panel.top + 'px';
-        card.style.width = panel.width + 'px';
-        card.style.height = panel.height + 'px';
-
-        if (side === 'left') {
-            card.style.left = '0px';
-            card.style.right = '';
-        } else {
-            card.style.right = '0px';
-            card.style.left = '';
-        }
+        applyMobilePanelPosition(card, panel, side);
 
         activeInner = inner;
     }
@@ -271,16 +346,25 @@
         // возвращаемся ИМЕННО в те координаты, откуда открывались —
         // без пересчёта, поэтому попадание всегда точное
         if (home) {
-            card.style.top = home.top + 'px';
             card.style.width = home.width + 'px';
             card.style.height = home.height + 'px';
 
-            if (side === 'left') {
-                card.style.left = '0px';
+            if (side === 'bottom') {
+                card.style.left = home.left + 'px';
                 card.style.right = '';
+                card.style.top = '';
+                card.style.bottom = '0px';
             } else {
-                card.style.right = '0px';
-                card.style.left = '';
+                card.style.top = home.top + 'px';
+                card.style.bottom = '';
+
+                if (side === 'left') {
+                    card.style.left = '0px';
+                    card.style.right = '';
+                } else {
+                    card.style.right = '0px';
+                    card.style.left = '';
+                }
             }
         }
 
@@ -290,7 +374,8 @@
 
             // после завершения анимации синхронизируем со всеми
             // остальными вкладками — на случай, если пока карточка
-            // была открыта, поменялась высота хедера/окна.
+            // была открыта, поменялась высота хедера/окна или
+            // ориентация экрана.
             // Проверяем текущий режим: если пока карточка была
             // раскрыта пользователь успел развернуть окно на
             // десктоп — чистим мобильные стили вместо того, чтобы
@@ -363,7 +448,7 @@
         });
     });
 
-    window.addEventListener('resize', () => {
+    function handleViewportChange() {
         if (activeCard && isMobileExpand !== isMobile()) {
             collapseCard();
         }
@@ -373,10 +458,7 @@
                 layoutTabs();
             } else {
                 const panel = getMobilePanelRect();
-
-                activeCard.style.top = panel.top + 'px';
-                activeCard.style.width = panel.width + 'px';
-                activeCard.style.height = panel.height + 'px';
+                applyMobilePanelPosition(activeCard, panel, activeCard.dataset.side);
             }
         } else if (!activeCard) {
             // При переходе mobile -> desktop без раскрытой карточки
@@ -390,6 +472,16 @@
             activeInner.style.width = target.width + 'px';
             activeInner.style.height = target.height + 'px';
         }
+    }
+
+    window.addEventListener('resize', handleViewportChange);
+
+    // Некоторые мобильные браузеры сообщают новые innerWidth/
+    // innerHeight не сразу в момент 'resize', а с небольшой
+    // задержкой после поворота экрана — поэтому дополнительно
+    // пересчитываем раскладку чуть позже по 'orientationchange'.
+    window.addEventListener('orientationchange', () => {
+        setTimeout(handleViewportChange, 60);
     });
 
     layoutTabs();
