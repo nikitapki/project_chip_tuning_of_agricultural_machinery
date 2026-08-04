@@ -36,12 +36,18 @@
         return window.innerWidth <= MOBILE_BREAKPOINT;
     }
 
-    // Альбомная ориентация телефона/планшета: ширина больше
-    // высоты. Проверяем именно фактические размеры окна, а не
-    // matchMedia('orientation'), чтобы не зависеть от того, как
-    // конкретный браузер трактует orientation на десктопе.
+    // Альбомная ориентация телефона/планшета.
+    // ВАЖНО: используем matchMedia('orientation'), а не сравнение
+    // innerWidth > innerHeight. Сразу после физического поворота
+    // телефона (особенно в iOS Safari) innerWidth/innerHeight ещё
+    // какое-то время отдают старые значения — из-за анимации
+    // поворота и скрытия/показа адресной строки браузер обновляет
+    // их с задержкой. matchMedia('orientation') отражает реальную
+    // ориентацию экрана сразу, без этой задержки.
+    const landscapeMql = window.matchMedia('(orientation: landscape)');
+
     function isLandscapeMobile() {
-        return isMobile() && window.innerWidth > window.innerHeight;
+        return isMobile() && landscapeMql.matches;
     }
 
     function getHeaderHeight() {
@@ -476,13 +482,37 @@
 
     window.addEventListener('resize', handleViewportChange);
 
-    // Некоторые мобильные браузеры сообщают новые innerWidth/
-    // innerHeight не сразу в момент 'resize', а с небольшой
-    // задержкой после поворота экрана — поэтому дополнительно
-    // пересчитываем раскладку чуть позже по 'orientationchange'.
-    window.addEventListener('orientationchange', () => {
-        setTimeout(handleViewportChange, 60);
-    });
+    // Несколько отложенных пересчётов подряд — подстраховка от
+    // того, что разные браузеры (особенно мобильный Safari)
+    // обновляют размеры окна и заканчивают анимацию поворота
+    // с разной задержкой. Один запоздавший вызов лучше, чем
+    // раскладка, застрявшая в неверной ориентации.
+    function scheduleViewportRecalc() {
+        [0, 60, 150, 350, 600].forEach(delay => {
+            setTimeout(handleViewportChange, delay);
+        });
+    }
+
+    // Основной источник события поворота: matchMedia('orientation'),
+    // срабатывает по факту смены ориентации, а не по обновлению
+    // innerWidth/innerHeight (которое может запаздывать).
+    if (landscapeMql.addEventListener) {
+        landscapeMql.addEventListener('change', scheduleViewportRecalc);
+    } else if (landscapeMql.addListener) {
+        // старые браузеры (в т.ч. часть Android WebView)
+        landscapeMql.addListener(scheduleViewportRecalc);
+    }
+
+    // Дублируем через 'orientationchange' — на некоторых
+    // устройствах он срабатывает раньше/надёжнее, чем matchMedia.
+    window.addEventListener('orientationchange', scheduleViewportRecalc);
+
+    // visualViewport точнее отражает реальную видимую область
+    // (учитывает адресную строку, которая выезжает/прячется при
+    // повороте) — где доступен, тоже слушаем его.
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', handleViewportChange);
+    }
 
     layoutTabs();
 
