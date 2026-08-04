@@ -491,36 +491,46 @@
 
     window.addEventListener('resize', handleViewportChange);
 
-    // Несколько отложенных пересчётов подряд — подстраховка от
-    // того, что разные браузеры (особенно мобильный Safari)
-    // обновляют размеры окна и заканчивают анимацию поворота
-    // с разной задержкой. Один запоздавший вызов лучше, чем
-    // раскладка, застрявшая в неверной ориентации.
-    function scheduleViewportRecalc() {
-        [0, 60, 150, 350, 600].forEach(delay => {
-            setTimeout(handleViewportChange, delay);
+    // Двойной requestAnimationFrame — стандартный приём, чтобы
+    // заставить браузер проиграть CSS-transition после изменения
+    // стилей внутри обработчика resize/orientationchange.
+    // Если применить новые left/top сразу же (синхронно в этом же
+    // обработчике), браузер, уже выполнивший layout из-за самого
+    // события ориентации, воспринимает новые координаты как
+    // НАЧАЛЬНОЕ состояние элемента, а не как переход от старого —
+    // и transition просто не запускается (виден мгновенный скачок).
+    // Первый rAF дожидается, пока браузер закоммитит текущий (ещё
+    // старый) кадр, второй — уже в следующем кадре — применяет
+    // новые стили, и вот тогда transition честно анимирует переход.
+    function runViewportChangeAnimated() {
+        requestAnimationFrame(() => {
+            requestAnimationFrame(handleViewportChange);
         });
     }
 
-    // Основной источник события поворота: matchMedia('orientation'),
-    // срабатывает по факту смены ориентации, а не по обновлению
-    // innerWidth/innerHeight (которое может запаздывать).
+    function scheduleViewportRecalc() {
+        runViewportChangeAnimated();
+
+        // подстраховочные пересчёты (см. комментарий выше по коду) —
+        // на случай запаздывающих значений innerWidth/innerHeight на
+        // некоторых мобильных браузерах при повороте
+        [150, 350, 600].forEach(delay => {
+            setTimeout(runViewportChangeAnimated, delay);
+        });
+    }
+
+    window.addEventListener('resize', runViewportChangeAnimated);
+
     if (landscapeMql.addEventListener) {
         landscapeMql.addEventListener('change', scheduleViewportRecalc);
     } else if (landscapeMql.addListener) {
-        // старые браузеры (в т.ч. часть Android WebView)
         landscapeMql.addListener(scheduleViewportRecalc);
     }
 
-    // Дублируем через 'orientationchange' — на некоторых
-    // устройствах он срабатывает раньше/надёжнее, чем matchMedia.
     window.addEventListener('orientationchange', scheduleViewportRecalc);
 
-    // visualViewport точнее отражает реальную видимую область
-    // (учитывает адресную строку, которая выезжает/прячется при
-    // повороте) — где доступен, тоже слушаем его.
     if (window.visualViewport) {
-        window.visualViewport.addEventListener('resize', handleViewportChange);
+        window.visualViewport.addEventListener('resize', runViewportChangeAnimated);
     }
 
     layoutTabs();
