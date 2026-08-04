@@ -1,110 +1,489 @@
-/* ===========================================
-            HERO ANIMATION
-=========================================== */
+(function () {
 
-window.addEventListener("load", () => {
+    /* ==================================================
+                    НАСТРОЙКИ
+    ================================================== */
 
-    document.body.classList.add("loaded");
+    const MOBILE_BREAKPOINT = 1024;
 
-});
+    const MAX_WIDTH  = 900;
+    const MAX_HEIGHT = 580;
+    const MARGIN     = 24;
 
-/* ===========================================
-            PARALLAX
-=========================================== */
+    const TAB_WIDTH   = 64;
+    const TAB_HEIGHT  = 152;
+    const TAB_GAP     = 16;
+    const TAB_TOP_MARGIN = 16;
+
+    /* Альбомная ориентация: вкладки выглядывают СНИЗУ экрана
+       в один ряд, а не столбиками слева/справа. */
+    const TAB_WIDTH_LANDSCAPE       = 140;
+    const TAB_HEIGHT_LANDSCAPE      = 64;
+    const TAB_GAP_LANDSCAPE         = 14;
+    const TAB_SIDE_MARGIN_LANDSCAPE = 16;
+
+    const PANEL_MAX_WIDTH_RATIO  = .88;
+    const PANEL_MAX_HEIGHT_RATIO = .78;
+    const PANEL_SIDE_MARGIN = 12;
+    const PANEL_VERT_MARGIN = 16;
+
+    let activeCard = null;
+    let activeInner = null;
+    let overlay = null;
+    let isMobileExpand = false;
+
+    function isMobile() {
+        return window.innerWidth <= MOBILE_BREAKPOINT;
+    }
+
+    // Альбомная ориентация телефона/планшета: ширина больше
+    // высоты. Проверяем именно фактические размеры окна, а не
+    // matchMedia('orientation'), чтобы не зависеть от того, как
+    // конкретный браузер трактует orientation на десктопе.
+    function isLandscapeMobile() {
+        return isMobile() && window.innerWidth > window.innerHeight;
+    }
+
+    function getHeaderHeight() {
+        const header =
+            document.querySelector('.header') ||
+            document.querySelector('header');
+
+        return header ? header.getBoundingClientRect().height : 0;
+    }
+
+    function ensureOverlay() {
+        if (overlay) return overlay;
+
+        overlay = document.createElement('div');
+        overlay.className = 'cardsOverlay';
+        document.body.appendChild(overlay);
+
+        overlay.addEventListener('click', () => {
+            if (activeCard) collapseCard();
+        });
+
+        return overlay;
+    }
 
 
-const planet = document.querySelector(".earth");
-const visual = document.querySelector(".hero");
-if (planet && visual) {
+    /* ==================================================
+            МОБИЛЬНЫЙ РЕЖИМ — раскладка вкладок
+    ================================================== */
 
-    visual.addEventListener("mousemove", (e) => {
+    const cards = Array.from(document.querySelectorAll('.card'));
 
-        const rect = visual.getBoundingClientRect();
+    function layoutTabs() {
+        if (!isMobile()) return;
+
+        if (isLandscapeMobile()) {
+            layoutTabsBottom();
+        } else {
+            layoutTabsSide();
+        }
+    }
+
+    // ПОРТРЕТ — прежнее поведение: столбики вкладок слева/справа.
+    function layoutTabsSide() {
+        const topStart = getHeaderHeight() + TAB_TOP_MARGIN;
+        let leftCount = 0;
+        let rightCount = 0;
+
+        cards.forEach((card, i) => {
+            if (card.classList.contains('is-expanded')) return;
+
+            const side = i % 2 === 0 ? 'left' : 'right';
+            const slot = side === 'left' ? leftCount++ : rightCount++;
+            const top = topStart + slot * (TAB_HEIGHT + TAB_GAP);
+
+            card.dataset.side = side;
+
+            card.style.left = side === 'left' ? '0px' : '';
+            card.style.right = side === 'right' ? '0px' : '';
+            card.style.bottom = '';
+            card.style.top = top + 'px';
+            card.style.width = TAB_WIDTH + 'px';
+            card.style.height = TAB_HEIGHT + 'px';
+        });
+    }
+
+    // ЛАНДШАФТ — вкладки в один ряд, выглядывают снизу экрана.
+    function layoutTabsBottom() {
+        const visibleCards = cards.filter(
+            card => !card.classList.contains('is-expanded')
+        );
+        const count = visibleCards.length;
+        if (!count) return;
+
+        const totalWidth =
+            count * TAB_WIDTH_LANDSCAPE +
+            Math.max(0, count - 1) * TAB_GAP_LANDSCAPE;
+
+        const startLeft = Math.max(
+            TAB_SIDE_MARGIN_LANDSCAPE,
+            (window.innerWidth - totalWidth) / 2
+        );
+
+        visibleCards.forEach((card, slot) => {
+            const left = startLeft + slot * (TAB_WIDTH_LANDSCAPE + TAB_GAP_LANDSCAPE);
+
+            card.dataset.side = 'bottom';
+
+            card.style.left = left + 'px';
+            card.style.right = '';
+            card.style.top = '';
+            card.style.bottom = '0px';
+            card.style.width = TAB_WIDTH_LANDSCAPE + 'px';
+            card.style.height = TAB_HEIGHT_LANDSCAPE + 'px';
+        });
+    }
+
+    // Сброс инлайн-стилей, которые layoutTabs()/expandMobile()
+    // проставляют карточкам в мобильном режиме (left/right/top/
+    // bottom/width/height, data-side). Эти инлайн-стили сильнее
+    // любых правил из @media, поэтому при возврате на широкий
+    // экран их обязательно нужно чистить вручную — иначе
+    // десктопная раскладка (иконки в сетке) не может вернуться
+    // на место.
+    function resetDesktopLayout() {
+        cards.forEach(card => {
+            if (card.classList.contains('is-expanded')) return;
+
+            card.style.left = '';
+            card.style.right = '';
+            card.style.top = '';
+            card.style.bottom = '';
+            card.style.width = '';
+            card.style.height = '';
+
+            delete card.dataset.side;
+            delete card._homeRect;
+        });
+    }
+
+    function getMobilePanelRect() {
+        const headerH = getHeaderHeight();
+
+        // ВАЖНО: берём document.documentElement.clientWidth, а НЕ
+        // window.innerWidth. innerWidth включает в себя ширину
+        // системного полосы прокрутки (если она есть), из-за чего
+        // ширина панели могла на несколько пикселей превышать
+        // реально видимую область экрана — именно это и вызывало
+        // горизонтальный скролл у раскрытых карточек на мобильном.
+        const viewportWidth = document.documentElement.clientWidth;
+
+        const availWidth = viewportWidth - PANEL_SIDE_MARGIN * 2;
+        const availHeight = window.innerHeight - headerH - PANEL_VERT_MARGIN * 2;
+
+        const width = Math.min(viewportWidth * PANEL_MAX_WIDTH_RATIO, availWidth);
+        const height = Math.min(window.innerHeight * PANEL_MAX_HEIGHT_RATIO, availHeight);
+        const top = headerH + Math.max(PANEL_VERT_MARGIN, (availHeight - height) / 2);
+
+        return { width, height, top };
+    }
 
 
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+    /* ==================================================
+                ОТКРЫТИЕ / ЗАКРЫТИЕ — ДЕСКТОП
+    ================================================== */
 
-        const rotateY = ((x / rect.width) - 0.5) * 14;
-        const rotateX = ((y / rect.height) - 0.5) * -14;
+    function getDesktopTargetRect() {
+        const topLimit = getHeaderHeight() + MARGIN;
 
-        planet.style.transform =
-            `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        const availWidth  = window.innerWidth - MARGIN * 2;
+        const availHeight = window.innerHeight - topLimit - MARGIN;
 
-    });
+        const width  = Math.min(MAX_WIDTH, availWidth);
+        const height = Math.min(MAX_HEIGHT, availHeight);
 
-    visual.addEventListener("mouseleave", () => {
+        return {
+            left: (window.innerWidth - width) / 2,
+            top: topLimit + Math.max(0, (availHeight - height) / 2),
+            width,
+            height
+        };
+    }
 
-        planet.style.transform =
-            "rotateX(0deg) rotateY(0deg)";
+    function expandDesktop(card) {
+        const inner = card.querySelector('.cardInner');
+        const rect = inner.getBoundingClientRect();
 
-    });
+        inner._originalParent = card;
+        inner._originalNextSibling = inner.nextSibling;
 
-}
+        inner.style.position = 'fixed';
+        inner.style.left = rect.left + 'px';
+        inner.style.top = rect.top + 'px';
+        inner.style.width = rect.width + 'px';
+        inner.style.height = rect.height + 'px';
+        inner.style.transform = 'none';
+        inner.style.bottom = 'auto';
+        inner.style.margin = '0';
+
+        document.body.appendChild(inner);
+
+        inner.offsetHeight;
+
+        card.classList.add('is-expanded');
+        inner.classList.add('is-expanded');
+
+        const target = getDesktopTargetRect();
+        inner.style.left = target.left + 'px';
+        inner.style.top = target.top + 'px';
+        inner.style.width = target.width + 'px';
+        inner.style.height = target.height + 'px';
+
+        activeInner = inner;
+    }
+
+    function collapseDesktop() {
+        const card = activeCard;
+        const inner = activeInner;
+
+        card.classList.remove('is-expanded');
+        inner.classList.remove('is-expanded');
+
+        const cardRect = card.getBoundingClientRect();
+
+        inner.style.left = cardRect.left + 'px';
+        inner.style.top = cardRect.top + 'px';
+        inner.style.width = cardRect.width + 'px';
+        inner.style.height = '150px';
+
+        function onTransitionEnd(e) {
+            if (e.target !== inner) return;
+
+            if (inner._originalNextSibling) {
+                inner._originalParent.insertBefore(inner, inner._originalNextSibling);
+            } else {
+                inner._originalParent.appendChild(inner);
+            }
+
+            inner.style.position = '';
+            inner.style.left = '';
+            inner.style.top = '';
+            inner.style.width = '';
+            inner.style.height = '';
+            inner.style.transform = '';
+            inner.style.bottom = '';
+            inner.style.margin = '';
+
+            delete inner._originalParent;
+            delete inner._originalNextSibling;
+
+            inner.removeEventListener('transitionend', onTransitionEnd);
+        }
+        inner.addEventListener('transitionend', onTransitionEnd);
+    }
 
 
-/* ===========================================
-        FADE IN ON SCROLL
-=========================================== */
+    /* ==================================================
+            ОТКРЫТИЕ / ЗАКРЫТИЕ — МОБИЛЬНЫЙ
+    ================================================== */
 
-const observer = new IntersectionObserver((entries) => {
+    // Единая функция позиционирования развёрнутой панели на
+    // мобильном — используется и при открытии, и при resize/
+    // повороте экрана, чтобы не дублировать логику для каждого
+    // из трёх вариантов исходной стороны (left/right/bottom).
+    function applyMobilePanelPosition(card, panel, side) {
+        card.style.width = panel.width + 'px';
+        card.style.height = panel.height + 'px';
 
-    entries.forEach(entry => {
+        if (side === 'bottom') {
+            card.style.left = ((window.innerWidth - panel.width) / 2) + 'px';
+            card.style.right = '';
+            card.style.top = panel.top + 'px';
+            card.style.bottom = '';
+        } else {
+            card.style.top = panel.top + 'px';
+            card.style.bottom = '';
 
-        if (entry.isIntersecting) {
+            if (side === 'left') {
+                card.style.left = '0px';
+                card.style.right = '';
+            } else {
+                card.style.right = '0px';
+                card.style.left = '';
+            }
+        }
+    }
 
-            entry.target.classList.add("show");
+    function expandMobile(card) {
+        const inner = card.querySelector('.cardInner');
+        const side = card.dataset.side;
 
+        // Запоминаем ТОЧНЫЕ координаты вкладки до её изменения —
+        // именно сюда карточка должна вернуться при закрытии.
+        const rect = card.getBoundingClientRect();
+        card._homeRect = {
+            left: rect.left,
+            right: window.innerWidth - rect.right,
+            top: rect.top,
+            bottom: window.innerHeight - rect.bottom,
+            width: rect.width,
+            height: rect.height
+        };
+
+        card.classList.add('is-expanded');
+        inner.classList.add('is-expanded');
+
+        const panel = getMobilePanelRect();
+        applyMobilePanelPosition(card, panel, side);
+
+        activeInner = inner;
+    }
+
+    function collapseMobile() {
+        const card = activeCard;
+        const inner = activeInner;
+
+        card.classList.remove('is-expanded');
+        inner.classList.remove('is-expanded');
+
+        const home = card._homeRect;
+        const side = card.dataset.side;
+
+        // возвращаемся ИМЕННО в те координаты, откуда открывались —
+        // без пересчёта, поэтому попадание всегда точное
+        if (home) {
+            card.style.width = home.width + 'px';
+            card.style.height = home.height + 'px';
+
+            if (side === 'bottom') {
+                card.style.left = home.left + 'px';
+                card.style.right = '';
+                card.style.top = '';
+                card.style.bottom = '0px';
+            } else {
+                card.style.top = home.top + 'px';
+                card.style.bottom = '';
+
+                if (side === 'left') {
+                    card.style.left = '0px';
+                    card.style.right = '';
+                } else {
+                    card.style.right = '0px';
+                    card.style.left = '';
+                }
+            }
         }
 
+        function onTransitionEnd(e) {
+            if (e.target !== card) return;
+            card.removeEventListener('transitionend', onTransitionEnd);
+
+            // после завершения анимации синхронизируем со всеми
+            // остальными вкладками — на случай, если пока карточка
+            // была открыта, поменялась высота хедера/окна или
+            // ориентация экрана.
+            // Проверяем текущий режим: если пока карточка была
+            // раскрыта пользователь успел развернуть окно на
+            // десктоп — чистим мобильные стили вместо того, чтобы
+            // заново расставлять вкладки.
+            if (isMobile()) {
+                layoutTabs();
+            } else {
+                resetDesktopLayout();
+            }
+        }
+        card.addEventListener('transitionend', onTransitionEnd);
+    }
+
+
+    /* ==================================================
+                    ОБЩИЙ ИНТЕРФЕЙС
+    ================================================== */
+
+    function expandCard(card) {
+        if (activeCard === card) return;
+        if (activeCard) collapseCard();
+
+        isMobileExpand = isMobile();
+
+        if (isMobileExpand) {
+            expandMobile(card);
+        } else {
+            expandDesktop(card);
+        }
+
+        const ov = ensureOverlay();
+        ov.offsetHeight;
+        ov.classList.add('is-visible');
+
+        activeCard = card;
+        document.addEventListener('keydown', onKeyDown);
+    }
+
+    function collapseCard() {
+        if (!activeCard) return;
+
+        if (isMobileExpand) {
+            collapseMobile();
+        } else {
+            collapseDesktop();
+        }
+
+        if (overlay) overlay.classList.remove('is-visible');
+
+        activeCard = null;
+        activeInner = null;
+        document.removeEventListener('keydown', onKeyDown);
+    }
+
+    function onKeyDown(e) {
+        if (e.key === 'Escape' && activeCard) {
+            collapseCard();
+        }
+    }
+
+
+    /* ==================================================
+                    ОБРАБОТЧИКИ
+    ================================================== */
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            if (activeCard === card) return;
+            expandCard(card);
+        });
     });
 
-}, {
+    function handleViewportChange() {
+        if (activeCard && isMobileExpand !== isMobile()) {
+            collapseCard();
+        }
 
-    threshold: .2
+        if (isMobile()) {
+            if (!activeCard) {
+                layoutTabs();
+            } else {
+                const panel = getMobilePanelRect();
+                applyMobilePanelPosition(activeCard, panel, activeCard.dataset.side);
+            }
+        } else if (!activeCard) {
+            // При переходе mobile -> desktop без раскрытой карточки
+            // нужно почистить инлайн-стили, оставшиеся от layoutTabs(),
+            // иначе десктопная раскладка (иконки в сетке) не вернётся.
+            resetDesktopLayout();
+        } else {
+            const target = getDesktopTargetRect();
+            activeInner.style.left = target.left + 'px';
+            activeInner.style.top = target.top + 'px';
+            activeInner.style.width = target.width + 'px';
+            activeInner.style.height = target.height + 'px';
+        }
+    }
 
-});
+    window.addEventListener('resize', handleViewportChange);
 
-document.querySelectorAll(".fade-up").forEach(el => {
-
-    observer.observe(el);
-
-});
-
-/* ===========================================
-        BUTTON RIPPLE
-=========================================== */
-
-document.querySelectorAll(".btn").forEach(button => {
-
-    button.addEventListener("mouseenter", () => {
-
-        button.style.transition = ".35s";
-
+    // Некоторые мобильные браузеры сообщают новые innerWidth/
+    // innerHeight не сразу в момент 'resize', а с небольшой
+    // задержкой после поворота экрана — поэтому дополнительно
+    // пересчитываем раскладку чуть позже по 'orientationchange'.
+    window.addEventListener('orientationchange', () => {
+        setTimeout(handleViewportChange, 60);
     });
 
-});
+    layoutTabs();
 
-/* ===========================================
-        SMOOTH APPEAR
-=========================================== */
-
-window.addEventListener("DOMContentLoaded", () => {
-
-    document.querySelectorAll(".hero-text > *").forEach((el, i) => {
-
-        el.style.opacity = "0";
-        el.style.transform = "translateY(30px)";
-
-        setTimeout(() => {
-
-            el.style.transition = ".8s";
-
-            el.style.opacity = "1";
-            el.style.transform = "translateY(0)";
-
-        }, i * 180);
-
-    });
-
-});
+})();
