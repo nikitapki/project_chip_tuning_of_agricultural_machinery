@@ -58,8 +58,10 @@ PAGE WRAP
     position: relative;
 
     width: 100%;
-    min-width: 100%;
+    min-width: 0;
 
     margin: 0;
     padding: 0;
+
+    overflow: hidden;
 }

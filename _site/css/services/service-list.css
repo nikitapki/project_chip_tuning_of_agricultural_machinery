@@ -11,9 +11,10 @@
     max-width: none;
 
     margin: 0;
+
     padding: 70px 30px 150px;
 
-    overflow: clip;
+    overflow: visible;
 }
 
 
@@ -565,68 +566,7 @@
 }
 
 
-/*==================================================
-                    DECORATION
-==================================================*/
 
-.service::before {
-    content: "";
-
-    position: absolute;
-
-    width: 720px;
-    height: 720px;
-
-    right: -360px;
-    top: 50%;
-
-    transform:
-        translateY(-50%);
-
-    background:
-        url("/images/icons/gear-cad.svg")
-        center / contain
-        no-repeat;
-
-    opacity: .07;
-
-    pointer-events: none;
-
-    z-index: 0;
-
-    animation:
-        rotateSlow 220s linear infinite;
-}
-
-
-.service::after {
-    content: "";
-
-    position: absolute;
-
-    width: 1100px;
-    height: 1100px;
-
-    left: -550px;
-    top: 50%;
-
-    transform:
-        translateY(-50%);
-
-    border-radius: 50%;
-
-    border:
-        2px solid rgba(55, 201, 78, .045);
-
-    box-shadow:
-        0 0 0 120px rgba(55, 201, 78, .025),
-        0 0 0 260px rgba(55, 201, 78, .018),
-        0 0 0 420px rgba(55, 201, 78, .012);
-
-    pointer-events: none;
-
-    z-index: 0;
-}
 
 
 /*==================================================
@@ -784,21 +724,6 @@
     }
 
 
-    .service::before {
-        width: 550px;
-        height: 550px;
-
-        right: -280px;
-    }
-
-
-    .service::after {
-        width: 850px;
-        height: 850px;
-
-        left: -430px;
-    }
-
 }
 
 
@@ -846,11 +771,6 @@
         font-size: 17px;
     }
 
-
-    .service::before,
-    .service::after {
-        display: none;
-    }
 
 }
 
@@ -946,11 +866,6 @@
         font-size: 17px;
     }
 
-
-    .service::before,
-    .service::after {
-        display: none;
-    }
 
 }
 

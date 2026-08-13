@@ -363,77 +363,6 @@
 }
 
 
-/*==================================================
-
-    BACKGROUND — LEFT CIRCLES
-
-==================================================*/
-
-.company::before {
-    content: "";
-
-    position: absolute;
-
-    width: 1100px;
-    height: 1100px;
-
-    left: -700px;
-    top: 45%;
-
-    transform:
-        translateY(-50%);
-
-    border-radius: 50%;
-
-    border:
-        1px solid rgba(55, 201, 78, .07);
-
-    box-shadow:
-
-        0 0 0 120px
-        rgba(55, 201, 78, .025),
-
-        0 0 0 260px
-        rgba(55, 201, 78, .018),
-
-        0 0 0 420px
-        rgba(55, 201, 78, .012);
-
-    pointer-events: none;
-
-    z-index: 0;
-}
-
-
-/*==================================================
-
-    BACKGROUND — GEAR
-
-==================================================*/
-.company::after {
-    content: "";
-
-    position: absolute;
-
-    width: 500px;
-    height: 500px;
-
-    right: -400px;
-    top: 65%;
-
-    transform: translateY(-50%);
-
-    background:
-        url("/images/icons/gear-cad.svg")
-        center / contain
-        no-repeat;
-
-    opacity: .035;
-
-    pointer-events: none;
-
-    z-index: 0;
-}
 
 
 /*==================================================
@@ -522,9 +451,6 @@
     }
 
 
-    .company::after {
-        display: none;
-    }
 
 }
 
@@ -715,9 +641,6 @@
     }
 
 
-    .company::before,
-    .company::after {
-        display: none;
-    }
 
 }
+
