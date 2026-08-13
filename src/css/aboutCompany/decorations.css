@@ -35,7 +35,7 @@ COMPANY BACKGROUND
 
 .company {
     position: relative;
-    overflow: visible;
+    overflow: clip;
 }
 
 .company::after {
@@ -141,7 +141,7 @@ PRINCIPLES BACKGROUND
 
 .principles {
     position: relative;
-    overflow: visible;
+    overflow: clip;
 }
 
 .principles::after {
