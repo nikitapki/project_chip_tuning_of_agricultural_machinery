@@ -16,10 +16,14 @@ header {
     justify-content: space-between;
     gap: 24px;
 
-    height: 76px;
+    height: 66px;
     padding: 0 32px;
 
-    background: linear-gradient(90deg, rgba(89, 132, 162, .85), rgba(50, 99, 133, .85));
+    background: linear-gradient(
+    90deg,
+    rgba(89, 132, 162, .70),
+    rgba(50, 99, 133, .70)
+);
     backdrop-filter: blur(1px);
     -webkit-backdrop-filter: blur(1px);
     border-bottom: 1px solid rgba(0, 0, 0, .08);

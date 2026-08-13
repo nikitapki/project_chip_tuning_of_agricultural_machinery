@@ -1,0 +1,556 @@
+/*==================================================
+
+                    CATALOG
+
+==================================================*/
+
+.catalog {
+    position: relative;
+
+    width: 100%;
+    max-width: none;
+
+    margin: 0;
+    padding: 150px 30px 160px;
+
+    overflow: hidden;
+}
+
+
+/*==================================================
+
+                    CONTENT
+
+==================================================*/
+
+.catalog-content {
+    position: relative;
+
+    z-index: 5;
+
+    width: 100%;
+    max-width: 1800px;
+
+    margin: 0 auto;
+}
+
+
+/*==================================================
+
+                    HEADER
+
+==================================================*/
+
+.catalog-header {
+    position: relative;
+
+    max-width: 1100px;
+
+    margin: 0 auto 90px;
+
+    text-align: center;
+}
+
+
+.catalog-label {
+    display: inline-block;
+
+    position: relative;
+
+    margin-bottom: 25px;
+
+    padding-left: 55px;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    letter-spacing: 5px;
+
+    color: #37C94E;
+}
+
+
+.catalog-label::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 50%;
+
+    width: 38px;
+    height: 2px;
+
+    background: #37C94E;
+
+    transform: translateY(-50%);
+}
+
+
+.catalog-header h1 {
+    margin: 0;
+
+    font-size: clamp(42px, 5vw, 72px);
+
+    line-height: 1.05;
+
+    font-weight: 800;
+
+    letter-spacing: -2.5px;
+
+    color: #18212D;
+}
+
+
+.catalog-header p {
+    max-width: 760px;
+
+    margin: 30px auto 0;
+
+    font-size: 19px;
+
+    line-height: 1.8;
+
+    color: #68727F;
+}
+
+
+/*==================================================
+
+                    GRID
+
+==================================================*/
+
+.catalog-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, minmax(0, 1fr));
+
+    width: 100%;
+
+    border-top:
+        1px solid rgba(55, 201, 78, .20);
+
+    border-left:
+        1px solid rgba(55, 201, 78, .20);
+
+    background: rgba(255, 255, 255, .72);
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, .045);
+
+    backdrop-filter: blur(8px);
+}
+
+
+/*==================================================
+
+                    ITEM
+
+==================================================*/
+
+.catalog-item {
+    position: relative;
+
+    height: 175px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px;
+
+    background: rgba(255, 255, 255, .72);
+
+    border-right:
+        1px solid rgba(55, 201, 78, .20);
+
+    border-bottom:
+        1px solid rgba(55, 201, 78, .20);
+
+    overflow: hidden;
+
+    transition:
+        background .3s ease,
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+
+/*==================================================
+
+                    HOVER
+
+==================================================*/
+
+.catalog-item::before {
+    content: "";
+
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    left: 50%;
+    top: 50%;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(55, 201, 78, .10),
+            transparent 70%
+        );
+
+    transform:
+        translate(-50%, -50%)
+        scale(.7);
+
+    opacity: 0;
+
+    transition:
+        transform .4s ease,
+        opacity .4s ease;
+
+    pointer-events: none;
+}
+
+
+.catalog-item:hover {
+    z-index: 2;
+
+    background: #ffffff;
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, .08);
+}
+
+
+.catalog-item:hover::before {
+    opacity: 1;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.2);
+}
+
+
+/*==================================================
+
+                    LOGOS
+
+==================================================*/
+
+.catalog-item img {
+    position: relative;
+
+    z-index: 2;
+
+    display: block;
+
+    width: auto;
+
+    max-width: 90%;
+
+    height: 72px;
+
+    object-fit: contain;
+
+    object-position: center;
+
+    transition:
+        transform .35s ease,
+        filter .35s ease;
+}
+
+
+.catalog-item:hover img {
+    transform: scale(1.06);
+}
+
+
+/*==================================================
+
+                    DECORATION SPACE
+
+==================================================*/
+
+.catalog .decorations {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    overflow: hidden;
+}
+
+
+/*==================================================
+
+                    LARGE SCREEN
+
+==================================================*/
+
+@media (min-width: 1600px) {
+
+    .catalog {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+
+    .catalog-content {
+        max-width: 1900px;
+    }
+
+
+    .catalog-header {
+        margin-bottom: 110px;
+    }
+
+
+    .catalog-header h1 {
+        font-size: 76px;
+    }
+
+
+    .catalog-item {
+        height: 190px;
+
+        padding: 30px;
+    }
+
+
+    .catalog-item img {
+        height: 78px;
+    }
+
+}
+
+
+/*==================================================
+
+                    1400px
+
+==================================================*/
+
+@media (max-width: 1400px) {
+
+    .catalog {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+
+    .catalog-content {
+        max-width: 1300px;
+    }
+
+
+    .catalog-header {
+        margin-bottom: 75px;
+    }
+
+
+    .catalog-header h1 {
+        font-size: 58px;
+    }
+
+
+    .catalog-item {
+        height: 160px;
+
+        padding: 20px;
+    }
+
+
+    .catalog-item img {
+        height: 62px;
+    }
+
+}
+
+
+/*==================================================
+
+                    1100px
+
+==================================================*/
+
+@media (max-width: 1100px) {
+
+    .catalog {
+        padding:
+            120px 20px 120px;
+    }
+
+
+    .catalog-grid {
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+    }
+
+
+    .catalog-header h1 {
+        font-size: 48px;
+    }
+
+
+    .catalog-header p {
+        font-size: 17px;
+    }
+
+
+    .catalog-item {
+        height: 150px;
+    }
+
+
+    .catalog-item img {
+        height: 58px;
+    }
+
+}
+
+
+/*==================================================
+
+                    TABLET
+
+==================================================*/
+
+@media (max-width: 768px) {
+
+    .catalog {
+        padding:
+            100px 16px 90px;
+    }
+
+
+    .catalog-header {
+        margin-bottom: 55px;
+    }
+
+
+    .catalog-label {
+        font-size: 12px;
+
+        letter-spacing: 3px;
+
+        padding-left: 45px;
+    }
+
+
+    .catalog-label::before {
+        width: 32px;
+    }
+
+
+    .catalog-header h1 {
+        font-size: 38px;
+
+        letter-spacing: -1.2px;
+    }
+
+
+    .catalog-header p {
+        margin-top: 22px;
+
+        font-size: 16px;
+
+        line-height: 1.7;
+    }
+
+
+    .catalog-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+
+    .catalog-item {
+        height: 135px;
+
+        padding: 15px;
+    }
+
+
+    .catalog-item img {
+        height: 50px;
+
+        max-width: 92%;
+    }
+
+}
+
+
+/*==================================================
+
+                    MOBILE
+
+==================================================*/
+
+@media (max-width: 520px) {
+
+    .catalog {
+        padding:
+            85px 12px 70px;
+    }
+
+
+    .catalog-header {
+        margin-bottom: 40px;
+    }
+
+
+    .catalog-header h1 {
+        font-size: 30px;
+
+        line-height: 1.1;
+    }
+
+
+    .catalog-header p {
+        font-size: 15px;
+    }
+
+
+    .catalog-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    .catalog-item {
+        height: 115px;
+
+        padding: 12px;
+    }
+
+
+    .catalog-item img {
+        height: 42px;
+
+        max-width: 90%;
+    }
+
+
+    .catalog-item:hover {
+        transform: none;
+    }
+
+
+    .catalog-item:hover img {
+        transform: scale(1.03);
+    }
+
+}
