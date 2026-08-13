@@ -36,22 +36,21 @@ HERO CONTAINER
 ==================================================*/
 
 .heroContainer {
-    /* ИЗМЕНЕНО: было width: 1500px; max-width: 92% — работало
-       корректно (max-width всегда клампит явный width), но
-       для единообразия с остальными страницами переведено
-       на min(), это то же самое поведение, просто короче
-       и без риска, что кто-то потом уберёт max-width и
-       сломает адаптив. */
     width: min(1500px, 92%);
 
-    margin: auto;
+    margin: 0 auto;
 
     display: grid;
-    grid-template-columns: 45% 55%;
+
+    grid-template-columns:
+        minmax(0, 45fr)
+        minmax(0, 55fr);
 
     align-items: center;
 
     gap: 80px;
+
+    min-width: 0;
 }
 
 

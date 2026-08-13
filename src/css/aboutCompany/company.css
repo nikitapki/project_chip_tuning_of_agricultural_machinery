@@ -1,101 +1,233 @@
 /*==================================================
 
-COMPANY
+    COMPANY — О КОМПАНИИ
 
 ==================================================*/
 
 .company {
     position: relative;
+    overflow: hidden;
+
+    min-height: calc(100vh - 80px);
+
+    padding: 137px 0 110px;
 }
 
+/*==================================================
+
+    CONTAINER
+
+==================================================*/
+
 .companyContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 90px;
-    align-items: center;
+    position: relative;
+    z-index: 2;
+
+    width: min(1400px, 94%);
+    margin: 0 auto;
 }
 
 
 /*==================================================
 
-COMPANY IMAGE
+    TOP BLOCK
+    ФОТО + ТЕКСТ СПРАВА
+
+==================================================*/
+
+.companyTop {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    gap: 65px;
+
+    align-items: start;
+}
+
+
+/*==================================================
+
+    IMAGE
 
 ==================================================*/
 
 .companyImage {
     position: relative;
 
-    overflow: hidden;
-
-    border-radius: 28px;
-
-    /* ДОБАВЛЕНО: страховка от раздувания колонки картинкой */
-    min-width: 0;
-}
-
-.companyImage img {
-    /* явный width: 100% — глобальный сброс в global.css даёт
-       только max-width, этого не хватит, чтобы фото заполняло
-       всю ширину колонки, а не только "не вылезало" за неё */
     width: 100%;
-    height: auto;
-    display: block;
+    min-width: 0;
 
-    border-radius: 26px;
+    border-radius: 30px;
+
+    overflow: hidden;
 
     box-shadow:
         0 30px 80px rgba(0, 0, 0, .12);
-
-    transition: .7s;
 }
 
+
+.companyImage img {
+    display: block;
+
+    width: 100%;
+    height: 580px;
+
+    object-fit: cover;
+
+    border-radius: 30px;
+
+    transition:
+        transform .7s ease;
+}
+
+
 .companyImage:hover img {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 
 /*==================================================
 
-COMPANY CONTENT
+    INTRO TEXT
+    ТЕКСТ СПРАВА ОТ ФОТО
 
 ==================================================*/
 
-.companyContent {
-    /* ДОБАВЛЕНО: без этого длинный текст мог растягивать
-       колонку шире её грид-трека */
+.companyIntro {
     min-width: 0;
-}
 
-.companyContent span {
-    color: #37c94e;
-
-    font-weight: 700;
-
-    letter-spacing: 3px;
-}
-
-.companyContent h2 {
-    font-size: 52px;
-
-    margin: 25px 0 35px;
-
-    line-height: 1.15;
-
-    letter-spacing: -1px;
-}
-
-.companyContent > p {
-    color: #666;
-
-    line-height: 1.9;
-
-    margin-bottom: 45px;
+    padding-top: 5px;
 }
 
 
 /*==================================================
 
-COMPANY LIST
+    LABEL
+
+==================================================*/
+
+.companyIntro > span {
+    display: block;
+
+    margin-bottom: 22px;
+
+    color: #37c94e;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    letter-spacing: 4px;
+}
+
+
+/*==================================================
+
+    MAIN TITLE
+
+==================================================*/
+
+.companyIntro h2 {
+    margin: 0 0 32px;
+
+    color: #1d2229;
+
+    font-size:
+        clamp(38px, 3.6vw, 56px);
+
+    font-weight: 800;
+
+    line-height: 1;
+
+    letter-spacing: -1.5px;
+}
+
+
+.companyIntro h2 span {
+    display: block;
+
+    color: #37c94e;
+}
+
+
+/*==================================================
+
+    INTRO TEXT
+
+==================================================*/
+
+.companyIntro > p {
+    max-width: 680px;
+
+    margin: 0;
+
+    color: #727980;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+}
+
+
+/*==================================================
+
+    BOTTOM CONTENT
+    НА ВСЮ ШИРИНУ
+
+==================================================*/
+
+.companyBottom {
+    width: 100%;
+
+    margin-top: 65px;
+}
+
+
+/*==================================================
+
+    SECTION
+
+==================================================*/
+
+.companyBottom .companySection {
+    width: 100%;
+
+    margin-top: 0;
+}
+
+
+.companyBottom .companySection > h3 {
+    margin: 0 0 18px;
+
+    color: #1d2229;
+
+    font-size: 27px;
+
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+
+.companyBottom .companySection > p {
+    max-width: 1150px;
+
+    margin: 0 0 35px;
+
+    color: #727980;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+/*==================================================
+
+    LIST
 
 ==================================================*/
 
@@ -104,89 +236,488 @@ COMPANY LIST
 
     flex-direction: column;
 
-    gap: 26px;
+    gap: 24px;
+
+    width: 100%;
 }
+
+
+/*==================================================
+
+    LIST ITEM
+
+==================================================*/
 
 .companyItem {
     display: flex;
 
-    gap: 24px;
-
     align-items: flex-start;
+
+    gap: 18px;
+
+    width: 100%;
 }
 
-.check {
-    width: 18px;
-    height: 18px;
+
+/*==================================================
+
+    GREEN DOT
+
+==================================================*/
+
+.companyItem .check {
+    width: 13px;
+    height: 13px;
+
+    margin-top: 8px;
+
+    flex: 0 0 13px;
 
     border-radius: 50%;
 
     background: #37c94e;
 
-    margin-top: 7px;
-
-    flex-shrink: 0;
-
     box-shadow:
-        0 0 18px rgba(55, 201, 78, .45);
+        0 0 18px rgba(55, 201, 78, .35);
 }
+
+
+/*==================================================
+
+    ITEM CONTENT
+
+==================================================*/
+
+.companyItem > div {
+    min-width: 0;
+}
+
 
 .companyItem h3 {
-    margin-bottom: 10px;
+    margin: 0 0 7px;
 
-    font-size: 20px;
+    color: #1d2229;
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    line-height: 1.4;
 }
 
+
 .companyItem p {
-    color: #666;
+    max-width: 1150px;
+
+    margin: 0;
+
+    color: #727980;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+
+/*==================================================
+
+    QUALITY
+
+==================================================*/
+
+.companyQuality {
+    width: 100%;
+
+    margin-top: 55px !important;
+
+    padding-top: 30px;
+
+    border-top:
+        1px solid rgba(55, 201, 78, .18);
+}
+
+
+.companyQuality h3 {
+    margin: 0 0 15px;
+
+    color: #1d2229;
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+
+.companyQuality p {
+    max-width: 1150px;
+
+    margin: 0;
+
+    color: #727980;
+
+    font-size: 17px;
 
     line-height: 1.8;
 }
+
+
 /*==================================================
 
-RESPONSIVE
+    BACKGROUND — LEFT CIRCLES
+
+==================================================*/
+
+.company::before {
+    content: "";
+
+    position: absolute;
+
+    width: 1100px;
+    height: 1100px;
+
+    left: -700px;
+    top: 45%;
+
+    transform:
+        translateY(-50%);
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(55, 201, 78, .07);
+
+    box-shadow:
+
+        0 0 0 120px
+        rgba(55, 201, 78, .025),
+
+        0 0 0 260px
+        rgba(55, 201, 78, .018),
+
+        0 0 0 420px
+        rgba(55, 201, 78, .012);
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/*==================================================
+
+    BACKGROUND — GEAR
+
+==================================================*/
+.company::after {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    right: -400px;
+    top: 65%;
+
+    transform: translateY(-50%);
+
+    background:
+        url("/images/icons/gear-cad.svg")
+        center / contain
+        no-repeat;
+
+    opacity: .035;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/*==================================================
+
+    RESPONSIVE — 1200px
 
 ==================================================*/
 
 @media (max-width: 1200px) {
 
-    .companyContainer {
-        gap: 60px;
+    .company {
+        padding:
+            70px 0
+            90px;
+    }
+
+
+    .companyTop {
+        gap: 50px;
+    }
+
+
+    .companyImage img {
+        height: 540px;
+    }
+
+
+    .companyIntro h2 {
+        font-size: 52px;
     }
 
 }
+
+
+/*==================================================
+
+    RESPONSIVE — 992px
+
+==================================================*/
 
 @media (max-width: 992px) {
 
-    .companyContainer {
+    .company {
+        padding:
+            65px 0
+            80px;
+    }
+
+
+    /*
+        На планшете фото и текст
+        переходят друг под друга
+    */
+
+    .companyTop {
         grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
+
+
+    .companyImage {
+        order: 1;
+    }
+
+
+    .companyIntro {
+        order: 2;
+
+        max-width: 100%;
+    }
+
+
+    .companyImage img {
+        height: 500px;
+    }
+
+
+    .companyIntro h2 {
+        font-size: 48px;
+    }
+
+
+    .companyBottom {
+        margin-top: 55px;
+    }
+
+
+    .company::after {
+        display: none;
     }
 
 }
+
+
+/*==================================================
+
+    RESPONSIVE — 768px
+
+==================================================*/
 
 @media (max-width: 768px) {
 
-    .companyContent h2 {
-        font-size: 38px;
+    .company {
+        padding:
+            55px 0
+            70px;
+    }
+
+
+    .companyContainer {
+        width: 92%;
+    }
+
+
+    .companyTop {
+        gap: 35px;
+    }
+
+
+    .companyImage img {
+        height: 420px;
+    }
+
+
+    .companyIntro h2 {
+        font-size: 40px;
+
+        letter-spacing: -1.5px;
+    }
+
+
+    .companyIntro > p {
+        font-size: 17px;
+
+        line-height: 1.7;
+    }
+
+
+    .companyBottom {
+        margin-top: 45px;
+    }
+
+
+    .companyBottom .companySection > h3 {
+        font-size: 24px;
+    }
+
+
+    .companyBottom .companySection > p {
+        font-size: 16px;
+    }
+
+
+    .companyItem h3 {
+        font-size: 18px;
+    }
+
+
+    .companyItem p {
+        font-size: 15px;
+    }
+
+
+    .companyQuality {
+        margin-top: 45px !important;
     }
 
 }
+
+
+/*==================================================
+
+    RESPONSIVE — 576px
+
+==================================================*/
 
 @media (max-width: 576px) {
 
-    .companyContent h2 {
-        font-size: 32px;
+    .company {
+        padding:
+            45px 0
+            60px;
     }
 
-}
-/*==================================================
-        COMPANY — TEXT / IMAGE
-==================================================*/
 
-.companyContent {
-    order: 1;
-}
+    .companyContainer {
+        width: 90%;
+    }
 
-.companyImage {
-    order: 2;
+
+    .companyImage {
+        border-radius: 22px;
+    }
+
+
+    .companyImage img {
+        height: 300px;
+
+        border-radius: 22px;
+    }
+
+
+    .companyIntro > span {
+        font-size: 12px;
+
+        letter-spacing: 3px;
+    }
+
+
+    .companyIntro h2 {
+        font-size: 32px;
+
+        line-height: 1;
+
+        letter-spacing: -1px;
+
+        margin-bottom: 25px;
+    }
+
+
+    .companyIntro > p {
+        font-size: 16px;
+    }
+
+
+    .companyBottom {
+        margin-top: 40px;
+    }
+
+
+    .companyBottom .companySection > h3 {
+        font-size: 22px;
+    }
+
+
+    .companyBottom .companySection > p {
+        font-size: 16px;
+    }
+
+
+    .companyItem {
+        gap: 14px;
+    }
+
+
+    .companyItem .check {
+        width: 11px;
+        height: 11px;
+
+        flex-basis: 11px;
+    }
+
+
+    .companyItem h3 {
+        font-size: 17px;
+    }
+
+
+    .companyItem p {
+        font-size: 15px;
+    }
+
+
+    .companyQuality {
+        margin-top: 40px !important;
+
+        padding-top: 25px;
+    }
+
+
+    .companyQuality h3 {
+        font-size: 21px;
+    }
+
+
+    .companyQuality p {
+        font-size: 15px;
+    }
+
+
+    .company::before,
+    .company::after {
+        display: none;
+    }
+
 }

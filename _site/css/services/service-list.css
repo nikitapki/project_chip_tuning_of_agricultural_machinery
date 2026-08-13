@@ -1,335 +1,482 @@
 /*==================================================
 
-SERVICES
+                    SERVICES
 
 ==================================================*/
 
 .services {
-    width: min(1500px, 92%);
-    margin: 80px auto 0;
-    padding-bottom: 140px;
     position: relative;
-    background: transparent;
 
-    /* ДОБАВЛЕНО: .service::before/::after вылезают на сотни px
-       за пределы контейнера (right:-320px, left:-520px и т.д.)
-       и создают горизонтальный overflow страницы во время
-       ресайза, пока html/body overflow-x:hidden не успевает
-       "подрезать" — вешаем клиппинг прямо на контейнер. */
+    width: 100%;
+    max-width: none;
+
+    margin: 0;
+    padding: 70px 30px 150px;
+
     overflow: clip;
 }
 
 
 /*==================================================
-
-SERVICE BLOCK
-
+                    COMMON SERVICE
 ==================================================*/
 
 .service {
     position: relative;
 
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    max-width: 1800px;
 
-    gap: 80px;
+    margin: 140px auto;
 
-    align-items: center;
-
-    margin: 180px 0;
+    min-width: 0;
 
     overflow: visible;
 }
 
-.service::before {
-    content: "";
-
-    position: absolute;
-
-    width: 720px;
-    height: 720px;
-
-    right: -320px;
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    background:
-        url("/images/icons/gear-cad.svg")
-        center / contain
-        no-repeat;
-
-    opacity: .08;
-
-    animation: rotateSlow 220s linear infinite;
-
-    pointer-events: none;
-
-    z-index: 0;
-}
-
-.service::after {
-    content: "";
-
-    position: absolute;
-
-    width: 1100px;
-    height: 1100px;
-
-    left: -520px;
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    border-radius: 50%;
-
-    border: 2px solid rgba(55, 201, 78, .05);
-
-    box-shadow:
-        0 0 0 120px rgba(55, 201, 78, .03),
-        0 0 0 260px rgba(55, 201, 78, .02),
-        0 0 0 420px rgba(55, 201, 78, .015);
-
-    pointer-events: none;
-}
-
 
 /*==================================================
-
-REVERSE SERVICE
-
+                    DPF TOP
 ==================================================*/
 
-.service.reverse {
-    direction: rtl;
+.service-dpf {
+    display: block;
+
+    width: 100%;
+    max-width: 1500px;
+
+    margin:
+        80px auto 150px;
 }
 
-.service.reverse::before {
-    left: -320px;
-    right: auto;
-}
 
-.service.reverse::after {
-    left: auto;
-    right: -520px;
-}
+/* Верхняя часть DPF */
 
-.service.reverse > * {
-    direction: ltr;
+.serviceDpfTop {
+    display: grid;
+
+    grid-template-columns:
+        48%
+        minmax(0, 1fr);
+
+    gap: 60px;
+
+    width: 100%;
+
+    align-items: stretch;
 }
 
 
 /*==================================================
+                    DPF IMAGE
+==================================================*/
 
-SERVICE IMAGE
+.serviceDpfTop .serviceImage {
+    width: 100%;
+    height: 100%;
 
+    min-height: 100%;
+
+    margin: 0;
+
+    overflow: hidden;
+
+    border-radius: 32px;
+}
+
+
+.serviceDpfTop .serviceImage img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    min-height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    border-radius: 32px;
+
+    box-shadow:
+        0 25px 65px rgba(0, 0, 0, .10);
+
+    transition:
+        transform .45s ease,
+        box-shadow .45s ease;
+}
+
+
+.serviceDpfTop .serviceImage:hover img {
+    transform: scale(1.015);
+
+    box-shadow:
+        0 30px 75px rgba(0, 0, 0, .13);
+}
+
+
+/*==================================================
+                    DPF CONTENT
+==================================================*/
+
+.serviceDpfTop .serviceContent {
+    width: 100%;
+    height: 100%;
+
+    padding: 55px 50px;
+
+    box-sizing: border-box;
+}
+
+
+/*==================================================
+                    DPF BOTTOM
+==================================================*/
+
+.serviceDpfBottom {
+    clear: both;
+
+    width: 100%;
+
+    padding-top: 55px;
+}
+
+
+.serviceDpfBottom .serviceSection {
+    width: 100%;
+    max-width: 1250px;
+
+    margin:
+        35px 0;
+}
+
+
+.serviceDpfBottom .serviceSection p {
+    max-width: 1250px;
+}
+
+
+.serviceDpfBottom .serviceList {
+    max-width: 1300px;
+}
+
+
+/*==================================================
+                    NORMAL IMAGE
 ==================================================*/
 
 .serviceImage {
     position: relative;
-    z-index: 5;
 
-    border-radius: 34px;
+    width: 100%;
+
+    min-width: 0;
+
+    border-radius: 36px;
+
     overflow: hidden;
 
-    /* ДОБАВЛЕНО: страховка от раздувания колонки */
-    min-width: 0;
+    z-index: 5;
 }
+
 
 .serviceImage img {
-    width: 100%;
     display: block;
 
-    border-radius: 34px;
+    width: 100%;
+    max-width: 100%;
+
+    height: 520px;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    border-radius: 36px;
 
     box-shadow:
-        0 25px 60px rgba(0,0,0,.10);
+        0 25px 65px rgba(0, 0, 0, .10);
 
-    transition: .45s;
+    transition:
+        transform .45s ease,
+        box-shadow .45s ease;
 }
 
-.service:hover .serviceImage img {
-    transform: scale(1.02);
+
+.serviceImage:hover img {
+    transform: scale(1.015);
+
+    box-shadow:
+        0 30px 75px rgba(0, 0, 0, .13);
 }
 
 
 /*==================================================
-
-SERVICE CONTENT
-
+                    CONTENT CARD
 ==================================================*/
 
 .serviceContent {
     position: relative;
 
-    overflow: hidden;
-
-    padding: 50px;
-
-    background: #fff;
-
-    border: 1px solid rgba(0, 0, 0, .05);
-    border-radius: 34px;
-
-    box-shadow:
-        0 18px 45px rgba(0, 0, 0, .06);
-
-    transition: .35s;
-
     z-index: 5;
 
-    /* ДОБАВЛЕНО: длинный текст в .serviceContent p мог
-       раздувать колонку шире грид-трека */
+    width: 100%;
+
     min-width: 0;
+
+    padding: 65px 70px;
+
+    background: #ffffff;
+
+    border:
+        1px solid rgba(0, 0, 0, .055);
+
+    border-radius: 38px;
+
+    box-shadow:
+        0 20px 55px rgba(0, 0, 0, .065);
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
 }
+
+
+.serviceContent:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 28px 70px rgba(0, 0, 0, .09);
+}
+
+
+/*==================================================
+                    CONTENT DECORATION
+==================================================*/
 
 .serviceContent::before {
     content: "";
 
     position: absolute;
 
-    width: 260px;
-    height: 260px;
+    width: 300px;
+    height: 300px;
 
-    right: -120px;
-    top: -120px;
+    right: -140px;
+    top: -140px;
 
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            rgba(55, 201, 78, .18),
+            rgba(55, 201, 78, .16),
             transparent 70%
         );
 
     pointer-events: none;
 }
 
-.service:hover .serviceContent {
-    transform: translateY(-6px);
-
-    box-shadow:
-        0 30px 70px rgba(0, 0, 0, .10);
-}
-
 
 /*==================================================
-
-SERVICE ICON
-
+                    ICON
 ==================================================*/
 
 .serviceIcon {
-    width: 78px;
-    height: 78px;
+    position: relative;
+
+    width: 82px;
+    height: 82px;
 
     display: flex;
+
     justify-content: center;
     align-items: center;
 
-    margin-bottom: 26px;
+    margin-bottom: 30px;
 
-    border-radius: 24px;
+    border-radius: 25px;
 
     background: #F2FFF4;
 
     box-shadow:
-        0 12px 25px rgba(55, 201, 78, .12);
+        0 12px 30px rgba(55, 201, 78, .12);
 }
 
+
 .serviceIcon img {
-    width: 38px;
+    width: 40px;
+    height: 40px;
+
+    object-fit: contain;
+}
+
+
+.serviceIconText {
+    font-size: 14px;
+
+    font-weight: 800;
+
+    color: #37C94E;
+
+    letter-spacing: .5px;
 }
 
 
 /*==================================================
-
-SERVICE TITLE
-
+                    TITLE
 ==================================================*/
 
 .serviceContent h2 {
-    margin-bottom: 14px;
+    position: relative;
 
-    font-size: 42px;
+    margin:
+        0 0 16px;
+
+    max-width: 900px;
+
+    font-size:
+        clamp(38px, 3.2vw, 56px);
+
+    line-height: 1.08;
+
     font-weight: 800;
 
-    line-height: 1.15;
+    letter-spacing: -1.5px;
 
     color: #18212D;
+
+    overflow-wrap: break-word;
 }
 
-.serviceContent span {
+
+/*==================================================
+                    LABEL
+==================================================*/
+
+.serviceContent > span {
     display: inline-block;
 
-    margin-bottom: 28px;
+    margin-bottom: 32px;
 
     font-size: 14px;
-    font-weight: 700;
 
-    letter-spacing: 2px;
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    letter-spacing: 2.5px;
 
     color: #37C94E;
 }
 
 
 /*==================================================
-
-SERVICE TEXT
-
+                    MAIN TEXT
 ==================================================*/
 
-.serviceContent p {
-    margin-bottom: 40px;
+.serviceContent > p {
+    position: relative;
 
-    font-size: 18px;
+    max-width: 900px;
 
-    line-height: 1.9;
+    margin:
+        0 0 42px;
 
-    color: #697280;
+    font-size: 19px;
+
+    line-height: 1.85;
+
+    color: #68727F;
 }
 
 
 /*==================================================
-
-SERVICE COLUMNS
-
+                    SECTIONS
 ==================================================*/
 
-.serviceColumns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.serviceSection {
+    position: relative;
 
-    gap: 35px;
+    max-width: 900px;
+
+    margin-top: 42px;
 }
 
-.serviceColumns h4 {
-    margin-bottom: 18px;
 
-    font-size: 18px;
-    font-weight: 700;
+.serviceSection h3 {
+    margin:
+        0 0 16px;
+
+    font-size: 21px;
+
+    line-height: 1.35;
+
+    font-weight: 750;
 
     color: #18212D;
 }
 
-.serviceColumns ul {
+
+.serviceSection h4 {
+    margin:
+        22px 0 14px;
+
+    font-size: 18px;
+
+    line-height: 1.4;
+
+    font-weight: 750;
+
+    color: #18212D;
+}
+
+
+.serviceSection p {
+    margin:
+        0 0 24px;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    color: #68727F;
+}
+
+
+/*==================================================
+                    LIST
+==================================================*/
+
+.serviceList {
+    margin: 0;
+    padding: 0;
+
     list-style: none;
 }
 
-.serviceColumns li {
+
+.serviceList li {
     position: relative;
 
-    padding-left: 28px;
+    padding-left: 30px;
 
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 
-    line-height: 1.7;
+    font-size: 18px;
 
-    color: #66707C;
+    line-height: 1.75;
+
+    color: #68727F;
 }
 
-.serviceColumns li::before {
+
+.serviceList li::before {
     content: "";
 
     position: absolute;
@@ -343,131 +490,604 @@ SERVICE COLUMNS
     border-radius: 50%;
 
     background: #37C94E;
+
+    box-shadow:
+        0 0 0 5px rgba(55, 201, 78, .08);
+}
+
+
+.serviceList strong {
+    color: #18212D;
+
+    font-weight: 750;
 }
 
 
 /*==================================================
-
-RESPONSIVE
-
+                    SAFETY
 ==================================================*/
 
-@media (max-width: 1400px) {
+.serviceSafety {
+    margin-top: 45px;
 
-    .service::before {
-        width: 560px;
-        height: 560px;
-        right: -260px;
+    padding: 28px 30px;
+
+    border-left:
+        4px solid #37C94E;
+
+    background:
+        rgba(55, 201, 78, .045);
+
+    border-radius:
+        0 18px 18px 0;
+}
+
+
+.serviceSafety h3 {
+    margin-bottom: 12px;
+}
+
+
+.serviceSafety p {
+    margin-bottom: 0;
+}
+
+
+/*==================================================
+                    QUOTE
+==================================================*/
+
+.serviceQuote {
+    position: relative;
+
+    margin:
+        45px 0 0 !important;
+
+    padding:
+        25px 30px;
+
+    border-left:
+        4px solid #37C94E;
+
+    background:
+        rgba(55, 201, 78, .045);
+
+    border-radius:
+        0 18px 18px 0;
+
+    font-size: 18px !important;
+
+    line-height: 1.7 !important;
+
+    font-weight: 650;
+
+    color: #18212D !important;
+}
+
+
+/*==================================================
+                    DECORATION
+==================================================*/
+
+.service::before {
+    content: "";
+
+    position: absolute;
+
+    width: 720px;
+    height: 720px;
+
+    right: -360px;
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    background:
+        url("/images/icons/gear-cad.svg")
+        center / contain
+        no-repeat;
+
+    opacity: .07;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    animation:
+        rotateSlow 220s linear infinite;
+}
+
+
+.service::after {
+    content: "";
+
+    position: absolute;
+
+    width: 1100px;
+    height: 1100px;
+
+    left: -550px;
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    border-radius: 50%;
+
+    border:
+        2px solid rgba(55, 201, 78, .045);
+
+    box-shadow:
+        0 0 0 120px rgba(55, 201, 78, .025),
+        0 0 0 260px rgba(55, 201, 78, .018),
+        0 0 0 420px rgba(55, 201, 78, .012);
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/*==================================================
+                    ADBLUE / EGR GRID
+==================================================*/
+
+.service-adblue,
+.service-egr {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    gap: 70px;
+
+    align-items: center;
+
+    width: 100%;
+
+    max-width: 1800px;
+}
+
+
+/* AdBlue: текст слева, фото справа */
+
+.service-adblue .serviceContent {
+    order: 1;
+}
+
+.service-adblue .serviceImage {
+    order: 2;
+}
+
+
+/* EGR: фото слева, текст справа */
+
+.service-egr .serviceImage {
+    order: 1;
+}
+
+.service-egr .serviceContent {
+    order: 2;
+}
+
+
+/*==================================================
+                    LARGE SCREEN
+==================================================*/
+
+@media (min-width: 1600px) {
+
+    .services {
+        padding-left: 40px;
+        padding-right: 40px;
     }
 
-    .service::after {
-        width: 850px;
-        height: 850px;
-        left: -400px;
+
+    .service {
+        max-width: 1840px;
     }
 
-    .service.reverse::before {
-        left: -260px;
+
+    .service-dpf {
+        max-width: 1600px;
     }
 
-    .service.reverse::after {
-        right: -400px;
+
+    .serviceDpfTop {
+        grid-template-columns:
+            48%
+            minmax(0, 1fr);
+
+        gap: 70px;
+    }
+
+
+    .serviceDpfTop .serviceContent {
+        padding:
+            70px 65px;
+    }
+
+
+    .serviceContent {
+        padding:
+            75px 80px;
+    }
+
+
+    .serviceContent h2 {
+        font-size: 58px;
+    }
+
+
+    .serviceContent > p {
+        font-size: 20px;
     }
 
 }
 
-@media (max-width: 1200px) {
+
+/*==================================================
+                    1400px
+==================================================*/
+
+@media (max-width: 1400px) {
 
     .services {
-        margin-top: 40px;
-        padding-bottom: 90px;
+        padding-left: 25px;
+        padding-right: 25px;
     }
+
 
     .service {
-        grid-template-columns: 1fr;
+        max-width: 1300px;
 
-        gap: 40px;
-
-        margin: 110px 0;
+        margin:
+            110px auto;
     }
 
-    .service.reverse {
-        direction: ltr;
+
+    .service-dpf {
+        max-width: 1300px;
     }
+
+
+    .serviceDpfTop {
+        grid-template-columns:
+            48%
+            minmax(0, 1fr);
+
+        gap: 45px;
+    }
+
+
+    .serviceDpfTop .serviceContent {
+        padding:
+            45px 40px;
+    }
+
 
     .serviceContent {
-        padding: 40px;
+        padding:
+            50px;
     }
 
-    .serviceColumns {
-        grid-template-columns: 1fr;
+
+    .serviceContent h2 {
+        font-size: 44px;
     }
+
+
+    .serviceContent > p {
+        font-size: 18px;
+    }
+
+
+    .service::before {
+        width: 550px;
+        height: 550px;
+
+        right: -280px;
+    }
+
+
+    .service::after {
+        width: 850px;
+        height: 850px;
+
+        left: -430px;
+    }
+
+}
+
+
+/*==================================================
+                    1100px
+==================================================*/
+
+@media (max-width: 1100px) {
+
+    .serviceDpfTop {
+        grid-template-columns:
+            46%
+            minmax(0, 1fr);
+
+        gap: 30px;
+    }
+
+
+    .serviceDpfTop .serviceContent {
+        padding:
+            35px;
+    }
+
+
+    .serviceContent {
+        padding:
+            42px;
+    }
+
+
+    .serviceContent h2 {
+        font-size: 38px;
+    }
+
+
+    .serviceContent > p {
+        font-size: 17px;
+
+        line-height: 1.75;
+    }
+
+
+    .serviceSection p,
+    .serviceList li {
+        font-size: 17px;
+    }
+
 
     .service::before,
-    .service::after,
-    .service.reverse::before,
-    .service.reverse::after {
+    .service::after {
         display: none;
     }
 
 }
 
-@media (max-width: 768px) {
 
-    .service {
-        margin: 70px 0;
+/*==================================================
+                    TABLET
+==================================================*/
+
+@media (max-width: 900px) {
+
+    .services {
+        padding:
+            40px 20px 90px;
+    }
+
+
+    /* DPF */
+
+    .serviceDpfTop {
+        display: grid;
+
+        grid-template-columns: 1fr;
 
         gap: 30px;
     }
 
-    .serviceContent {
-        padding: 30px;
+
+    .serviceDpfTop .serviceImage {
+        height: 450px;
     }
+
+
+    .serviceDpfTop .serviceImage img {
+        height: 100%;
+    }
+
+
+    .serviceDpfTop .serviceContent {
+        padding:
+            42px;
+    }
+
+
+    /* AdBlue / EGR */
+
+    .service-adblue,
+    .service-egr {
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+
+        max-width: 760px;
+
+        margin:
+            80px auto;
+    }
+
+
+    .service-adblue .serviceContent {
+        order: 1;
+    }
+
+
+    .service-adblue .serviceImage {
+        order: 2;
+    }
+
+
+    .service-egr .serviceImage {
+        order: 1;
+    }
+
+
+    .service-egr .serviceContent {
+        order: 2;
+    }
+
 
     .serviceContent h2 {
-        font-size: 32px;
+        font-size: 36px;
     }
 
-    .serviceContent p {
-        font-size: 16px;
 
-        margin-bottom: 28px;
+    .serviceContent > p {
+        font-size: 17px;
     }
 
-    .serviceIcon {
-        width: 62px;
-        height: 62px;
 
-        border-radius: 18px;
-
-        margin-bottom: 18px;
+    .serviceSection p,
+    .serviceList li {
+        font-size: 17px;
     }
 
-    .serviceIcon img {
-        width: 30px;
+
+    .service::before,
+    .service::after {
+        display: none;
     }
 
 }
 
-@media (max-width: 576px) {
 
-    .service {
-        margin: 50px 0;
+/*==================================================
+                    MOBILE
+==================================================*/
+
+@media (max-width: 600px) {
+
+    .services {
+        padding:
+            25px 14px 70px;
     }
 
-    .serviceContent {
-        padding: 24px;
+
+    .service {
+        margin:
+            55px auto;
+    }
+
+
+    /* DPF */
+
+    .serviceDpfTop {
+        gap: 24px;
+    }
+
+
+    .serviceDpfTop .serviceImage {
+        height: 300px;
 
         border-radius: 24px;
     }
 
-    .serviceContent h2 {
-        font-size: 26px;
+
+    .serviceDpfTop .serviceImage img {
+        height: 100%;
+
+        border-radius: 24px;
     }
+
+
+    .serviceDpfTop .serviceContent {
+        padding:
+            30px 25px;
+    }
+
+
+    /* Общие картинки */
 
     .serviceImage,
     .serviceImage img {
-        border-radius: 22px;
+        border-radius: 24px;
+    }
+
+
+    .serviceImage img {
+        height: 350px;
+    }
+
+
+    /* Контент */
+
+    .serviceContent {
+        padding:
+            30px 25px;
+
+        border-radius: 26px;
+    }
+
+
+    .serviceIcon {
+        width: 68px;
+        height: 68px;
+
+        margin-bottom: 22px;
+
+        border-radius: 20px;
+    }
+
+
+    .serviceIcon img {
+        width: 34px;
+        height: 34px;
+    }
+
+
+    .serviceContent h2 {
+        font-size: 30px;
+
+        line-height: 1.1;
+
+        letter-spacing: -.8px;
+    }
+
+
+    .serviceContent > span {
+        margin-bottom: 25px;
+
+        font-size: 12px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .serviceContent > p {
+        font-size: 16px;
+
+        line-height: 1.75;
+
+        margin-bottom: 32px;
+    }
+
+
+    .serviceSection {
+        margin-top: 32px;
+    }
+
+
+    .serviceSection h3 {
+        font-size: 19px;
+    }
+
+
+    .serviceSection p,
+    .serviceList li {
+        font-size: 16px;
+
+        line-height: 1.7;
+    }
+
+
+    .serviceSafety,
+    .serviceQuote {
+        padding:
+            22px 20px;
     }
 
 }
