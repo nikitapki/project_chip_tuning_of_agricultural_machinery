@@ -23,9 +23,9 @@
     position: absolute;
     inset: 0;
 
-    background-image: url("/images/hero/main-bg.png");
+    background-image: url("/images/mainPageBackground/main-fon-bg.webp");
     background-repeat: no-repeat;
-    background-size: cover;      /* было: 100% 100% */
+    background-size: 100% 100%;
     background-position: center;
 
     z-index: 0;
@@ -87,7 +87,8 @@
 .earth {
     position: absolute;
 
-    width: 610px;
+    width: clamp(1000px, 160vw, 2000px);
+    height: clamp(1000px, 160vw, 2000px);
 
     left: 50%;
     top: 49%;
@@ -96,6 +97,11 @@
 
     z-index: 20;
 
+    background-image: url("/images/mainPageBackground/planet.webp");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
     filter:
         drop-shadow(0 0 35px rgba(20,120,60,.35))
         drop-shadow(0 0 90px rgba(20,120,60,.20));
@@ -103,6 +109,154 @@
     animation: planetFloat 8s ease-in-out infinite;
 }
 
+/*==================================================
+                    RINGS (КОЛЬЦА)
+==================================================*/
+
+.earthSystem {
+    position: absolute;
+
+    width: clamp(500px, 80vw, 1000px);
+    height: clamp(500px, 80vw, 1000px);
+
+    left: 50%;
+    top: 49%;
+
+    transform: translate(-50%, -50%);
+    transform-style: preserve-3d;
+    perspective: 1600px;
+
+    z-index: 15;
+    pointer-events: none;
+
+    --ring-color: 0, 70, 0; /* чёрный */
+}
+
+.orbitLine {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    border-radius: 50%;
+    border-style: solid;
+    border-color: transparent;
+
+    --tilt-x: 72deg;
+    --tilt-y: -15deg;
+
+    transform-style: preserve-3d;
+    animation: spin linear infinite;
+    animation-direction: normal;
+}
+
+.orbitLine--1 {
+    width: 62%;
+    height: 62%;
+    border-width: 14px;
+    border-top-color: rgba(var(--ring-color), 0.75);
+    border-right-color: rgba(var(--ring-color), 0.75);
+
+    animation-duration: 9.4s;
+    animation-delay: -1s;
+}
+
+.orbitLine--2 {
+    width: 65%;
+    height: 65%;
+    border-width: 16px;
+    border-top-color: rgba(var(--ring-color), 0.69);
+    border-right-color: rgba(var(--ring-color), 0.69);
+
+    animation-duration: 11.8s;
+    animation-delay: -3.4s;
+}
+
+.orbitLine--3 {
+    width: 68%;
+    height: 68%;
+    border-width: 18px;
+    border-top-color: rgba(var(--ring-color), 0.64);
+    border-right-color: rgba(var(--ring-color), 0.64);
+
+    animation-duration: 12.7s;
+    animation-delay: -5.8s;
+}
+
+.orbitLine--4 {
+    width: 71%;
+    height: 71%;
+    border-width: 20px;
+    border-top-color: rgba(var(--ring-color), 0.58);
+    border-right-color: rgba(var(--ring-color), 0.58);
+
+    animation-duration: 15.1s;
+    animation-delay: -8.2s;
+}
+
+.orbitLine--5 {
+    width: 74%;
+    height: 74%;
+    border-width: 22px;
+    border-top-color: rgba(var(--ring-color), 0.53);
+    border-right-color: rgba(var(--ring-color), 0.53);
+
+    animation-duration: 16.3s;
+    animation-delay: -10.6s;
+}
+
+.orbitLine--6 {
+    width: 77%;
+    height: 77%;
+    border-width: 24px;
+    border-top-color: rgba(var(--ring-color), 0.47);
+    border-right-color: rgba(var(--ring-color), 0.47);
+
+    animation-duration: 18.2s;
+    animation-delay: -13s;
+}
+
+.orbitLine--7 {
+    width: 80%;
+    height: 80%;
+    border-width: 26px;
+    border-top-color: rgba(var(--ring-color), 0.42);
+    border-right-color: rgba(var(--ring-color), 0.42);
+
+    animation-duration: 19.5s;
+    animation-delay: -15.4s;
+}
+
+.orbitLine--8 {
+    width: 83%;
+    height: 83%;
+    border-width: 28px;
+    border-top-color: rgba(var(--ring-color), 0.36);
+    border-right-color: rgba(var(--ring-color), 0.36);
+
+    animation-duration: 21.4s;
+    animation-delay: -17.8s;
+}
+
+.orbitLine--9 {
+    width: 86%;
+    height: 86%;
+    border-width: 30px;
+    border-top-color: rgba(var(--ring-color), 0.3);
+    border-right-color: rgba(var(--ring-color), 0.3);
+
+    animation-duration: 23.6s;
+    animation-delay: -20.2s;
+}
+
+@keyframes spin {
+    from {
+        transform: translate(-50%, -50%) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) rotateZ(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) rotateZ(360deg);
+    }
+}
 
 /*==================================================
                     LOGO TOP
@@ -338,10 +492,6 @@
 
     .heroSvg {
         width: 900px;
-    }
-
-    .earth {
-        width: 260px;
     }
 
 }
