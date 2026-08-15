@@ -13,7 +13,7 @@ if exist "_site" (
 echo Server starting...
 start /b "" node node_modules\@11ty\eleventy\cmd.cjs --serve <nul
 
-timeout /t 3 /nobreak >nul
+timeout /t 5 /nobreak >nul
 start http://localhost:8080
 
 echo Server started. From stopped close this window or use combination Ctrl + C.

@@ -82,11 +82,7 @@
     function layoutTabs() {
         if (!isMobile()) return;
 
-        if (isLandscapeMobile()) {
-            layoutTabsBottom();
-        } else {
-            layoutTabsSide();
-        }
+        layoutTabsBottom();
     }
 
     // ПОРТРЕТ — прежнее поведение: столбики вкладок слева/справа.

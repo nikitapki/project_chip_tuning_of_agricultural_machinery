@@ -10,12 +10,12 @@
 
     transform: translateX(-50%);
 
-    width: 1500px;
+    width: 1100px;
     max-width: 92%;
 
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 14px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 
     z-index: 300;
 }
@@ -196,7 +196,7 @@
 
     display: grid;
 
-    grid-template-columns: 48% 52%;
+    grid-template-columns: 44% 56%;
 
     opacity: 0;
 
@@ -240,6 +240,7 @@
     height: 100%;
 
     object-fit: cover;
+    object-position: center;
 
     display: block;
 
@@ -270,25 +271,54 @@
 
 /*==================================================
                 DETAILS
+    Контент карточек стал заметно длиннее (развёрнутые
+    пункты с описанием), поэтому колонка текста теперь
+    прокручивается внутри себя, а не растягивает карточку.
 ==================================================*/
 
 .cardDetails {
-    padding: 18px 20px 18px 38px;
+    padding: 4px 14px 4px 38px;
 
     display: flex;
     flex-direction: column;
 
-    justify-content: center;
+    justify-content: flex-start;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    height: 100%;
+    box-sizing: border-box;
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(101, 237, 125, .55) transparent;
+}
+
+.cardDetails::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cardDetails::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.cardDetails::-webkit-scrollbar-thumb {
+    background: rgba(101, 237, 125, .55);
+    border-radius: 10px;
+}
+
+.cardDetails::-webkit-scrollbar-thumb:hover {
+    background: rgba(101, 237, 125, .8);
 }
 
 .cardLabel {
     display: block;
 
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 
     color: #72f28a;
 
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1;
 
     font-weight: 700;
@@ -299,25 +329,57 @@
 }
 
 .cardDetails h3 {
-    margin: 0 0 22px;
+    margin: 0 0 16px;
 
     color: #fff;
 
-    font-size: 34px;
+    font-size: 28px;
     line-height: 1.15;
 
     font-weight: 800;
 }
 
-.cardDetails p {
-    margin: 0 0 25px;
+.cardDetails > p {
+    margin: 0 0 20px;
 
     color: rgba(255,255,255,.82);
 
-    font-size: 19px;
-    line-height: 1.65;
+    font-size: 16px;
+    line-height: 1.6;
 
     font-weight: 400;
+}
+
+.cardSubLabel {
+    display: block;
+
+    margin-bottom: 14px;
+
+    color: rgba(255,255,255,.55);
+
+    font-size: 13px;
+    line-height: 1;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.4px;
+}
+
+.cardSubLabel::before {
+    content: "";
+
+    display: inline-block;
+
+    width: 16px;
+    height: 1px;
+
+    margin-right: 8px;
+
+    background: rgba(101, 237, 125, .6);
+
+    vertical-align: middle;
 }
 
 .cardDetails ul {
@@ -330,16 +392,25 @@
 .cardDetails li {
     position: relative;
 
-    margin-bottom: 13px;
+    margin-bottom: 14px;
 
-    padding-left: 25px;
+    padding-left: 24px;
 
-    color: rgba(255,255,255,.92);
+    color: rgba(255,255,255,.88);
 
-    font-size: 17px;
-    line-height: 1.5;
+    font-size: 15px;
+    line-height: 1.55;
 
-    font-weight: 500;
+    font-weight: 400;
+}
+
+.cardDetails li:last-child {
+    margin-bottom: 0;
+}
+
+.cardDetails li strong {
+    color: #fff;
+    font-weight: 700;
 }
 
 .cardDetails li::before {
@@ -348,7 +419,7 @@
     position: absolute;
 
     left: 0;
-    top: 9px;
+    top: 8px;
 
     width: 8px;
     height: 8px;
@@ -639,7 +710,7 @@
     .cardExpanded {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: flex-start;
         gap: 14px;
 
         padding: 20px;
@@ -665,17 +736,31 @@
     }
 
     .cardImage {
-        flex: 1 1 auto;
-        min-height: 0;
+        position: sticky;
+        top: 0;
 
-        height: auto;
-        max-height: 38vw;
+        flex: 0 0 auto;
+
+        /* фиксированная высота через aspect-ratio вместо height:auto —
+           у img внутри стоит height:100%, а проценты работают только
+           от родителя с ЯВНОЙ высотой; иначе при сжатии по вертикали
+           картинка схлопывалась в 0 вместо того, чтобы просто
+           уменьшиться. min-height — страховка на случай очень узкого
+           контейнера, где aspect-ratio дал бы слишком малую высоту. */
+        aspect-ratio: 16 / 9;
+        min-height: 120px;
+        max-height: 34vh;
+
+        z-index: 2;
     }
 
     .cardDetails {
-        flex: 0 0 auto;
+        flex: 1 1 auto;
 
         padding: 0;
+
+        height: auto;
+        overflow-y: visible; /* скроллит уже .cardExpanded целиком */
     }
 }
 
@@ -688,10 +773,8 @@
     здесь только визуальное поведение самой вкладки.
 ==================================================*/
 
-@media (max-width: 1024px) and (orientation: landscape) {
+@media (max-width: 1024px) {
 
-    /* скруглены только верхние углы — вкладка "торчит"
-       вверх от нижнего края экрана */
     .card[data-side="bottom"] {
         border-radius: 16px 16px 0 0;
     }
@@ -702,9 +785,6 @@
             0 -2px 14px rgba(0,0,0,.10);
     }
 
-    /* акцентная полоска — снова горизонтальная, у верхнего
-       (видимого) края вкладки, вместо вертикальной у бокового
-       края, как в портретной раскладке */
     .card[data-side="bottom"] .cardInner::before {
         left: 50%;
         top: 0;
@@ -725,9 +805,6 @@
         height: 3px;
     }
 
-    /* текст в свёрнутом виде — снова горизонтальный: вкладка
-       теперь широкая и невысокая, а не узкая и высокая, поэтому
-       вертикальное письмо ей больше не подходит */
     .card[data-side="bottom"] .cardShort h2 {
         writing-mode: horizontal-tb;
         text-orientation: mixed;
@@ -743,11 +820,14 @@
         white-space: normal;
         word-break: normal;
     }
+
 }
 
 
 /*==================================================
-    SCROLLBAR внутри развёрнутой карточки (десктоп)
+    SCROLLBAR внутри развёрнутой карточки (десктоп,
+    только для мобильной раскладки — на десктопе теперь
+    скроллит .cardDetails, см. выше)
 ==================================================*/
 
 /* Chrome, Edge, Safari */

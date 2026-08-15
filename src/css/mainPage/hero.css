@@ -129,7 +129,8 @@
     z-index: 15;
     pointer-events: none;
 
-    --ring-color: 0, 70, 0; /* чёрный */
+    --ring-color1: 0, 70, 0; /* зеленый */
+    --ring-color2: 150, 150, 150; /* белый */
 }
 
 .orbitLine {
@@ -154,8 +155,8 @@
     width: 62%;
     height: 62%;
     border-width: 14px;
-    border-top-color: rgba(var(--ring-color), 0.75);
-    border-right-color: rgba(var(--ring-color), 0.75);
+    border-top-color: rgba(var(--ring-color1), 0.75);
+    border-right-color: rgba(var(--ring-color1), 0.75);
 
     animation-duration: 9.4s;
     animation-delay: -1s;
@@ -165,8 +166,8 @@
     width: 65%;
     height: 65%;
     border-width: 16px;
-    border-top-color: rgba(var(--ring-color), 0.69);
-    border-right-color: rgba(var(--ring-color), 0.69);
+    border-top-color: rgba(var(--ring-color2), 0.69);
+    border-right-color: rgba(var(--ring-color2), 0.69);
 
     animation-duration: 11.8s;
     animation-delay: -3.4s;
@@ -176,8 +177,8 @@
     width: 68%;
     height: 68%;
     border-width: 18px;
-    border-top-color: rgba(var(--ring-color), 0.64);
-    border-right-color: rgba(var(--ring-color), 0.64);
+    border-top-color: rgba(var(--ring-color1), 0.64);
+    border-right-color: rgba(var(--ring-color1), 0.64);
 
     animation-duration: 12.7s;
     animation-delay: -5.8s;
@@ -187,8 +188,8 @@
     width: 71%;
     height: 71%;
     border-width: 20px;
-    border-top-color: rgba(var(--ring-color), 0.58);
-    border-right-color: rgba(var(--ring-color), 0.58);
+    border-top-color: rgba(var(--ring-color2), 0.58);
+    border-right-color: rgba(var(--ring-color2), 0.58);
 
     animation-duration: 15.1s;
     animation-delay: -8.2s;
@@ -198,8 +199,8 @@
     width: 74%;
     height: 74%;
     border-width: 22px;
-    border-top-color: rgba(var(--ring-color), 0.53);
-    border-right-color: rgba(var(--ring-color), 0.53);
+    border-top-color: rgba(var(--ring-color1), 0.53);
+    border-right-color: rgba(var(--ring-color1), 0.53);
 
     animation-duration: 16.3s;
     animation-delay: -10.6s;
@@ -209,8 +210,8 @@
     width: 77%;
     height: 77%;
     border-width: 24px;
-    border-top-color: rgba(var(--ring-color), 0.47);
-    border-right-color: rgba(var(--ring-color), 0.47);
+    border-top-color: rgba(var(--ring-color2), 0.47);
+    border-right-color: rgba(var(--ring-color2), 0.47);
 
     animation-duration: 18.2s;
     animation-delay: -13s;
@@ -220,8 +221,8 @@
     width: 80%;
     height: 80%;
     border-width: 26px;
-    border-top-color: rgba(var(--ring-color), 0.42);
-    border-right-color: rgba(var(--ring-color), 0.42);
+    border-top-color: rgba(var(--ring-color1), 0.42);
+    border-right-color: rgba(var(--ring-color1), 0.42);
 
     animation-duration: 19.5s;
     animation-delay: -15.4s;
@@ -231,8 +232,8 @@
     width: 83%;
     height: 83%;
     border-width: 28px;
-    border-top-color: rgba(var(--ring-color), 0.36);
-    border-right-color: rgba(var(--ring-color), 0.36);
+    border-top-color: rgba(var(--ring-color2), 0.36);
+    border-right-color: rgba(var(--ring-color2), 0.36);
 
     animation-duration: 21.4s;
     animation-delay: -17.8s;
@@ -242,8 +243,8 @@
     width: 86%;
     height: 86%;
     border-width: 30px;
-    border-top-color: rgba(var(--ring-color), 0.3);
-    border-right-color: rgba(var(--ring-color), 0.3);
+    border-top-color: rgba(var(--ring-color1), 0.3);
+    border-right-color: rgba(var(--ring-color1), 0.3);
 
     animation-duration: 23.6s;
     animation-delay: -20.2s;
