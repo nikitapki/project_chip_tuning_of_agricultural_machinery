@@ -621,6 +621,71 @@
     </section>
 
 </main>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const image = document.querySelector(".companyImage img");
+
+    if (!image) return;
+
+    let ticking = false;
+
+    function updateImageScale() {
+
+        const rect = image.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+
+        /*
+         * Нас интересует положение картинки
+         * относительно окна браузера.
+         */
+        const imageCenter = rect.top + rect.height / 2;
+        const screenCenter = windowHeight / 2;
+
+        /*
+         * Расстояние от центра экрана.
+         */
+        const distance = Math.abs(imageCenter - screenCenter);
+
+        /*
+         * Чем ближе картинка к центру экрана,
+         * тем больше она становится.
+         */
+        let progress = 1 - distance / (windowHeight * 0.8);
+
+        progress = Math.max(0, Math.min(1, progress));
+
+        /*
+         * От 1.0 до 1.035
+         * То есть максимум +3.5%.
+         */
+        const scale = 1 + progress * 0.035;
+
+        image.style.transform = `scale(${scale})`;
+
+        ticking = false;
+    }
+
+    function onScroll() {
+
+        if (!ticking) {
+
+            requestAnimationFrame(updateImageScale);
+
+            ticking = true;
+        }
+    }
+
+    window.addEventListener("scroll", onScroll, {
+        passive: true
+    });
+
+    window.addEventListener("resize", updateImageScale);
+
+    updateImageScale();
+
+});
+</script>
 
         
             <footer>
