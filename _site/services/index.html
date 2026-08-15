@@ -867,6 +867,114 @@
     </main>
 
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const elements = document.querySelectorAll(
+        ".serviceImage img, .serviceContent"
+    );
+
+    if (!elements.length) return;
+
+
+    let ticking = false;
+
+
+    function updateScale() {
+
+        const windowHeight = window.innerHeight;
+
+
+        elements.forEach(element => {
+
+            const rect = element.getBoundingClientRect();
+
+
+            const elementCenter =
+                rect.top + rect.height / 2;
+
+
+            const screenCenter =
+                windowHeight / 2;
+
+
+            const distance =
+                Math.abs(elementCenter - screenCenter);
+
+
+            let progress =
+                1 - distance / (windowHeight * 0.8);
+
+
+            progress = Math.max(
+                0,
+                Math.min(1, progress)
+            );
+
+
+            let scale;
+
+
+            // картинки
+            if (element.tagName === "IMG") {
+
+                scale = 1 + progress * 0.07;
+
+            }
+
+            // карточки текста
+            else {
+
+                scale = 1 + progress * 0.035;
+
+            }
+
+
+            element.style.transform =
+                `scale(${scale})`;
+
+        });
+
+
+        ticking = false;
+
+    }
+
+
+
+    function onScroll() {
+
+        if (!ticking) {
+
+            requestAnimationFrame(updateScale);
+
+            ticking = true;
+
+        }
+
+    }
+
+
+
+    window.addEventListener(
+        "scroll",
+        onScroll,
+        {
+            passive:true
+        }
+    );
+
+
+    window.addEventListener(
+        "resize",
+        updateScale
+    );
+
+
+    updateScale();
+
+});
+</script>
 
         
             <footer>

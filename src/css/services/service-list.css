@@ -103,18 +103,11 @@
     box-shadow:
         0 25px 65px rgba(0, 0, 0, .10);
 
-    transition:
-        transform .45s ease,
-        box-shadow .45s ease;
+
 }
 
 
-.serviceDpfTop .serviceImage:hover img {
-    transform: scale(1.015);
 
-    box-shadow:
-        0 30px 75px rgba(0, 0, 0, .13);
-}
 
 
 /*==================================================
@@ -199,18 +192,10 @@
     box-shadow:
         0 25px 65px rgba(0, 0, 0, .10);
 
-    transition:
-        transform .45s ease,
-        box-shadow .45s ease;
+
 }
 
 
-.serviceImage:hover img {
-    transform: scale(1.015);
-
-    box-shadow:
-        0 30px 75px rgba(0, 0, 0, .13);
-}
 
 
 /*==================================================
@@ -242,18 +227,8 @@
 
     box-sizing: border-box;
 
-    transition:
-        transform .35s ease,
-        box-shadow .35s ease;
 }
 
-
-.serviceContent:hover {
-    transform: translateY(-5px);
-
-    box-shadow:
-        0 28px 70px rgba(0, 0, 0, .09);
-}
 
 
 /*==================================================
@@ -342,7 +317,7 @@
     max-width: 900px;
 
     font-size:
-        clamp(38px, 3.2vw, 56px);
+    clamp(34px, 2.7vw, 48px);
 
     line-height: 1.08;
 
@@ -361,19 +336,7 @@
 ==================================================*/
 
 .serviceContent > span {
-    display: inline-block;
-
-    margin-bottom: 32px;
-
-    font-size: 14px;
-
-    line-height: 1.2;
-
-    font-weight: 800;
-
-    letter-spacing: 2.5px;
-
-    color: #37C94E;
+    display: none;
 }
 
 
@@ -389,7 +352,7 @@
     margin:
         0 0 42px;
 
-    font-size: 19px;
+    font-size: 21px;
 
     line-height: 1.85;
 
@@ -442,7 +405,7 @@
     margin:
         0 0 24px;
 
-    font-size: 18px;
+    font-size: 21px;
 
     line-height: 1.8;
 
@@ -469,7 +432,7 @@
 
     margin-bottom: 20px;
 
-    font-size: 18px;
+    font-size: 20px;
 
     line-height: 1.75;
 
@@ -657,12 +620,12 @@
 
 
     .serviceContent h2 {
-        font-size: 58px;
+        font-size: 50px;
     }
 
 
     .serviceContent > p {
-        font-size: 20px;
+        font-size: 21px;
     }
 
 }
@@ -715,12 +678,12 @@
 
 
     .serviceContent h2 {
-        font-size: 44px;
+        font-size: 40px;
     }
 
 
     .serviceContent > p {
-        font-size: 18px;
+        font-size: 20px;
     }
 
 
@@ -755,12 +718,12 @@
 
 
     .serviceContent h2 {
-        font-size: 38px;
+        font-size: 35px;
     }
 
 
     .serviceContent > p {
-        font-size: 17px;
+        font-size: 19px;
 
         line-height: 1.75;
     }
@@ -768,7 +731,7 @@
 
     .serviceSection p,
     .serviceList li {
-        font-size: 17px;
+        font-size: 19px;
     }
 
 
@@ -852,18 +815,18 @@
 
 
     .serviceContent h2 {
-        font-size: 36px;
+        font-size: 32px;
     }
 
 
     .serviceContent > p {
-        font-size: 17px;
+        font-size: 18px;
     }
 
 
     .serviceSection p,
     .serviceList li {
-        font-size: 17px;
+        font-size: 18px;
     }
 
 
@@ -955,7 +918,7 @@
 
 
     .serviceContent h2 {
-        font-size: 30px;
+        font-size: 27px;
 
         line-height: 1.1;
 
@@ -964,16 +927,12 @@
 
 
     .serviceContent > span {
-        margin-bottom: 25px;
-
-        font-size: 12px;
-
-        letter-spacing: 2px;
+    display: none;
     }
 
 
     .serviceContent > p {
-        font-size: 16px;
+        font-size: 17px;
 
         line-height: 1.75;
 
@@ -993,7 +952,7 @@
 
     .serviceSection p,
     .serviceList li {
-        font-size: 16px;
+        font-size: 17px;
 
         line-height: 1.7;
     }
@@ -1005,4 +964,8 @@
             22px 20px;
     }
 
+}
+.serviceImage img,
+.serviceContent {
+    transition: transform .15s ease-out;
 }
