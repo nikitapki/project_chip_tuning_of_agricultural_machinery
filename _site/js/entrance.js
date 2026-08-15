@@ -6,8 +6,8 @@
 
     const MOBILE_BREAKPOINT = 1024;
 
-    const MAX_WIDTH  = 900;
-    const MAX_HEIGHT = 580;
+   const MAX_WIDTH  = 1080;   // было 900
+    const MAX_HEIGHT = 660;    // было 580
     const MARGIN     = 24;
 
     const TAB_WIDTH   = 64;
