@@ -231,7 +231,10 @@ RESPONSIVE
 
         margin-left: auto;
 
-        margin-right: 14px;
+        /* УМЕНЬШЕНО: было 14px — вместе с бургером справа от него
+           это съедало слишком много места на узких экранах, из-за
+           чего бургер прижимался к самому краю/номеру телефона */
+        margin-right: 10px;
 
     }
 
@@ -240,7 +243,23 @@ RESPONSIVE
 
     .mobile-header-phone {
 
-        font-size: 15px;
+        font-size: 14px;
+
+        margin-right: 8px;
+
+    }
+
+}
+
+/* ДОБАВЛЕНО: совсем узкие экраны — номер телефона ещё компактнее,
+   освобождает бургеру побольше воздуха от края и от текста */
+@media (max-width: 360px) {
+
+    .mobile-header-phone {
+
+        font-size: 13px;
+
+        margin-right: 6px;
 
     }
 
