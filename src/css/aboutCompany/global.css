@@ -68,3 +68,22 @@ RESPONSIVE
     }
 
 }
+/*==================================================
+        PAGE OVERFLOW PROTECTION
+==================================================*/
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    overflow-y: auto;
+}
+
+main,
+section {
+    max-width: 100%;
+}

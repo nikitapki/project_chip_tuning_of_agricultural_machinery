@@ -4,5 +4,5 @@
 @import url("./advantages.css");
 @import url("./principles.css");
 @import url("./animations.css");
-@import url("./decorations.css");
 @import url("./responsive.css");
+@import url("../decorations/decorations.css");

@@ -1,0 +1,390 @@
+/*==================================================
+
+    GLOBAL DECORATIONS
+
+    Повторяющийся декоративный фон
+    для страниц любой высоты
+
+==================================================*/
+
+
+/*==================================================
+    CONTAINER
+==================================================*/
+
+.decorations {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/*==================================================
+    CONTENT ABOVE DECORATIONS
+==================================================*/
+
+.has-decorations > *:not(.decorations) {
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/*==================================================
+    ONE DECORATION
+==================================================*/
+
+.decoration-pattern {
+
+    position: absolute;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 900px;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+
+/*==================================================
+    CIRCLE
+==================================================*/
+
+.decoration-pattern .decoration-circle {
+
+    position: absolute;
+
+    width: 850px;
+    height: 850px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(55, 201, 78, .07);
+
+    left: -500px;
+    top: 40px;
+
+    box-shadow:
+
+        0 0 0 100px
+        rgba(55, 201, 78, .022),
+
+        0 0 0 220px
+        rgba(55, 201, 78, .015),
+
+        0 0 0 360px
+        rgba(55, 201, 78, .010);
+}
+
+
+/*==================================================
+    RIGHT CIRCLE
+==================================================*/
+
+.decoration-pattern .decoration-circle-right {
+
+    position: absolute;
+
+    width: 650px;
+    height: 650px;
+
+    right: -330px;
+    top: 180px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(55, 201, 78, .06);
+}
+
+
+/*==================================================
+    GLOW
+==================================================*/
+
+.decoration-pattern .decoration-glow {
+
+    position: absolute;
+
+    width: 450px;
+    height: 450px;
+
+    left: 35%;
+    top: 220px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(55, 201, 78, .10),
+            rgba(55, 201, 78, .025),
+            transparent 70%
+        );
+
+    filter: blur(20px);
+}
+
+
+/*==================================================
+    GEAR
+==================================================*/
+
+.decoration-pattern .decoration-gear {
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    background:
+        url("/images/icons/gear-cad.svg")
+        center / contain
+        no-repeat;
+
+    opacity: .055;
+
+    animation:
+        gearRotate 35s linear infinite;
+}
+
+/*==================================================
+    RIGHT GEAR
+==================================================*/
+
+.decoration-pattern .gear-right {
+
+    right: -210px;
+    top: 80px;
+}
+
+
+/*==================================================
+    LEFT GEAR
+==================================================*/
+
+.decoration-pattern .gear-left {
+
+    left: -210px;
+    top: 430px;
+
+    animation-direction: reverse;
+}
+
+
+/*==================================================
+    ORBITS
+==================================================*/
+
+.decoration-pattern .decoration-orbits {
+
+    position: absolute;
+
+    width: 520px;
+    height: 520px;
+
+    right: 12%;
+    top: 180px;
+}
+
+
+/*==================================================
+    ORBIT
+==================================================*/
+
+.decoration-pattern .decoration-orbit {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 100%;
+    height: 40%;
+
+    border:
+        1px solid rgba(55, 201, 78, .09);
+
+    border-radius: 50%;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(25deg);
+}
+
+
+/*==================================================
+    ORBIT 2
+==================================================*/
+
+.decoration-pattern .decoration-orbit:nth-child(2) {
+
+    transform:
+        translate(-50%, -50%)
+        rotate(-25deg);
+}
+
+
+/*==================================================
+    ORBIT 3
+==================================================*/
+
+.decoration-pattern .decoration-orbit:nth-child(3) {
+
+    transform:
+        translate(-50%, -50%)
+        rotate(90deg);
+}
+
+
+/*==================================================
+    ORBIT GLOW
+==================================================*/
+
+.decoration-pattern .decoration-orbit-glow {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 180px;
+    height: 180px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(55, 201, 78, .12),
+            transparent 70%
+        );
+
+    filter: blur(20px);
+}
+
+
+/*==================================================
+    ANIMATIONS
+==================================================*/
+
+@keyframes gearRotate {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+@keyframes orbitRotate {
+
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+
+}
+
+
+/*==================================================
+    MOBILE
+==================================================*/
+
+@media (max-width: 768px) {
+
+    .decoration-pattern {
+
+        height: 700px;
+    }
+
+
+    .decoration-pattern .decoration-circle {
+
+        width: 650px;
+        height: 650px;
+
+        left: -400px;
+    }
+
+
+    .decoration-pattern .decoration-circle-right {
+
+        width: 500px;
+        height: 500px;
+
+        right: -280px;
+    }
+
+
+    .decoration-pattern .decoration-gear {
+
+        width: 300px;
+        height: 300px;
+    }
+
+
+    .decoration-pattern .gear-right {
+
+        right: -150px;
+    }
+
+
+    .decoration-pattern .gear-left {
+
+        left: -150px;
+    }
+
+
+    .decoration-pattern .decoration-orbits {
+
+        width: 400px;
+        height: 400px;
+
+        right: -100px;
+    }
+
+}
+
+
+@media (max-width: 576px) {
+
+    .decoration-pattern .decoration-gear {
+
+        display: none;
+    }
+
+
+    .decoration-pattern .decoration-orbits {
+
+        display: none;
+    }
+
+}

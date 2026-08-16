@@ -201,3 +201,47 @@ RESPONSIVE
     }
 
 }
+.mobile-header-phone {
+
+    display: none;
+
+    color: #eee;
+
+    text-decoration: none;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+}
+@media (max-width: 900px) {
+
+    .phone-block,
+    .social-links,
+    .btn-primary {
+        display: none;
+    }
+
+
+    .mobile-header-phone {
+
+        display: block;
+
+        margin-left: auto;
+
+        margin-right: 14px;
+
+    }
+
+}
+@media (max-width: 480px) {
+
+    .mobile-header-phone {
+
+        font-size: 15px;
+
+    }
+
+}

@@ -11,6 +11,7 @@
 
         <link rel="stylesheet" href="/css/header/header.css">
         <link rel="stylesheet" href="/css/footer/footer.css">
+        <link rel="stylesheet" href="/css/general/decorations.css">
 
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,76 +23,241 @@
         
 
     </head>
+    <script src="/js/decorations.js"></script>
     <body>
 
         <header>
 
+    <!--==================================================
+                        LOGO
+    ==================================================-->
+
     <a href="/" class="logo" aria-label="Комп Форт, на главную">
-        <img src="/images/kompfort_logo.svg" alt="Комп Форт" width="300">
+
+        <img
+            src="/images/kompfort_logo.svg"
+            alt="Комп Форт"
+            width="300"
+        >
+
     </a>
 
-    <nav class="menu-links" role="tablist" aria-label="Основная навигация">
-        <a role="tab" href="/">Главная</a>
-        <a role="tab" href="/aboutCompany/">О компании</a>
-        <a role="tab" href="/services/">Услуги</a>
+
+    <!--==================================================
+                    DESKTOP NAVIGATION
+    ==================================================-->
+
+    <nav
+        class="menu-links"
+        role="tablist"
+        aria-label="Основная навигация"
+    >
+
+        <a role="tab" href="/">
+            Главная
+        </a>
+
+        <a role="tab" href="/aboutCompany/">
+            О компании
+        </a>
+
+        <a role="tab" href="/services/">
+            Услуги
+        </a>
+
+        <a role="tab" href="/catalog/">
+            Каталог
+        </a>
+
     </nav>
+
+
+    <!--==================================================
+                    HEADER ACTIONS
+    ==================================================-->
 
     <div class="header-actions">
 
+
+        <!--==================================================
+                            PHONE
+        ==================================================-->
+
         <div class="phone-block">
-            <a href="tel:+79132222836" class="phone-link">+7 (913) 222-28-36</a>
+
+            <a
+                href="tel:+79132222836"
+                class="phone-link"
+            >
+                +7 (913) 222-28-36
+            </a>
+
         </div>
+
+
+        <!--==================================================
+                        SOCIAL LINKS
+        ==================================================-->
 
         <div class="social-links">
 
-            <!-- MAX -->
-<a href="https://max.ru/u/f9LHodD0cOIEI0ikvAxekutiYd-IIELcwZ3Wheome9wY51AAFtplU27Col0" class="social-icon icon-max" aria-label="MAX" target="_blank" rel="noopener noreferrer">
-    <svg viewBox="0 0 32 32" aria-hidden="true">
-        <defs>
-            <linearGradient id="maxGradientDesktop" x1="3" y1="28" x2="28" y2="3" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#5DDCFF"/>
-                <stop offset="35%" stop-color="#65A7FF"/>
-                <stop offset="68%" stop-color="#7052FF"/>
-                <stop offset="100%" stop-color="#B13AFF"/>
-            </linearGradient>
-        </defs>
 
-        <rect x="1" y="1" width="30" height="30" rx="9" fill="url(#maxGradientDesktop)"/>
+            <!--==================================================
+                                MAX
+            ==================================================-->
 
-        <path d="M9.2 9.5C11.3 7.4 14.5 6.7 17.5 7.2C21.6 7.9 24.4 11 24.4 15C24.4 19.7 20.7 23.4 16.1 23.4H13.6L10.1 26V21.7C8.4 20.2 7.5 18 7.5 15.7C7.5 13.2 8.1 10.7 9.2 9.5ZM16 11.2C13.4 11.2 11.4 13.1 11.4 15.6C11.4 18.1 13.4 20 16 20C18.6 20 20.6 18.1 20.6 15.6C20.6 13.1 18.6 11.2 16 11.2Z" fill="#ffffff"/>
-    </svg>
-</a>
+            <a
+                href="https://max.ru/u/f9LHodD0cOIEI0ikvAxekutiYd-IIELcwZ3Wheome9wY51AAFtplU27Col0"
+                class="social-icon icon-max"
+                aria-label="MAX"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
 
-            <!-- Telegram -->
-            <a href="https://t.me/buldakov_vv" class="social-icon icon-telegram" aria-label="Telegram" target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="11" fill="#229ED9"/>
-                    <path d="M17.7 7.1 15.8 17c-.14.7-.52.87-1.06.54l-2.9-2.14-1.4 1.35c-.15.15-.28.28-.58.28l.21-2.96 5.39-4.87c.23-.21-.05-.33-.36-.12l-6.66 4.2-2.87-.9c-.62-.2-.64-.62.13-.92l11.22-4.33c.52-.19.98.12.8.97z" fill="#fff"/>
+                <svg
+                    viewBox="0 0 32 32"
+                    aria-hidden="true"
+                >
+
+                    <defs>
+
+                        <linearGradient
+                            id="maxGradientDesktop"
+                            x1="3"
+                            y1="28"
+                            x2="28"
+                            y2="3"
+                            gradientUnits="userSpaceOnUse"
+                        >
+
+                            <stop
+                                offset="0%"
+                                stop-color="#5DDCFF"
+                            />
+
+                            <stop
+                                offset="35%"
+                                stop-color="#65A7FF"
+                            />
+
+                            <stop
+                                offset="68%"
+                                stop-color="#7052FF"
+                            />
+
+                            <stop
+                                offset="100%"
+                                stop-color="#B13AFF"
+                            />
+
+                        </linearGradient>
+
+                    </defs>
+
+
+                    <rect
+                        x="1"
+                        y="1"
+                        width="30"
+                        height="30"
+                        rx="9"
+                        fill="url(#maxGradientDesktop)"
+                    />
+
+
+                    <path
+                        d="M9.2 9.5C11.3 7.4 14.5 6.7 17.5 7.2C21.6 7.9 24.4 11 24.4 15C24.4 19.7 20.7 23.4 16.1 23.4H13.6L10.1 26V21.7C8.4 20.2 7.5 18 7.5 15.7C7.5 13.2 8.1 10.7 9.2 9.5ZM16 11.2C13.4 11.2 11.4 13.1 11.4 15.6C11.4 18.1 13.4 20 16 20C18.6 20 20.6 18.1 20.6 15.6C20.6 13.1 18.6 11.2 16 11.2Z"
+                        fill="#ffffff"
+                    />
+
                 </svg>
+
             </a>
 
-            <!-- WhatsApp -->
-            <a href="https://wa.me/79132222836" class="social-icon icon-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
+
+            <!--==================================================
+                            TELEGRAM
+            ==================================================-->
+
+            <a
+                href="https://t.me/buldakov_vv"
+                class="social-icon icon-telegram"
+                aria-label="Telegram"
+                target="_blank"
+                rel="noopener"
+            >
+
+                <svg viewBox="0 0 24 24">
+
+                    <circle
+                        cx="12"
+                        cy="12"
+                        r="11"
+                        fill="#229ED9"
+                    />
+
+                    <path
+                        d="M17.7 7.1 15.8 17c-.14.7-.52.87-1.06.54l-2.9-2.14-1.4 1.35c-.15.15-.28.28-.58.28l.21-2.96 5.39-4.87c.23-.21-.05-.33-.36-.12l-6.66 4.2-2.87-.9c-.62-.2-.64-.62.13-.92l11.22-4.33c.52-.19.98.12.8.97z"
+                        fill="#fff"
+                    />
+
+                </svg>
+
+            </a>
+
+
+            <!--==================================================
+                            WHATSAPP
+            ==================================================-->
+
+            <a
+                href="https://wa.me/79132222836"
+                class="social-icon icon-whatsapp"
+                aria-label="WhatsApp"
+                target="_blank"
+                rel="noopener"
+            >
+
                 <svg viewBox="0 0 16 16">
-                    <path fill="#25D366" d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326z"/>
-                    <path fill="#fff" d="M11.609 9.587c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007-.133 0-.347.05-.529.247-.182.198-.691.677-.691 1.654s.71 1.921.81 2.053c.099.133 1.394 2.13 3.383 2.987.472.204.84.325 1.129.416.474.15.905.129 1.246.078.38-.057 1.171-.479 1.336-.941s.165-.858.116-.941-.182-.132-.38-.232z"/>
-                </svg>
-            </a>
 
-            <!-- VK -->
-            <a href="https://vk.com/id732949471" class="social-icon icon-vk" aria-label="VK" target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24">
-                    <rect x="1" y="1" width="22" height="22" rx="7" fill="#0077FF"/>
-                    <text x="12" y="16" text-anchor="middle" font-size="9.5" font-weight="800" fill="#fff" font-family="Arial, sans-serif">VK</text>
+                    <path
+                        fill="#25D366"
+                        d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326z"
+                    />
+
+                    <path
+                        fill="#fff"
+                        d="M11.609 9.587c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007-.133 0-.347.05-.529.247-.182.198-.691.677-.691 1.654s.71 1.921.81 2.053c.099.133 1.394 2.13 3.383 2.987.472.204.84.325 1.129.416.474.15.905.129 1.246.078.38-.057 1.171-.479 1.336-.941s.165-.858.116-.941-.182-.132-.38-.232z"
+                    />
+
                 </svg>
+
             </a>
 
         </div>
 
-        <button class="burger" aria-label="Меню">
+
+        <!--==================================================
+                            BURGER
+        ==================================================-->
+        <a 
+        href="tel:+79132222836"
+        class="mobile-header-phone"
+>
+        +7 (913) 222-28-36
+        </a>
+
+
+    <button
+    class="burger"
+            aria-label="Меню"
+            type="button"
+        >
+
             <span></span>
             <span></span>
             <span></span>
+
         </button>
 
     </div>
@@ -99,58 +265,189 @@
 </header>
 
 
-<nav class="mobile-menu" aria-label="Мобильная навигация">
 
-    <a href="/">Главная</a>
-    <a href="/aboutCompany/">О компании</a>
-    <a href="/services/">Услуги</a>
+<!--==================================================
+                    MOBILE MENU
+==================================================-->
+
+<nav
+    class="mobile-menu"
+    aria-label="Мобильная навигация"
+>
+
+
+    <a href="/">
+        Главная
+    </a>
+
+
+    <a href="/aboutCompany/">
+        О компании
+    </a>
+
+
+    <a href="/services/">
+        Услуги
+    </a>
+
+
+    <a href="/catalog/">
+        Каталог
+    </a>
+
 
     <hr>
 
-    <a href="tel:+79132222836" class="mobile-phone">+7 (913) 222-28-36</a>
+
+    <!--==================================================
+                            PHONE
+    ==================================================-->
+
+    <a
+        href="tel:+79132222836"
+        class="mobile-phone"
+    >
+        +7 (913) 222-28-36
+    </a>
+
+
+    <!--==================================================
+                        MOBILE SOCIALS
+    ==================================================-->
 
     <div class="mobile-socials">
 
-        <!-- MAX -->
-<a href="https://max.ru/u/f9LHodD0cOIEI0ikvAxekutiYd-IIELcwZ3Wheome9wY51AAFtplU27Col0" class="social-icon icon-max" aria-label="MAX" target="_blank" rel="noopener noreferrer">
-    <svg viewBox="0 0 32 32" aria-hidden="true">
-        <defs>
-            <linearGradient id="maxGradientMobile" x1="3" y1="28" x2="28" y2="3" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#5DDCFF"/>
-                <stop offset="35%" stop-color="#65A7FF"/>
-                <stop offset="68%" stop-color="#7052FF"/>
-                <stop offset="100%" stop-color="#B13AFF"/>
-            </linearGradient>
-        </defs>
 
-        <rect x="1" y="1" width="30" height="30" rx="9" fill="url(#maxGradientMobile)"/>
+        <!--==================================================
+                                MAX
+        ==================================================-->
 
-        <path d="M9.2 9.5C11.3 7.4 14.5 6.7 17.5 7.2C21.6 7.9 24.4 11 24.4 15C24.4 19.7 20.7 23.4 16.1 23.4H13.6L10.1 26V21.7C8.4 20.2 7.5 18 7.5 15.7C7.5 13.2 8.1 10.7 9.2 9.5ZM16 11.2C13.4 11.2 11.4 13.1 11.4 15.6C11.4 18.1 13.4 20 16 20C18.6 20 20.6 18.1 20.6 15.6C20.6 13.1 18.6 11.2 16 11.2Z" fill="#ffffff"/>
-    </svg>
-</a>
+        <a
+            href="https://max.ru/u/f9LHodD0cOIEI0ikvAxekutiYd-IIELcwZ3Wheome9wY51AAFtplU27Col0"
+            class="social-icon icon-max"
+            aria-label="MAX"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
 
-        <!-- Telegram -->
-        <a href="https://t.me/buldakov_vv" class="social-icon icon-telegram" aria-label="Telegram" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="11" fill="#229ED9"/>
-                <path d="M17.7 7.1 15.8 17c-.14.7-.52.87-1.06.54l-2.9-2.14-1.4 1.35c-.15.15-.28.28-.58.28l.21-2.96 5.39-4.87c.23-.21-.05-.33-.36-.12l-6.66 4.2-2.87-.9c-.62-.2-.64-.62.13-.92l11.22-4.33c.52-.19.98.12.8.97z" fill="#fff"/>
+            <svg
+                viewBox="0 0 32 32"
+                aria-hidden="true"
+            >
+
+                <defs>
+
+                    <linearGradient
+                        id="maxGradientMobile"
+                        x1="3"
+                        y1="28"
+                        x2="28"
+                        y2="3"
+                        gradientUnits="userSpaceOnUse"
+                    >
+
+                        <stop
+                            offset="0%"
+                            stop-color="#5DDCFF"
+                        />
+
+                        <stop
+                            offset="35%"
+                            stop-color="#65A7FF"
+                        />
+
+                        <stop
+                            offset="68%"
+                            stop-color="#7052FF"
+                        />
+
+                        <stop
+                            offset="100%"
+                            stop-color="#B13AFF"
+                        />
+
+                    </linearGradient>
+
+                </defs>
+
+
+                <rect
+                    x="1"
+                    y="1"
+                    width="30"
+                    height="30"
+                    rx="9"
+                    fill="url(#maxGradientMobile)"
+                />
+
+
+                <path
+                    d="M9.2 9.5C11.3 7.4 14.5 6.7 17.5 7.2C21.6 7.9 24.4 11 24.4 15C24.4 19.7 20.7 23.4 16.1 23.4H13.6L10.1 26V21.7C8.4 20.2 7.5 18 7.5 15.7C7.5 13.2 8.1 10.7 9.2 9.5ZM16 11.2C13.4 11.2 11.4 13.1 11.4 15.6C11.4 18.1 13.4 20 16 20C18.6 20 20.6 18.1 20.6 15.6C20.6 13.1 18.6 11.2 16 11.2Z"
+                    fill="#ffffff"
+                />
+
             </svg>
+
         </a>
 
-        <!-- WhatsApp -->
-        <a href="https://wa.me/79132222836" class="social-icon icon-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
+
+        <!--==================================================
+                            TELEGRAM
+        ==================================================-->
+
+        <a
+            href="https://t.me/buldakov_vv"
+            class="social-icon icon-telegram"
+            aria-label="Telegram"
+            target="_blank"
+            rel="noopener"
+        >
+
+            <svg viewBox="0 0 24 24">
+
+                <circle
+                    cx="12"
+                    cy="12"
+                    r="11"
+                    fill="#229ED9"
+                />
+
+                <path
+                    d="M17.7 7.1 15.8 17c-.14.7-.52.87-1.06.54l-2.9-2.14-1.4 1.35c-.15.15-.28.28-.58.28l.21-2.96 5.39-4.87c.23-.21-.05-.33-.36-.12l-6.66 4.2-2.87-.9c-.62-.2-.64-.62.13-.92l11.22-4.33c.52-.19.98.12.8.97z"
+                    fill="#fff"
+                />
+
+            </svg>
+
+        </a>
+
+
+        <!--==================================================
+                            WHATSAPP
+        ==================================================-->
+
+        <a
+            href="https://wa.me/79132222836"
+            class="social-icon icon-whatsapp"
+            aria-label="WhatsApp"
+            target="_blank"
+            rel="noopener"
+        >
+
             <svg viewBox="0 0 16 16">
-                <path fill="#25D366" d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326z"/>
-                <path fill="#fff" d="M11.609 9.587c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007-.133 0-.347.05-.529.247-.182.198-.691.677-.691 1.654s.71 1.921.81 2.053c.099.133 1.394 2.13 3.383 2.987.472.204.84.325 1.129.416.474.15.905.129 1.246.078.38-.057 1.171-.479 1.336-.941s.165-.858.116-.941-.182-.132-.38-.232z"/>
-            </svg>
-        </a>
 
-        <!-- VK -->
-        <a href="https://vk.com/id732949471" class="social-icon icon-vk" aria-label="VK" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24">
-                <rect x="1" y="1" width="22" height="22" rx="7" fill="#0077FF"/>
-                <text x="12" y="16" text-anchor="middle" font-size="9.5" font-weight="800" fill="#fff" font-family="Arial, sans-serif">VK</text>
+                <path
+                    fill="#25D366"
+                    d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326z"
+                />
+
+                <path
+                    fill="#fff"
+                    d="M11.609 9.587c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007-.133 0-.347.05-.529.247-.182.198-.691.677-.691 1.654s.71 1.921.81 2.053c.099.133 1.394 2.13 3.383 2.987.472.204.84.325 1.129.416.474.15.905.129 1.246.078.38-.057 1.171-.479 1.336-.941s.165-.858.116-.941-.182-.132-.38-.232z"
+                />
+
             </svg>
+
         </a>
 
     </div>
@@ -159,202 +456,168 @@
 
         
 
-<!--==================================================
-
-HERO
-
-===================================================-->
-
-<section class="hero">
-    <div class="circleHero"></div>
-
-    <div class="heroBackground">
-
-        <div class="heroGlow"></div>
-
-    </div>
 
 
-    <div class="container heroContainer">
+<main>
 
+    <section class="company has-decorations">
 
-        <div class="heroLeft">
+        <!-- ==========================================
+             ОБЩИЙ ДЕКОР
+        =========================================== -->
 
-            <span class="heroSubtitle">
+        <div class="decorations">
 
-                О КОМПАНИИ
+            <div class="decoration-circle decoration-circle-large"></div>
 
-            </span>
+            <div class="decoration-glow"></div>
 
-            <h1>
-
-ТЕХНОЛОГИИ,<br>
-КОТОРЫЕ<br>
-ПОВЫШАЮТ<br>
-
-<span>ЭФФЕКТИВНОСТЬ</span>
-
-</h1>
-
-            <p>
-
-                КомпФорт — команда специалистов по программной
-                оптимизации сельскохозяйственной техники,
-                диагностике электронных систем и внедрению
-                современных цифровых решений.
-
-            </p>
+            <div class="decoration-gear decoration-gear-right"></div>
 
         </div>
 
 
+        <div class="container companyContainer">
 
-        <div class="heroRight">
+            <!-- ==========================================
+                 ВЕРХ: ФОТО + ТЕКСТ СПРАВА
+            =========================================== -->
 
-    <div class="heroVisual">
+            <div class="companyTop">
 
-    <img src="/images/hero/hero.jpg" alt="">
+                <div class="companyImage">
 
-    <div class="orbit orbit1"></div>
-    <div class="orbit orbit2"></div>
-    <div class="orbit orbit3"></div>
+                    <img
+                        src="/images/about/company.svg"
+                        alt="Специалист КомпФорт выполняет диагностику сельскохозяйственной техники"
+                    >
 
-</div>
-
-</div>
-
-    </div>
-
-</section>
+                </div>
 
 
+                <div class="companyIntro">
 
-<!--==================================================
+                    <span>О КОМПАНИИ</span>
 
-WHO WE ARE
+                    <h2>
+                        ПРОФЕССИОНАЛЬНЫЙ
+                        <span>ЧИП-ТЮНИНГ</span>
+                        ТЕХНИКИ
+                    </h2>
 
-===================================================-->
+                    <p>
+                        Компания «КомпФорт» предоставляет профессиональные услуги
+                        чип-тюнинга для сельскохозяйственной и специализированной
+                        техники. Мы работаем с тракторами, комбайнами, самоходными
+                        опрыскивателями и другими видами машин. Стоимость
+                        рассчитывается индивидуально для каждого проекта.
+                    </p>
 
-<section class="company">
-    <div class="circleCompany"></div>
+                </div>
 
-    <div class="container companyContainer">
-
-        <div class="companyImage">
-
-            <img src="/images/about/company.jpg" alt="КомпФорт">
-
-        </div>
-
-
-
-        <div class="companyContent">
-
-            <span>
-
-                КТО МЫ
-
-            </span>
-
-            <h2>
-
-                Современные решения
-                для сельского хозяйства
-
-            </h2>
+            </div>
 
 
-            <p>
+            <!-- ==========================================
+                 НИЖНЯЯ ЧАСТЬ — НА ВСЮ ШИРИНУ
+            =========================================== -->
 
-                Мы объединяем опыт работы с современной техникой,
-                профессиональное оборудование и инженерный подход,
-                позволяя раскрыть максимальный потенциал
-                сельскохозяйственных машин.
+            <div class="companyBottom">
 
-            </p>
+                <div class="companySection">
+
+                    <h3>Решаемые задачи</h3>
+
+                    <p>
+                        Если вам необходимо повысить мощность дизельного двигателя,
+                        снизить расход топлива или избавиться от проблем с системами
+                        экологии — наши инженеры подберут оптимальное программное
+                        решение для техники любой марки, включая John Deere, Case,
+                        New Holland и др.
+                    </p>
+
+                </div>
 
 
-            <div class="companyList">
+                <div class="companyList">
 
-                <div class="companyItem">
+                    <div class="companyItem">
 
-                    <div class="check"></div>
+                        <span class="check"></span>
 
-                    <div>
+                        <div>
 
-                        <h3>Индивидуальный подход</h3>
+                            <h3>
+                                Разблокировка заводского потенциала
+                            </h3>
 
-                        <p>
+                            <p>
+                                Снятие искусственных программных ограничений
+                                мощности, установленных производителем для
+                                разделения модельных линеек.
+                            </p>
 
-                            Настройка выполняется под конкретную
-                            модель техники и задачи клиента.
+                        </div>
 
-                        </p>
+                    </div>
+
+
+                    <div class="companyItem">
+
+                        <span class="check"></span>
+
+                        <div>
+
+                            <h3>
+                                Оптимизация программы ЭБУ
+                            </h3>
+
+                            <p>
+                                Точная настройка алгоритмов работы двигателя
+                                для снижения расхода топлива и улучшения
+                                тяговых характеристик.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="companyItem">
+
+                        <span class="check"></span>
+
+                        <div>
+
+                            <h3>
+                                Программное отключение экосистем
+                            </h3>
+
+                            <p>
+                                Корректный вывод из эксплуатации систем EGR,
+                                сажевых фильтров (DPF) и впрыска мочевины
+                                (AdBlue).
+                            </p>
+
+                        </div>
 
                     </div>
 
                 </div>
 
 
+                <div class="companySection companyQuality">
 
-                <div class="companyItem">
+                    <h3>
+                        Наш подход и гарантии качества
+                    </h3>
 
-                    <div class="check"></div>
-
-                    <div>
-
-                        <h3>Современное оборудование</h3>
-
-                        <p>
-
-                            Используем профессиональные комплексы
-                            диагностики и программирования ECU.
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="companyItem">
-
-                    <div class="check"></div>
-
-                    <div>
-
-                        <h3>Безопасность</h3>
-
-                        <p>
-
-                            Все изменения выполняются с сохранением
-                            стабильной работы техники.
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="companyItem">
-
-                    <div class="check"></div>
-
-                    <div>
-
-                        <h3>Техническая поддержка</h3>
-
-                        <p>
-
-                            После выполнения работ мы всегда
-                            остаёмся на связи с клиентом.
-
-                        </p>
-
-                    </div>
+                    <p>
+                        Мы сотрудничаем с ведущими разработчиками программного
+                        обеспечения для чип-тюнинга, на счету которых более
+                        10 лет опыта и свыше 8 000 модифицированных единиц
+                        техники.
+                    </p>
 
                 </div>
 
@@ -362,230 +625,74 @@ WHO WE ARE
 
         </div>
 
-    </div>
+    </section>
 
-</section>
+</main>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
 
+    const image = document.querySelector(".companyImage img");
 
+    if (!image) return;
 
-<!--==================================================
+    let ticking = false;
 
-ADVANTAGES
+    function updateImageScale() {
 
-===================================================-->
+        const rect = image.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
 
-<section class="advantages">
-    <div class="circleAdvantages"></div>
+        /*
+         * Нас интересует положение картинки
+         * относительно окна браузера.
+         */
+        const imageCenter = rect.top + rect.height / 2;
+        const screenCenter = windowHeight / 2;
 
-    <div class="container">
+        /*
+         * Расстояние от центра экрана.
+         */
+        const distance = Math.abs(imageCenter - screenCenter);
 
-        <div class="sectionTitle">
+        /*
+         * Чем ближе картинка к центру экрана,
+         * тем больше она становится.
+         */
+        let progress = 1 - distance / (windowHeight * 0.8);
 
-            <span>
+        progress = Math.max(0, Math.min(1, progress));
 
-                НАШИ ПРЕИМУЩЕСТВА
+        /*
+         * От 1.0 до 1.035
+         * То есть максимум +3.5%.
+         */
+        const scale = 1 + progress * 0.035;
 
-            </span>
+        image.style.transform = `scale(${scale})`;
 
-            <h2>
+        ticking = false;
+    }
 
-                Почему выбирают КомпФорт
+    function onScroll() {
 
-            </h2>
+        if (!ticking) {
 
-        </div>
+            requestAnimationFrame(updateImageScale);
 
+            ticking = true;
+        }
+    }
 
-        <div class="advantagesGrid">
+    window.addEventListener("scroll", onScroll, {
+        passive: true
+    });
 
-            <article class="advCard">
+    window.addEventListener("resize", updateImageScale);
 
-                <div class="advIcon">
-    <img src="/images/icons/engine.jpg" alt="Инженерный подход">
-</div>
+    updateImageScale();
 
-                <h3>
-
-                    Инженерный подход
-
-                </h3>
-
-                <p>
-
-                    Каждая настройка выполняется после анализа
-                    состояния техники и параметров двигателя.
-
-                </p>
-
-            </article>
-
-
-
-            <article class="advCard">
-
-                <div class="advIcon">
-    <img src="/images/icons/cpu.jpg" alt="Современные технологии">
-</div>
-
-                <h3>
-
-                    Современные технологии
-
-                </h3>
-
-                <p>
-
-                    Используем актуальные методы диагностики
-                    и программной оптимизации.
-
-                </p>
-
-            </article>
-
-
-
-            <article class="advCard">
-
-                <div class="advIcon">
-    <img src="/images/icons/shield.jpg" alt="Высокое качество">
-</div>
-
-                <h3>
-
-                    Высокое качество
-
-                </h3>
-
-                <p>
-
-                    Работаем только с проверенными
-                    программными решениями.
-
-                </p>
-
-            </article>
-
-
-
-            <article class="advCard">
-
-                <div class="advIcon">
-    <img src="/images/icons/support.jpg" alt="Поддержка клиентов">
-</div>
-
-                <h3>
-
-                    Поддержка клиентов
-
-                </h3>
-
-                <p>
-
-                    Консультируем клиентов и сопровождаем
-                    после выполнения работ.
-
-                </p>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!--==================================================
-
-PRINCIPLES
-
-===================================================-->
-
-<section class="principles">
-    <div class="circlePrinciples"></div>
-
-    <div class="container principlesContainer">
-
-        <div class="principlesImage">
-
-            <img src="/images/about/workshop.jpg" alt="КомпФорт">
-
-        </div>
-
-
-        <div class="principlesContent">
-
-            <span>
-
-                НАШИ ПРИНЦИПЫ
-
-            </span>
-
-            <h2>
-
-                Основа нашей работы
-
-            </h2>
-
-            <div class="principle">
-
-                <h3>Качество</h3>
-
-                <p>
-
-                    Каждая работа проходит проверку
-                    перед передачей техники клиенту.
-
-                </p>
-
-            </div>
-
-            <div class="principle">
-
-                <h3>Надёжность</h3>
-
-                <p>
-
-                    Мы стремимся обеспечить стабильную
-                    работу техники в любых условиях.
-
-                </p>
-
-            </div>
-
-            <div class="principle">
-
-                <h3>Развитие</h3>
-
-                <p>
-
-                    Постоянно изучаем новые технологии
-                    и совершенствуем свои решения.
-
-                </p>
-
-            </div>
-
-            <div class="principle">
-
-                <h3>Ответственность</h3>
-
-                <p>
-
-                    Отвечаем за качество каждого проекта
-                    и ценим доверие наших клиентов.
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
+});
+</script>
 
         
             <footer>
@@ -594,6 +701,7 @@ PRINCIPLES
         <a href="/">Главная</a>
         <a href="/aboutCompany/">О компании</a>
         <a href="/services/">Услуги</a>
+        <a href="/catalog/">Каталог</a>
     </nav>
 </footer>
         

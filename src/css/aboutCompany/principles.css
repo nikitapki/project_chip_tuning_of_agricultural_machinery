@@ -199,3 +199,35 @@ RESPONSIVE
     }
 
 }
+/*==================================================
+        PRINCIPLES — IMAGE LEFT / TEXT RIGHT
+==================================================*/
+
+.principlesImage {
+    order: 1;
+}
+
+.principlesContent {
+    order: 2;
+}
+
+.principlesContent h2 {
+    font-size: clamp(28px, 4.2vw, 54px);
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+    margin: 20px 0 35px;
+}
+
+.principlesContent > p {
+    max-width: 620px;
+    margin: 0;
+
+    font-size: 20px;
+    line-height: 1.75;
+
+    color: #666;
+}
+
+.principlesContent > span {
+    display: block;
+}
