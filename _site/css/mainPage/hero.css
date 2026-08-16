@@ -23,9 +23,12 @@
     position: absolute;
     inset: 0;
 
-    background-image: url("/images/hero/main-bg.png");
+    background-image: url("/images/mainPageBackground/main-fon-bg.webp");
     background-repeat: no-repeat;
-    background-size: cover;      /* было: 100% 100% */
+
+    /* заполняет весь .hero без искажения пропорций,
+       лишнее по краям просто обрезается */
+    background-size: cover;
     background-position: center;
 
     z-index: 0;
@@ -87,7 +90,8 @@
 .earth {
     position: absolute;
 
-    width: 610px;
+    width: clamp(1000px, 160vw, 2000px);
+    height: clamp(1000px, 160vw, 2000px);
 
     left: 50%;
     top: 49%;
@@ -96,6 +100,11 @@
 
     z-index: 20;
 
+    background-image: url("/images/mainPageBackground/planet.webp");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
     filter:
         drop-shadow(0 0 35px rgba(20,120,60,.35))
         drop-shadow(0 0 90px rgba(20,120,60,.20));
@@ -103,6 +112,113 @@
     animation: planetFloat 8s ease-in-out infinite;
 }
 
+/*==================================================
+                    RINGS (КОЛЬЦА)
+==================================================*/
+
+.earthSystem {
+    position: absolute;
+
+    width: clamp(500px, 80vw, 1000px);
+    height: clamp(500px, 80vw, 1000px);
+
+    left: 50%;
+    top: 49%;
+
+    transform: translate(-50%, -50%);
+    transform-style: preserve-3d;
+    perspective: 1600px;
+
+    z-index: 15;
+    pointer-events: none;
+
+    --ring-color1: 0, 70, 0; /* зеленый */
+    --ring-color2: 150, 150, 150; /* белый */
+}
+
+.orbitLine {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    border-radius: 50%;
+    border-style: solid;
+    border-color: transparent;
+
+    --tilt-x: 72deg;
+    --tilt-y: -15deg;
+
+    transform-style: preserve-3d;
+    animation: spin linear infinite;
+    animation-direction: normal;
+}
+
+.orbitLine--1 {
+    width: 62%;
+    height: 62%;
+    border-width: 14px;
+    border-top-color: rgba(var(--ring-color1), 0.75);
+    border-right-color: rgba(var(--ring-color1), 0.75);
+
+    animation-duration: 9.4s;
+    animation-delay: -1s;
+}
+
+.orbitLine--2 {
+    width: 65%;
+    height: 65%;
+    border-width: 16px;
+    border-top-color: rgba(var(--ring-color2), 0.69);
+    border-right-color: rgba(var(--ring-color2), 0.69);
+
+    animation-duration: 11.8s;
+    animation-delay: -3.4s;
+}
+
+.orbitLine--3 {
+    width: 68%;
+    height: 68%;
+    border-width: 18px;
+    border-top-color: rgba(var(--ring-color1), 0.64);
+    border-right-color: rgba(var(--ring-color1), 0.64);
+
+    animation-duration: 12.7s;
+    animation-delay: -5.8s;
+}
+
+.orbitLine--4 {
+    width: 71%;
+    height: 71%;
+    border-width: 20px;
+    border-top-color: rgba(var(--ring-color2), 0.58);
+    border-right-color: rgba(var(--ring-color2), 0.58);
+
+    animation-duration: 15.1s;
+    animation-delay: -8.2s;
+}
+
+.orbitLine--5 {
+    width: 74%;
+    height: 74%;
+    border-width: 22px;
+    border-top-color: rgba(var(--ring-color1), 0.53);
+    border-right-color: rgba(var(--ring-color1), 0.53);
+
+    animation-duration: 16.3s;
+    animation-delay: -10.6s;
+}
+
+
+
+@keyframes spin {
+    from {
+        transform: translate(-50%, -50%) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) rotateZ(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) rotateZ(360deg);
+    }
+}
 
 /*==================================================
                     LOGO TOP
@@ -316,7 +432,7 @@
                 RESPONSIVE
 ==================================================*/
 
-@media (max-width: 1500px) {
+@media (max-width: 1100px) {
 
     .heroSvg {
         width: 1250px;
@@ -324,24 +440,258 @@
 
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 800px) {
 
     .hero {
-        height: auto;
-        min-height: 100vh;
-        padding-bottom: 380px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+
+        padding-top: 70px;
+    }
+
+    .heroInfoRow {
+        position: static;
+
+        width: 90%;
+        max-width: 420px;
+
+        margin: 0 auto;
+
+        transform: none;
+
+        flex-direction: column;
+    }
+
+    .infoMain {
+        max-width: 100%;
+
+        /* заголовок чуть ниже */
+        margin-top: 16px;
+    }
+
+    .infoSecondary {
+        max-width: 100%;
+
+        /* "Что программно отключаем" чуть выше — вычитаем
+           немного из отступа, который считает JS от планеты */
+        margin-top: calc(var(--planet-gap, 58vh));
+        padding-top: 0;
     }
 
 }
 
-@media (max-width: 768px) {
+/*==================================================
+        ORBIT MACHINES (силуэты техники, фон)
+==================================================*/
 
-    .heroSvg {
-        width: 900px;
+.orbitMachines {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 8; /* ниже .earthSystem(15) и .earth(20), выше фона */
+
+    pointer-events: none;
+}
+
+.orbitMachine {
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    /* сильно приглушены, чтобы не спорить с шариками-плюсами
+       и текстом переднего плана */
+    opacity: .07;
+    filter: grayscale(.7) brightness(1.3);
+}
+
+.orbitMachine--tractor {
+    left: 8%;
+    top: 22%;
+
+    background-image: url("/images/mainPageBackground/tractor-silhouette.webp");
+}
+
+.orbitMachine--combine {
+    right: 6%;
+    top: 30%;
+
+    width: 150px;
+    height: 150px;
+
+    background-image: url("/images/mainPageBackground/combine-silhouette.webp");
+}
+
+.orbitMachine--truck {
+    left: 10%;
+    bottom: 14%;
+
+    background-image: url("/images/mainPageBackground/truck-silhouette.webp");
+}
+
+.orbitMachine--sprayer {
+    right: 9%;
+    bottom: 20%;
+
+    width: 120px;
+    height: 120px;
+
+    background-image: url("/images/mainPageBackground/sprayer-silhouette.webp");
+}
+
+
+/*==================================================
+        ORBIT FEATURES (шарики-плюсы вокруг колец)
+==================================================*/
+
+.orbitFeatures {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 25; /* выше планеты(20), ниже логотипов(30/100) */
+
+    pointer-events: none;
+}
+
+.orbitFeature {
+    /* left/right/top проставляет JS (entrance.js): на широких
+       экранах — по фактическим координатам внешнего кольца, на
+       узких — у левого/правого края экрана (см. positionFeaturesEdge) */
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+
+    height: 44px;
+    max-width: 44px;
+
+    border-radius: 26px;
+    overflow: hidden;
+    white-space: nowrap;
+
+    background: rgba(255,255,255,.92);
+    border: 1px solid rgba(56,200,74,.30);
+    box-shadow: 0 6px 20px rgba(0,0,0,.08);
+
+    pointer-events: auto;
+    cursor: pointer;
+
+    transition:
+        max-width .5s cubic-bezier(.2,.8,.2,1),
+        box-shadow .3s ease,
+        left .4s ease,
+        right .4s ease,
+        top .4s ease;
+}
+
+.orbitFeatureDot {
+    flex: 0 0 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+
+    font-size: 20px;
+    font-weight: 800;
+    color: #218a30;
+}
+
+.orbitFeatureText {
+    flex: 0 0 auto;
+
+    padding-right: 20px;
+
+    /* было max-width: 220px, font-size: 14px — текст в открытой
+       пилюле был мелкий и узкий; увеличили и то, и другое */
+    max-width: 300px;
+
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #1c2530;
+    white-space: normal;
+
+    opacity: 0;
+    transition: opacity .25s ease;
+}
+
+/* раскрытое состояние — пилюля растёт НАРУЖУ, от кольца.
+   max-width увеличен с 260px под более крупный текст выше */
+.orbitFeature.is-open {
+    max-width: 340px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.16);
+}
+
+.orbitFeature.is-open .orbitFeatureText {
+    opacity: 1;
+    transition: opacity .3s ease .18s;
+}
+
+/* JS помечает классом is-left те шарики, чей якорь оказался слева
+   от планеты (широкий экран) или которые сидят у ПРАВОГО края
+   экрана (узкий экран, режим "по краям") — в обоих случаях пилюля
+   должна разворачиваться в другую сторону: кружок остаётся у
+   своего якоря (справа в самой пилюле), а текст выезжает влево */
+.orbitFeature.is-left {
+    flex-direction: row-reverse;
+}
+
+.orbitFeature.is-left .orbitFeatureText {
+    padding-right: 0;
+    padding-left: 20px;
+    text-align: right;
+}
+
+
+/*==================================================
+    RESPONSIVE — на узких экранах прячем только силуэты
+    техники (декоративный фоновый слой, для него нет
+    компактной раскладки). Шарики-плюсы (.orbitFeatures)
+    остаются видимыми — JS (positionFeaturesEdge) переводит
+    их в раскладку по краям экрана вместо эллипса вокруг
+    планеты. Порог синхронизирован с EDGE_BREAKPOINT в JS.
+==================================================*/
+
+@media (max-width: 1200px) {
+
+    .orbitMachines {
+        display: none;
     }
 
-    .earth {
-        width: 260px;
+    /* на узких экранах раскрытая пилюля не должна вылезать
+       за край экрана — ограничиваем её ширину и слегка
+       уменьшаем текст, чтобы он комфортно помещался */
+    .orbitFeature.is-open {
+        max-width: min(72vw, 280px);
+    }
+
+    .orbitFeatureText {
+        font-size: 15px;
+        max-width: min(72vw, 280px);
+    }
+
+}
+
+@media (max-width: 420px) {
+
+    .orbitFeature.is-open {
+        max-width: min(78vw, 240px);
+    }
+
+    .orbitFeatureText {
+        font-size: 14px;
+        max-width: min(78vw, 240px);
     }
 
 }

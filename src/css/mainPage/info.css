@@ -3,7 +3,7 @@
 ==================================================*/
 
 .info {
-    position: absolute;
+    position: relative;
 
     z-index: 40;
 
@@ -19,115 +19,242 @@
 ==================================================*/
 
 .infoText h3 {
-    font-size: 30px;
+    font-size: 44px;
 
-    color: #18212D;
+    color: #101820;
 
     font-weight: 800;
 
-    margin-bottom: 10px;
+    margin: 0 0 12px;
+
+    text-shadow:
+        0 1px 3px rgba(255,255,255,.85),
+        0 1px 14px rgba(255,255,255,.55);
 }
 
 .infoText p {
-    color: #4E5968;
+    color: #35404D;
 
-    font-size: 18px;
+    font-size: 22px;
 
-    line-height: 1.7;
+    line-height: 1.65;
 
-    font-weight: 500;
+    font-weight: 600;
+
+    margin: 0;
+
+    text-shadow:
+        0 1px 3px rgba(255,255,255,.85),
+        0 1px 12px rgba(255,255,255,.5);
 }
 
+.infoKicker {
+    display: block;
 
-/*==================================================
-                    INFO DOT
-==================================================*/
+    margin-bottom: 16px;
 
-.infoDot {
-    width: 16px;
-    height: 16px;
+    color: #218a30;
+
+    font-size: 17px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+
+    text-shadow: 0 1px 3px rgba(255,255,255,.85);
+}
+
+.infoText ul {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.infoText li {
+    position: relative;
+
+    margin-bottom: 16px;
+
+    padding-left: 28px;
+
+    color: #1c2530;
+
+    font-size: 22px;
+    line-height: 1.45;
+
+    font-weight: 700;
+
+    text-shadow:
+        0 1px 3px rgba(255,255,255,.85),
+        0 1px 12px rgba(255,255,255,.5);
+}
+
+.infoText li:last-child {
+    margin-bottom: 0;
+}
+
+.infoText li::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 10px;
+
+    width: 11px;
+    height: 11px;
 
     border-radius: 50%;
 
     background: #38C84A;
 
-    box-shadow:
-        0 0 10px #38C84A,
-        0 0 30px rgba(56,200,74,.55);
+    box-shadow: 0 0 10px rgba(56,200,74,.6);
 }
 
 
 /*==================================================
-                    INFO TOP
+        HERO INFO ROW — главный текст + доп. блок.
+    Выровнены по той же ширине и левому краю, что и
+    сетка карточек снизу (.cards: width:1100px,
+    max-width:92%, left:50% + translateX(-50%)).
 ==================================================*/
 
-.infoTop {
-    top: 115px;
+.heroInfoRow {
+    position: absolute;
 
-    left: 54%;
+    left: 50%;
+    top: 80px;
+
+    width: 1100px;
+    max-width: 92%;
 
     transform: translateX(-50%);
+
+    display: flex;
+    align-items: flex-start;
+    gap: 48px;
+
+    z-index: 40;
 }
 
-.infoTop::before {
-    width: 2px;
-    height: 110px;
+
+/*==================================================
+                    INFO MAIN
+    65% ширины строки — то есть 65% от ширины сетки
+    карточек (.cards), с которой выровнена вся строка.
+==================================================*/
+
+.infoMain {
+    position: relative;
+
+    flex: 0 0 65%;
+    max-width: 65%;
+}
+
+.infoMain::before {
+    content: "";
+
+    position: absolute;
 
     left: -26px;
     top: 16px;
-}
 
-.infoTop .infoDot {
-    left: -36px;
-    top: 10px;
-}
+    width: 2px;
+    height: 110px;
 
-
-/*==================================================
-                    INFO LEFT
-==================================================*/
-
-.infoLeft {
-    left: 130px;
-    top: 500px;
-}
-
-.infoLeft .infoDot {
-    right: -35px;
-    top: 18px;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(56,200,74,.65),
+            rgba(56,200,74,0)
+        );
 }
 
 
 /*==================================================
-                    INFO RIGHT
+                    INFO SECONDARY
+    Раньше — облачко (infoLeft), теперь просто текст
+    рядом с главным блоком, крупнее прежнего.
 ==================================================*/
 
-.infoRight {
-    right: 120px;
-    top: 500px;
+.infoSecondary {
+    flex: 1 1 auto;
 
-    text-align: right;
-}
-
-.infoRight .infoDot {
-    left: -35px;
-    top: 18px;
+    padding-top: 6px;
 }
 
 
 /*==================================================
-                    INFO BOTTOM
+        RESPONSIVE
+    1200px — строка складывается в колонку: главный
+    текст сверху, доп. блок под ним, оба на всю ширину.
+    640px — уходят в обычный поток документа.
 ==================================================*/
 
-.infoBottom {
-    left: 54%;
-    bottom: 135px;
+@media (max-width: 1000px) {
 
-    transform: translateX(-50%);
+    .heroInfoRow {
+        top: 90px;
+
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .infoMain,
+    .infoSecondary {
+        flex: 1 1 auto;
+        max-width: 100%;
+    }
+
+    .infoMain .infoText h3 {
+        font-size: 30px;
+    }
+
+    .infoMain .infoText p {
+        font-size: 17px;
+    }
+
+    .infoSecondary .infoKicker {
+        font-size: 15px;
+    }
+
+    .infoSecondary .infoText li {
+        font-size: 18px;
+    }
+
+    .infoMain::before {
+        height: 70px;
+    }
+
 }
 
-.infoBottom .infoDot {
-    left: -36px;
-    top: -10px;
+@media (max-width: 800px) {
+
+    .heroInfoRow {
+        position: static;
+
+        width: 90%;
+        max-width: 420px;
+
+        margin: 0 auto;
+
+        transform: none;
+
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .infoMain {
+        max-width: 100%;
+        margin-top: 16px;
+    }
+
+    .infoSecondary {
+        max-width: 100%;
+        padding-top: 0;
+
+        margin-top: calc(var(--planet-gap, 44vh) - 100px);
+    }
+
 }
-    
