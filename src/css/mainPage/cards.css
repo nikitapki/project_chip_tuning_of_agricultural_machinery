@@ -636,10 +636,10 @@
         position: absolute;
 
         left: 50%;
-        top: 6px;          /* было 10px — плюсик выше */
+        top: 12px;
 
-        width: 22px;
-        height: 22px;
+        width: 24px;
+        height: 24px;
 
         display: flex;
         align-items: center;
@@ -651,7 +651,7 @@
         background: rgba(114, 242, 138, .14);
 
         color: #72f28a;
-        font-size: 15px;
+        font-size: 16px;
         font-weight: 800;
         line-height: 1;
 
@@ -743,15 +743,15 @@
 
         flex: 0 0 auto;
 
-        /* фиксированная высота через aspect-ratio вместо height:auto —
-           у img внутри стоит height:100%, а проценты работают только
-           от родителя с ЯВНОЙ высотой; иначе при сжатии по вертикали
-           картинка схлопывалась в 0 вместо того, чтобы просто
-           уменьшиться. min-height — страховка на случай очень узкого
-           контейнера, где aspect-ratio дал бы слишком малую высоту. */
-        aspect-ratio: 16 / 9;
-        min-height: 120px;
-        max-height: 34vh;
+        /* уменьшена относительно прежней (было 34vh/16:9) —
+           картинка занимала слишком много места на телефоне,
+           текст был почти не виден без скролла. .cardExpanded
+           целиком скроллится (overflow-y: auto выше), так что
+           при желании картинку всё равно можно "прокрутить"
+           вместе с текстом — но теперь этого обычно не требуется */
+        aspect-ratio: 16 / 10;
+        min-height: 90px;
+        max-height: 22vh;
 
         z-index: 2;
     }
@@ -811,23 +811,18 @@
         writing-mode: horizontal-tb;
         text-orientation: mixed;
 
-        width: 100%;
-        max-width: 100%;
-
         height: auto;
+        max-height: 100%;
 
-        margin: 0;
+        margin-top: 26px;
 
         font-size: 12px;
-        line-height: 1.25;
+        line-height: 1.2;
         letter-spacing: normal;
 
         text-align: center;
-
         white-space: normal;
         word-break: normal;
-        overflow-wrap: break-word;
-        hyphens: auto;
     }
 
 }
