@@ -3,34 +3,14 @@
 ==================================================*/
 
 .info {
-    position: absolute;
+    position: relative;
 
     z-index: 40;
-
-    max-width: 320px;
 
     transition: .35s;
 
     text-shadow:
         0 1px 2px rgba(255,255,255,.7);
-}
-
-/* базовая декоративная чёрточка слева от блока — используется
-   вариантами, которые её не отключают явно (см. infoLeft/infoRight
-   ниже, где она не нужна — там достаточно светящейся точки) */
-.info::before {
-    content: "";
-
-    position: absolute;
-
-    width: 2px;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(56,200,74,.65),
-            rgba(56,200,74,0)
-        );
 }
 
 
@@ -39,40 +19,49 @@
 ==================================================*/
 
 .infoText h3 {
-    font-size: 30px;
+    font-size: 44px;
 
-    color: #18212D;
+    color: #101820;
 
     font-weight: 800;
 
-    margin: 0 0 10px;
+    margin: 0 0 12px;
+
+    text-shadow:
+        0 1px 3px rgba(255,255,255,.85),
+        0 1px 14px rgba(255,255,255,.55);
 }
 
 .infoText p {
-    color: #4E5968;
+    color: #35404D;
 
-    font-size: 18px;
+    font-size: 22px;
 
-    line-height: 1.7;
+    line-height: 1.65;
 
-    font-weight: 500;
+    font-weight: 600;
 
     margin: 0;
+
+    text-shadow:
+        0 1px 3px rgba(255,255,255,.85),
+        0 1px 12px rgba(255,255,255,.5);
 }
 
-/* маленькая надпись-киккер над списками (как в карточках снизу) */
 .infoKicker {
     display: block;
 
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 
-    color: #2fa63f;
+    color: #218a30;
 
-    font-size: 13px;
-    font-weight: 700;
+    font-size: 17px;
+    font-weight: 800;
 
     text-transform: uppercase;
-    letter-spacing: 1.6px;
+    letter-spacing: 1.8px;
+
+    text-shadow: 0 1px 3px rgba(255,255,255,.85);
 }
 
 .infoText ul {
@@ -85,16 +74,20 @@
 .infoText li {
     position: relative;
 
-    margin-bottom: 10px;
+    margin-bottom: 16px;
 
-    padding-left: 20px;
+    padding-left: 28px;
 
-    color: #2b3542;
+    color: #1c2530;
 
-    font-size: 16px;
-    line-height: 1.4;
+    font-size: 22px;
+    line-height: 1.45;
 
-    font-weight: 600;
+    font-weight: 700;
+
+    text-shadow:
+        0 1px 3px rgba(255,255,255,.85),
+        0 1px 12px rgba(255,255,255,.5);
 }
 
 .infoText li:last-child {
@@ -107,424 +100,161 @@
     position: absolute;
 
     left: 0;
-    top: 7px;
+    top: 10px;
 
-    width: 7px;
-    height: 7px;
+    width: 11px;
+    height: 11px;
 
     border-radius: 50%;
 
     background: #38C84A;
 
-    box-shadow: 0 0 8px rgba(56,200,74,.55);
+    box-shadow: 0 0 10px rgba(56,200,74,.6);
 }
 
+
 /*==================================================
-                    INFO DOT
+        HERO INFO ROW — главный текст + доп. блок.
+    Выровнены по той же ширине и левому краю, что и
+    сетка карточек снизу (.cards: width:1100px,
+    max-width:92%, left:50% + translateX(-50%)).
 ==================================================*/
 
-.infoDot {
+.heroInfoRow {
     position: absolute;
 
-    width: 16px;
-    height: 16px;
+    left: 50%;
+    top: 80px;
 
-    border-radius: 50%;
+    width: 1100px;
+    max-width: 92%;
 
-    background: #38C84A;
+    transform: translateX(-50%);
 
-    box-shadow:
-        0 0 10px #38C84A,
-        0 0 30px rgba(56,200,74,.55);
+    display: flex;
+    align-items: flex-start;
+    gap: 48px;
 
-    animation: dotPulse 2.6s ease-in-out infinite;
-
-    z-index: 2;
-}
-
-@keyframes dotPulse {
-    0%, 100% {
-        transform: scale(1);
-        box-shadow:
-            0 0 10px #38C84A,
-            0 0 30px rgba(56,200,74,.55);
-    }
-    50% {
-        transform: scale(1.25);
-        box-shadow:
-            0 0 16px #38C84A,
-            0 0 46px rgba(56,200,74,.75);
-    }
+    z-index: 40;
 }
 
 
 /*==================================================
-                    INFO LEFT
+                    INFO MAIN
+    65% ширины строки — то есть 65% от ширины сетки
+    карточек (.cards), с которой выровнена вся строка.
 ==================================================*/
 
-.infoLeft {
-    left: 110px;
-    top: 400px;
-
-    width: 260px;
-}
-
-.infoLeft .infoDot {
-    right: -35px;
-    top: 26px;
-}
-
-
-/*==================================================
-                    INFO RIGHT
-==================================================*/
-
-.infoRight {
-    right: 100px;
-    top: 400px;
-
-    width: 260px;
-}
-
-.infoRight .infoDot {
-    left: -35px;
-    top: 26px;
-}
-
-/*==================================================
-        "ОБЛАЧНЫЕ" ПАНЕЛЬКИ (infoLeft / infoRight)
-    Лёгкий зелёный отлив вместо чисто белого стекла —
-    в тон свечению планеты и колец. Пузырьки-выступы
-    смещены в сторону планеты (там, откуда прилетает луч).
-==================================================*/
-
-.infoLeft .infoText,
-.infoRight .infoText {
+.infoMain {
     position: relative;
 
-    padding: 22px 24px;
-
-    background:
-        linear-gradient(
-            160deg,
-            rgba(255,255,255,.90),
-            rgba(232,248,236,.55)
-        );
-
-    backdrop-filter: blur(14px) saturate(1.15);
-    -webkit-backdrop-filter: blur(14px) saturate(1.15);
-
-    border-radius: 42px 28px 46px 24px;
-
-    box-shadow:
-        0 18px 40px rgba(20,120,60,.16),
-        0 0 0 1px rgba(56,200,74,.18) inset,
-        0 0 24px rgba(56,200,74,.10);
-
-    z-index: 3;
+    flex: 0 0 65%;
+    max-width: 65%;
 }
 
-.infoLeft .infoText::before,
-.infoLeft .infoText::after,
-.infoRight .infoText::before,
-.infoRight .infoText::after {
+.infoMain::before {
     content: "";
 
     position: absolute;
 
-    border-radius: 50%;
+    left: -26px;
+    top: 16px;
 
-    background: rgba(240,252,242,.88);
-
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-
-    box-shadow:
-        0 8px 18px rgba(20,120,60,.12),
-        0 0 0 1px rgba(56,200,74,.14) inset;
-
-    z-index: -1;
-}
-
-.infoLeft .infoText::before,
-.infoLeft .infoText::after {
-    top: -18px;
-}
-
-.infoLeft .infoText::before {
-    width: 46px;
-    height: 46px;
-
-    right: 22px;
-}
-
-.infoLeft .infoText::after {
-    width: 30px;
-    height: 30px;
-
-    top: -8px;
-    right: 60px;
-}
-
-.infoRight .infoText::before,
-.infoRight .infoText::after {
-    top: -18px;
-}
-
-.infoRight .infoText::before {
-    width: 46px;
-    height: 46px;
-
-    left: 22px;
-}
-
-.infoRight .infoText::after {
-    width: 30px;
-    height: 30px;
-
-    top: -8px;
-    left: 60px;
-}
-
-/*==================================================
-        BEAM PATH — цепочка кругляшков-импульсов,
-        летящих от кольца планеты к точке панели.
-        Кругляшки растут по пути: маленький у кольца —
-        крупный у точки (dot).
-==================================================*/
-
-.beamPath {
-    position: absolute;
-
-    top: 30px;
-
-    width: clamp(140px, 15vw, 230px);
-    height: 1px;
-
-    pointer-events: none;
-
-    z-index: 1;
-}
-
-.infoLeft .beamPath {
-    right: -35px; /* тот же якорь, что и у infoDot */
-}
-
-.infoRight .beamPath {
-    left: -35px;
-}
-
-.beamParticle {
-    position: absolute;
-
-    top: 50%;
-    left: 0;
-
-    width: 10px;
-    height: 10px;
-
-    margin-top: -5px;
-
-    border-radius: 50%;
-
-    background: radial-gradient(
-        circle,
-        rgba(56,200,74,1),
-        rgba(56,200,74,.4) 70%
-    );
-
-    box-shadow: 0 0 8px rgba(56,200,74,.7);
-
-    opacity: 0;
-}
-
-/* левая панель: частицы стартуют у кольца (справа, дальше
-   от панели) и летят к точке (влево, translateX уменьшается) */
-.beamPath--left .beamParticle {
-    left: 100%;
-    animation: beamTravelLeft 3.3s ease-in infinite;
-}
-
-@keyframes beamTravelLeft {
-    0% {
-        transform: translateX(0) scale(.3);
-        opacity: 0;
-    }
-    12% {
-        opacity: 1;
-    }
-    85% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateX(-100%) scale(1.2);
-        opacity: 0;
-    }
-}
-
-/* правая панель: зеркально — частицы стартуют у кольца
-   (слева) и летят к точке (вправо) */
-.beamPath--right .beamParticle {
-    right: 100%;
-    animation: beamTravelRight 3.3s ease-in infinite;
-}
-
-@keyframes beamTravelRight {
-    0% {
-        transform: translateX(0) scale(.3);
-        opacity: 0;
-    }
-    12% {
-        opacity: 1;
-    }
-    85% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateX(100%) scale(1.2);
-        opacity: 0;
-    }
-}
-
-/*==================================================
-                    INFO TOP
-==================================================*/
-
-.infoTop {
-    top: 115px;
-
-    left: 54%;
-
-    width: 920px;
-    max-width: 920px;
-
-    transform: translateX(-50%);
-}
-
-.infoTop .infoText h3 {
-    font-size: 36px;
-}
-
-.infoTop .infoText p {
-    font-size: 19px;
-}
-
-.infoTop::before {
     width: 2px;
     height: 110px;
 
-    left: -26px;
-    top: 16px;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(56,200,74,.65),
+            rgba(56,200,74,0)
+        );
 }
+
 
 /*==================================================
-                    INFO BOTTOM
+                    INFO SECONDARY
+    Раньше — облачко (infoLeft), теперь просто текст
+    рядом с главным блоком, крупнее прежнего.
 ==================================================*/
 
-.infoBottom {
-    left: 54%;
-    bottom: 135px;
+.infoSecondary {
+    flex: 1 1 auto;
 
-    transform: translateX(-50%);
-}
-
-.infoBottom .infoDot {
-    left: -36px;
-    top: -10px;
+    padding-top: 6px;
 }
 
 
 /*==================================================
         RESPONSIVE
-    1200px — промежуточный шаг: боковые панели съезжают
-    вниз (под планету) и уменьшаются, луч-импульс скрываем,
-    т.к. панель уже не рядом с кольцами.
-    640px — панели уходят в обычный поток документа,
-    друг под другом, во всю ширину.
+    1200px — строка складывается в колонку: главный
+    текст сверху, доп. блок под ним, оба на всю ширину.
+    640px — уходят в обычный поток документа.
 ==================================================*/
 
-@media (max-width: 1200px) {
+@media (max-width: 1000px) {
 
-    .infoTop {
-        width: 90%;
-        max-width: 640px;
-
+    .heroInfoRow {
         top: 90px;
+
+        flex-direction: column;
+        gap: 24px;
     }
 
-    .infoTop .infoText h3 {
-        font-size: 28px;
+    .infoMain,
+    .infoSecondary {
+        flex: 1 1 auto;
+        max-width: 100%;
     }
 
-    .infoTop .infoText p {
-        font-size: 16px;
+    .infoMain .infoText h3 {
+        font-size: 30px;
     }
 
-    .infoLeft,
-    .infoRight {
-        top: auto;
-        bottom: 40px;
-
-        width: 44%;
-        max-width: 280px;
+    .infoMain .infoText p {
+        font-size: 17px;
     }
 
-    .infoLeft {
-        left: 3%;
+    .infoSecondary .infoKicker {
+        font-size: 15px;
     }
 
-    .infoRight {
-        right: 3%;
+    .infoSecondary .infoText li {
+        font-size: 18px;
     }
 
-    .infoLeft .infoText,
-    .infoRight .infoText {
-        padding: 16px 18px;
-    }
-
-    .infoKicker {
-        font-size: 12px;
-    }
-
-    .infoText li {
-        font-size: 14px;
-    }
-
-    /* панель уехала вниз, дальше от колец — луч и точка
-       перестают выглядеть как "импульс от планеты" */
-    .beamPath,
-    .infoDot {
-        display: none;
-    }
-
-    .infoBottom {
-        display: none; /* низ уже занят left/right панелями */
+    .infoMain::before {
+        height: 70px;
     }
 
 }
 
-@media (max-width: 640px) {
+@media (max-width: 800px) {
 
-    .hero {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-
-        padding-top: 40px;
-    }
-
-    .infoTop,
-    .infoLeft,
-    .infoRight {
+    .heroInfoRow {
         position: static;
 
         width: 90%;
         max-width: 420px;
 
-        margin: 12px auto;
+        margin: 0 auto;
 
         transform: none;
+
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .infoMain {
+        max-width: 100%;
+        margin-top: 16px;
+    }
+
+    .infoSecondary {
+        max-width: 100%;
+        padding-top: 0;
+
+        margin-top: calc(var(--planet-gap, 44vh) - 100px);
     }
 
 }

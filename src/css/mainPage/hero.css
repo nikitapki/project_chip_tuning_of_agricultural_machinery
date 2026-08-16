@@ -25,7 +25,10 @@
 
     background-image: url("/images/mainPageBackground/main-fon-bg.webp");
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+
+    /* заполняет весь .hero без искажения пропорций,
+       лишнее по краям просто обрезается */
+    background-size: cover;
     background-position: center;
 
     z-index: 0;
@@ -471,7 +474,7 @@
                 RESPONSIVE
 ==================================================*/
 
-@media (max-width: 1500px) {
+@media (max-width: 1100px) {
 
     .heroSvg {
         width: 1250px;
@@ -479,20 +482,44 @@
 
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 800px) {
 
     .hero {
-        height: auto;
-        min-height: 100vh;
-        padding-bottom: 380px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+
+        padding-top: 70px;
     }
 
-}
+    .heroInfoRow {
+        position: static;
 
-@media (max-width: 768px) {
+        width: 90%;
+        max-width: 420px;
 
-    .heroSvg {
-        width: 900px;
+        margin: 0 auto;
+
+        transform: none;
+
+        flex-direction: column;
+    }
+
+    .infoMain {
+        max-width: 100%;
+
+        /* заголовок чуть ниже */
+        margin-top: 16px;
+    }
+
+    .infoSecondary {
+        max-width: 100%;
+
+        /* "Что программно отключаем" чуть выше — вычитаем
+           немного из отступа, который считает JS от планеты */
+        margin-top: calc(var(--planet-gap, 58vh));
+        padding-top: 0;
     }
 
 }

@@ -636,7 +636,7 @@
         position: absolute;
 
         left: 50%;
-        top: 10px;
+        top: 6px;          /* было 10px — плюсик выше */
 
         width: 22px;
         height: 22px;
@@ -702,34 +702,26 @@
     }
 
     /* --- развёрнутая панель ---
-       flex + space-between "растягивает" картинку и текст на
-       всю доступную высоту панели (максимально отдаляет их
-       друг от друга), а не складывает их плотно сверху с
-       обязательным скроллом до конца */
+       колонка: картинка сверху, текст сразу под ней, оба идут
+       единым потоком (скроллится .cardExpanded целиком) — так
+       текст никогда не "уплывает" от картинки при скролле */
 
     .cardExpanded {
-        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 14px;
 
-        inset: 0;
+        padding: 20px;
 
-        padding: clamp(28px, 2vw + 6px, 44px);
+        overflow-y: auto;
+        overflow-x: hidden;
 
-        display: grid;
-
-        grid-template-columns: 44% 56%;
-
-        opacity: 0;
-
-        visibility: hidden;
-
-        transform: translateY(25px);
-
-        transition:
-            opacity .25s ease .12s,
-            transform .35s ease .12s,
-            visibility .25s;
-
-        z-index: 4;
+        /* скролл остаётся рабочим (на случай очень маленького
+           экрана или длинного текста), но сам ползунок визуально
+           скрыт на устройстве пользователя */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
     }
 
     .cardExpanded::-webkit-scrollbar {
@@ -743,8 +735,11 @@
     }
 
     .cardImage {
-        position: sticky;
-        top: 0;
+        /* НЕ sticky: картинка идёт обычным потоком и остаётся
+           неподвижной ровно над текстом, не "прилипая" к верху
+           при скролле — раньше из-за sticky могло казаться, что
+           текст уезжает вверх/в сторону от картинки */
+        position: relative;
 
         flex: 0 0 auto;
 
@@ -816,16 +811,23 @@
         writing-mode: horizontal-tb;
         text-orientation: mixed;
 
+        width: 100%;
+        max-width: 100%;
+
         height: auto;
-        max-height: 100%;
+
+        margin: 0;
 
         font-size: 12px;
-        line-height: 1.2;
+        line-height: 1.25;
         letter-spacing: normal;
 
         text-align: center;
+
         white-space: normal;
         word-break: normal;
+        overflow-wrap: break-word;
+        hyphens: auto;
     }
 
 }

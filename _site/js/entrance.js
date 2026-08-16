@@ -17,8 +17,8 @@
 
     /* Альбомная ориентация: вкладки выглядывают СНИЗУ экрана
        в один ряд, а не столбиками слева/справа. */
-    const TAB_WIDTH_LANDSCAPE       = 140;
-    const TAB_HEIGHT_LANDSCAPE      = 64;
+    const TAB_WIDTH_LANDSCAPE       = 160;   // было 140
+    const TAB_HEIGHT_LANDSCAPE      = 84;    // было 64
     const TAB_GAP_LANDSCAPE         = 14;
     const TAB_SIDE_MARGIN_LANDSCAPE = 16;
 
