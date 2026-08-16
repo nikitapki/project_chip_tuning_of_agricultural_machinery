@@ -209,49 +209,7 @@
     animation-delay: -10.6s;
 }
 
-.orbitLine--6 {
-    width: 77%;
-    height: 77%;
-    border-width: 24px;
-    border-top-color: rgba(var(--ring-color2), 0.47);
-    border-right-color: rgba(var(--ring-color2), 0.47);
 
-    animation-duration: 18.2s;
-    animation-delay: -13s;
-}
-
-.orbitLine--7 {
-    width: 80%;
-    height: 80%;
-    border-width: 26px;
-    border-top-color: rgba(var(--ring-color1), 0.42);
-    border-right-color: rgba(var(--ring-color1), 0.42);
-
-    animation-duration: 19.5s;
-    animation-delay: -15.4s;
-}
-
-.orbitLine--8 {
-    width: 83%;
-    height: 83%;
-    border-width: 28px;
-    border-top-color: rgba(var(--ring-color2), 0.36);
-    border-right-color: rgba(var(--ring-color2), 0.36);
-
-    animation-duration: 21.4s;
-    animation-delay: -17.8s;
-}
-
-.orbitLine--9 {
-    width: 86%;
-    height: 86%;
-    border-width: 30px;
-    border-top-color: rgba(var(--ring-color1), 0.3);
-    border-right-color: rgba(var(--ring-color1), 0.3);
-
-    animation-duration: 23.6s;
-    animation-delay: -20.2s;
-}
 
 @keyframes spin {
     from {
@@ -520,6 +478,220 @@
            немного из отступа, который считает JS от планеты */
         margin-top: calc(var(--planet-gap, 58vh));
         padding-top: 0;
+    }
+
+}
+
+/*==================================================
+        ORBIT MACHINES (силуэты техники, фон)
+==================================================*/
+
+.orbitMachines {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 8; /* ниже .earthSystem(15) и .earth(20), выше фона */
+
+    pointer-events: none;
+}
+
+.orbitMachine {
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    /* сильно приглушены, чтобы не спорить с шариками-плюсами
+       и текстом переднего плана */
+    opacity: .07;
+    filter: grayscale(.7) brightness(1.3);
+}
+
+.orbitMachine--tractor {
+    left: 8%;
+    top: 22%;
+
+    background-image: url("/images/mainPageBackground/tractor-silhouette.webp");
+}
+
+.orbitMachine--combine {
+    right: 6%;
+    top: 30%;
+
+    width: 150px;
+    height: 150px;
+
+    background-image: url("/images/mainPageBackground/combine-silhouette.webp");
+}
+
+.orbitMachine--truck {
+    left: 10%;
+    bottom: 14%;
+
+    background-image: url("/images/mainPageBackground/truck-silhouette.webp");
+}
+
+.orbitMachine--sprayer {
+    right: 9%;
+    bottom: 20%;
+
+    width: 120px;
+    height: 120px;
+
+    background-image: url("/images/mainPageBackground/sprayer-silhouette.webp");
+}
+
+
+/*==================================================
+        ORBIT FEATURES (шарики-плюсы вокруг колец)
+==================================================*/
+
+.orbitFeatures {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 25; /* выше планеты(20), ниже логотипов(30/100) */
+
+    pointer-events: none;
+}
+
+.orbitFeature {
+    /* left/right/top проставляет JS (entrance.js): на широких
+       экранах — по фактическим координатам внешнего кольца, на
+       узких — у левого/правого края экрана (см. positionFeaturesEdge) */
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+
+    height: 44px;
+    max-width: 44px;
+
+    border-radius: 26px;
+    overflow: hidden;
+    white-space: nowrap;
+
+    background: rgba(255,255,255,.92);
+    border: 1px solid rgba(56,200,74,.30);
+    box-shadow: 0 6px 20px rgba(0,0,0,.08);
+
+    pointer-events: auto;
+    cursor: pointer;
+
+    transition:
+        max-width .5s cubic-bezier(.2,.8,.2,1),
+        box-shadow .3s ease,
+        left .4s ease,
+        right .4s ease,
+        top .4s ease;
+}
+
+.orbitFeatureDot {
+    flex: 0 0 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+
+    font-size: 20px;
+    font-weight: 800;
+    color: #218a30;
+}
+
+.orbitFeatureText {
+    flex: 0 0 auto;
+
+    padding-right: 20px;
+
+    /* было max-width: 220px, font-size: 14px — текст в открытой
+       пилюле был мелкий и узкий; увеличили и то, и другое */
+    max-width: 300px;
+
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #1c2530;
+    white-space: normal;
+
+    opacity: 0;
+    transition: opacity .25s ease;
+}
+
+/* раскрытое состояние — пилюля растёт НАРУЖУ, от кольца.
+   max-width увеличен с 260px под более крупный текст выше */
+.orbitFeature.is-open {
+    max-width: 340px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.16);
+}
+
+.orbitFeature.is-open .orbitFeatureText {
+    opacity: 1;
+    transition: opacity .3s ease .18s;
+}
+
+/* JS помечает классом is-left те шарики, чей якорь оказался слева
+   от планеты (широкий экран) или которые сидят у ПРАВОГО края
+   экрана (узкий экран, режим "по краям") — в обоих случаях пилюля
+   должна разворачиваться в другую сторону: кружок остаётся у
+   своего якоря (справа в самой пилюле), а текст выезжает влево */
+.orbitFeature.is-left {
+    flex-direction: row-reverse;
+}
+
+.orbitFeature.is-left .orbitFeatureText {
+    padding-right: 0;
+    padding-left: 20px;
+    text-align: right;
+}
+
+
+/*==================================================
+    RESPONSIVE — на узких экранах прячем только силуэты
+    техники (декоративный фоновый слой, для него нет
+    компактной раскладки). Шарики-плюсы (.orbitFeatures)
+    остаются видимыми — JS (positionFeaturesEdge) переводит
+    их в раскладку по краям экрана вместо эллипса вокруг
+    планеты. Порог синхронизирован с EDGE_BREAKPOINT в JS.
+==================================================*/
+
+@media (max-width: 1200px) {
+
+    .orbitMachines {
+        display: none;
+    }
+
+    /* на узких экранах раскрытая пилюля не должна вылезать
+       за край экрана — ограничиваем её ширину и слегка
+       уменьшаем текст, чтобы он комфортно помещался */
+    .orbitFeature.is-open {
+        max-width: min(72vw, 280px);
+    }
+
+    .orbitFeatureText {
+        font-size: 15px;
+        max-width: min(72vw, 280px);
+    }
+
+}
+
+@media (max-width: 420px) {
+
+    .orbitFeature.is-open {
+        max-width: min(78vw, 240px);
+    }
+
+    .orbitFeatureText {
+        font-size: 14px;
+        max-width: min(78vw, 240px);
     }
 
 }

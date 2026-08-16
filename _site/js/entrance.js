@@ -601,3 +601,295 @@
     layoutTabs();
 
 })();
+
+
+/* ==================================================
+        ШАРИКИ-ПЛЮСЫ ВОКРУГ КОЛЕЦ (.orbitFeature)
+
+    1) Позиция. Шарики раскладываются по эллипсу, заданному
+       ВРУЧНУЮ через RING_RADIUS_X_RATIO / RING_RADIUS_Y_RATIO /
+       RING_CENTER_OFFSET_X / RING_CENTER_OFFSET_Y ниже — эти
+       числа и правьте, чтобы подвинуть окружность целиком.
+       Угол каждого конкретного шарика на эллипсе — в ANGLES.
+       Эллипс привязан к .earthSystem (не крутится, в отличие
+       от самих колец), поэтому расчёт стабилен на любом кадре
+       анимации и на любой ширине экрана.
+
+    2) Автоцикл. По очереди (по часовой стрелке, согласно
+       data-order) раскрывает каждый шарик на OPEN_DURATION,
+       затем закрывает и через паузу открывает следующий.
+       При наведении курсора (десктоп) — открывается сразу,
+       автоцикл на паузе до ухода курсора. На тач-устройствах
+       (нет hover) — то же самое делает тап по шарику/мимо него.
+
+    3) Направление раскрытия. На широких экранах (> INWARD_
+       BREAKPOINT) шарики справа от планеты растут вправо
+       (наружу), слева — влево (наружу). На узких экранах
+       (<= INWARD_BREAKPOINT, синхронизировано с медиа-запросом
+       в CSS, где раньше .orbitFeatures скрывались) логика
+       инвертирована — пилюли растут К планете, а не от неё,
+       чтобы блок оставался видимым и компактным на мобильных.
+================================================== */
+(function () {
+
+    const hero = document.querySelector('.hero');
+    const features = Array.from(document.querySelectorAll('.orbitFeature'))
+        .sort((a, b) => Number(a.dataset.order) - Number(b.dataset.order));
+
+    if (!hero || !features.length) return;
+
+    // Углы точек на эллипсе (по часовой стрелке; 0deg = вправо,
+    // 90deg = вниз, 180deg = влево, 270deg = вверх) — по одному
+    // на каждый шарик, в порядке data-order (0..4).
+    const ANGLES = [-20, 20, 50, 170, 200];
+
+    // ==============================================
+    // РУЧНАЯ НАСТРОЙКА ОКРУЖНОСТИ (ЭЛЛИПСА) ШАРИКОВ
+    // ==============================================
+    // Эллипс привязан к .earthSystem (тому же блоку, где планета
+    // и кольца) — так он остаётся на месте и правильно
+    // масштабируется на любой ширине экрана. Но сам размер и
+    // положение эллипса задаются простыми числами ниже, без
+    // привязки к конкретному кольцу — крутите их напрямую:
+    //
+    //   RADIUS_X_RATIO / RADIUS_Y_RATIO — половина ширины/высоты
+    //   эллипса как доля от ширины/высоты .earthSystem.
+    //   0.37 = радиус в 37% от размера .earthSystem. Увеличьте
+    //   число — шарики разъедутся дальше от планеты наружу,
+    //   уменьшите — сожмутся ближе к центру.
+    //
+    //   CENTER_OFFSET_X / CENTER_OFFSET_Y — сдвиг центра эллипса
+    //   в пикселях относительно центра .earthSystem (плюс —
+    //   вправо/вниз, минус — влево/вверх). Обычно 0, но можно
+    //   сдвинуть весь эллипс целиком, если нужно.
+    const RING_RADIUS_X_RATIO   = 0.37;
+    const RING_RADIUS_Y_RATIO   = 0.21;
+    const RING_CENTER_OFFSET_X  = 0;
+    const RING_CENTER_OFFSET_Y  = 0;
+
+    // синхронизировано с @media (max-width: 1200px) в CSS —
+    // ниже этого порога переключаемся с эллипса вокруг планеты
+    // на раскладку по краям экрана (см. positionFeaturesEdge)
+    const EDGE_BREAKPOINT = 1200;
+
+    // отступ кружка от края экрана в режиме "по краям"
+    const EDGE_SIDE_MARGIN = 10;
+    // вертикальный зазор между кружками в одном столбце (край)
+    const EDGE_GAP = 22;
+
+    const DOT = 44;       // диаметр кружка в закрытом состоянии
+
+    const OPEN_DURATION = 10000; // держим открытым ~10 сек
+    const CYCLE_GAP = 500;        // пауза перед следующим
+
+    // (hover: hover) и (pointer: fine) — это НЕ то же самое, что узкий
+    // экран: точнее определяет мышь/тачпад против пальца, даже если
+    // у touch-устройства широкий экран (планшет в ландшафте и т.п.)
+    const hoverCapableMql = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+    function supportsHover() {
+        return hoverCapableMql.matches;
+    }
+
+    let currentIndex = -1;
+    let autoTimer = null;
+    let hovered = null;
+
+    function getEarthSystem() {
+        return document.querySelector('.earthSystem');
+    }
+
+    function isEdgeMode() {
+        return window.innerWidth <= EDGE_BREAKPOINT;
+    }
+
+    // Раскладывает шарики по ручному эллипсу вокруг .earthSystem.
+    // Используется только на широких экранах (> EDGE_BREAKPOINT) —
+    // там пилюли растут НАРУЖУ, от планеты.
+    function positionFeaturesEllipse() {
+        const system = getEarthSystem();
+        if (!system) return;
+
+        const heroRect = hero.getBoundingClientRect();
+        const systemRect = system.getBoundingClientRect();
+
+        // центр эллипса в координатах .hero + ручной сдвиг
+        const cx = systemRect.left + systemRect.width / 2 - heroRect.left + RING_CENTER_OFFSET_X;
+        const cy = systemRect.top + systemRect.height / 2 - heroRect.top + RING_CENTER_OFFSET_Y;
+
+        // полуоси эллипса — доля от размера .earthSystem
+        const rx = systemRect.width * RING_RADIUS_X_RATIO;
+        const ry = systemRect.height * RING_RADIUS_Y_RATIO;
+
+        features.forEach((el, i) => {
+            const angle = ANGLES[i] ?? (i * (360 / features.length));
+            const rad = angle * Math.PI / 180;
+
+            const px = cx + rx * Math.cos(rad);
+            const py = cy + ry * Math.sin(rad);
+
+            const isLeft = px < cx;
+            el.classList.toggle('is-left', isLeft);
+
+            el.style.top = (py - DOT / 2) + 'px';
+
+            if (isLeft) {
+                // якорь (кружок) — правый край пилюли, у самого кольца;
+                // при раскрытии пилюля растёт влево, наружу
+                el.style.left = '';
+                el.style.right = (heroRect.width - px) + 'px';
+            } else {
+                // якорь — левый край пилюли, у самого кольца;
+                // при раскрытии пилюля растёт вправо, наружу
+                el.style.right = '';
+                el.style.left = px + 'px';
+            }
+        });
+    }
+
+    // Раскладывает шарики по краям экрана (слева/справа) —
+    // используется на узких экранах (<= EDGE_BREAKPOINT), где
+    // эллипсу вокруг планеты не хватает места. Чётные по порядку
+    // (data-order) уходят в левый столбец, нечётные — в правый;
+    // оба столбца центрируются по вертикали на высоте планеты.
+    // Раскрываются пилюли ВНУТРЬ — к планете.
+    function positionFeaturesEdge() {
+        const system = getEarthSystem();
+        if (!system) return;
+
+        const heroRect = hero.getBoundingClientRect();
+        const systemRect = system.getBoundingClientRect();
+
+        const cy = systemRect.top + systemRect.height / 2 - heroRect.top + RING_CENTER_OFFSET_Y;
+
+        const leftItems = [];
+        const rightItems = [];
+
+        features.forEach((el, i) => {
+            (i % 2 === 0 ? leftItems : rightItems).push(el);
+        });
+
+        function layoutStack(items, side) {
+            const totalHeight = items.length * DOT + Math.max(0, items.length - 1) * EDGE_GAP;
+            let top = cy - totalHeight / 2;
+
+            items.forEach((el) => {
+                // левый край: якорь слева, пилюля растёт вправо (к планете)
+                // правый край: якорь справа, пилюля растёт влево (к планете)
+                el.classList.toggle('is-left', side === 'right');
+
+                el.style.top = top + 'px';
+
+                if (side === 'left') {
+                    el.style.left = EDGE_SIDE_MARGIN + 'px';
+                    el.style.right = '';
+                } else {
+                    el.style.right = EDGE_SIDE_MARGIN + 'px';
+                    el.style.left = '';
+                }
+
+                top += DOT + EDGE_GAP;
+            });
+        }
+
+        layoutStack(leftItems, 'left');
+        layoutStack(rightItems, 'right');
+    }
+
+    function positionFeatures() {
+        if (isEdgeMode()) {
+            positionFeaturesEdge();
+        } else {
+            positionFeaturesEllipse();
+        }
+    }
+
+    function openFeature(el) {
+        features.forEach(f => { if (f !== el) f.classList.remove('is-open'); });
+        el.classList.add('is-open');
+    }
+
+    function closeFeature(el) {
+        el.classList.remove('is-open');
+    }
+
+    function scheduleNext(delay) {
+        clearTimeout(autoTimer);
+        autoTimer = setTimeout(autoStep, delay);
+    }
+
+    function autoStep() {
+        if (hovered) return; // пока наведено/раскрыто тапом — автоцикл на паузе
+
+        if (currentIndex >= 0) closeFeature(features[currentIndex]);
+
+        currentIndex = (currentIndex + 1) % features.length;
+        openFeature(features[currentIndex]);
+
+        scheduleNext(OPEN_DURATION);
+    }
+
+    features.forEach((el) => {
+        el.addEventListener('mouseenter', () => {
+            if (!supportsHover()) return; // на тач-устройствах hover игнорируем
+            hovered = el;
+            clearTimeout(autoTimer);
+            openFeature(el);
+        });
+
+        el.addEventListener('mouseleave', () => {
+            if (!supportsHover()) return;
+            if (hovered !== el) return;
+            hovered = null;
+            closeFeature(el);
+
+            currentIndex = features.indexOf(el);
+            scheduleNext(CYCLE_GAP);
+        });
+
+        // тач/клик-версия — работает там, где нет настоящего hover
+        el.addEventListener('click', (e) => {
+            if (supportsHover()) return; // на десктопе клик не нужен
+            e.stopPropagation();
+            clearTimeout(autoTimer);
+
+            if (el.classList.contains('is-open')) {
+                closeFeature(el);
+                hovered = null;
+                currentIndex = features.indexOf(el);
+                scheduleNext(CYCLE_GAP);
+            } else {
+                hovered = el;
+                openFeature(el);
+            }
+        });
+    });
+
+    // тап вне пилюли на тач-устройствах — закрывает открытую пилюлю
+    // и возвращает автоцикл
+    document.addEventListener('click', (e) => {
+        if (supportsHover()) return;
+        if (hovered && !hovered.contains(e.target)) {
+            closeFeature(hovered);
+            currentIndex = features.indexOf(hovered);
+            hovered = null;
+            scheduleNext(CYCLE_GAP);
+        }
+    });
+
+    // Пересчитываем позицию при изменении размера/ориентации окна —
+    // кольцо на других разрешениях меняет размер (clamp в CSS), и
+    // шарики должны следовать за его фактическим контуром.
+    let resizeRaf = null;
+    function schedulePositionRecalc() {
+        if (resizeRaf) cancelAnimationFrame(resizeRaf);
+        resizeRaf = requestAnimationFrame(positionFeatures);
+    }
+
+    window.addEventListener('resize', schedulePositionRecalc);
+    window.addEventListener('orientationchange', schedulePositionRecalc);
+
+    positionFeatures();
+    scheduleNext(600); // старт автоцикла после загрузки страницы
+
+})();
