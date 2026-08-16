@@ -554,7 +554,7 @@
 }
 
 
-/* AdBlue: текст слева, фото справа */
+/* AdBlue: текст слева, фото справа (десктоп) */
 
 .service-adblue .serviceContent {
     order: 1;
@@ -565,7 +565,7 @@
 }
 
 
-/* EGR: фото слева, текст справа */
+/* EGR: фото слева, текст справа (десктоп) */
 
 .service-egr .serviceImage {
     order: 1;
@@ -750,7 +750,8 @@
     }
 
 
-    /* DPF */
+    /* DPF — уже фото → текст, порядок берётся из DOM
+       (в serviceDpfTop картинка идёт первой в разметке) */
 
     .serviceDpfTop {
         display: grid;
@@ -777,7 +778,12 @@
     }
 
 
-    /* AdBlue / EGR */
+    /* AdBlue / EGR — на мобильном ВСЕГДА фото первым, текст
+       вторым, независимо от desktop-раскладки (там они
+       специально чередуются: AdBlue текст-слева/фото-справа,
+       EGR фото-слева/текст-справа — на мобильном оба
+       выстраиваются одинаково, иначе на стыке двух секций
+       получаются два фото подряд: конец AdBlue + начало EGR) */
 
     .service-adblue,
     .service-egr {
@@ -794,21 +800,13 @@
     }
 
 
-    .service-adblue .serviceContent {
-        order: 1;
-    }
-
-
-    .service-adblue .serviceImage {
-        order: 2;
-    }
-
-
+    .service-adblue .serviceImage,
     .service-egr .serviceImage {
         order: 1;
     }
 
 
+    .service-adblue .serviceContent,
     .service-egr .serviceContent {
         order: 2;
     }

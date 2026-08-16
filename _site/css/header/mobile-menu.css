@@ -7,7 +7,12 @@ MOBILE MENU
 .mobile-menu {
     position: fixed;
 
-    top: 76px;
+    /* top и max-height синхронизированы с реальной высотой .header
+       из header-base.css: 50px по умолчанию, 64px на <=480px.
+       Раньше здесь было 76px — значение не совпадало ни с одним
+       из фактических состояний хедера, отсюда пустая полоса между
+       хедером и открытым меню. */
+    top: 50px;
     left: 0;
     right: 0;
 
@@ -34,7 +39,7 @@ MOBILE MENU
 
     z-index: 999;
 
-    max-height: calc(100vh - 76px);
+    max-height: calc(100vh - 50px);
 
     overflow-y: auto;
     overflow: hidden;
@@ -237,6 +242,8 @@ RESPONSIVE
 
 @media (max-width: 480px) {
 
+    /* header-base.css переключает header на height: 64px именно
+       на этом брейкпоинте — держим то же значение здесь */
     .mobile-menu {
         top: 64px;
 
