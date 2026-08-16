@@ -352,11 +352,11 @@
     margin:
         0 0 42px;
 
-    font-size: 21px;
+    font-size: 22px;
 
     line-height: 1.85;
 
-    color: #68727F;
+    color: #4f5b68;
 }
 
 
@@ -405,11 +405,11 @@
     margin:
         0 0 24px;
 
-    font-size: 21px;
+    font-size: 22px;
 
     line-height: 1.8;
 
-    color: #68727F;
+    color: #4f5b68;
 }
 
 
@@ -436,7 +436,7 @@
 
     line-height: 1.75;
 
-    color: #68727F;
+    color: #4f5b68;
 }
 
 
@@ -886,10 +886,44 @@
     }
 
 
-    .serviceImage img {
-        height: 350px;
+    .serviceImage {
+    width: 100%;
+
+    margin: 0 0 35px;
+
+    border-radius: 24px;
+
+    overflow: hidden;
     }
 
+    .serviceImage img {
+    width: 100%;
+
+    height: 260px;
+
+    object-fit: cover;
+    object-position: center;
+
+    border-radius: 24px;
+    }
+
+
+    .service-adblue,
+    .service-egr {
+    gap: 40px;
+    margin: 70px auto;
+    }
+    .service-egr .serviceContent {
+    order: 1;
+}
+
+    .service-egr .serviceImage {
+    order: 2;
+    }
+
+    .service-dpf {
+    margin-bottom: 80px;
+    }
 
     /* Контент */
 
@@ -932,11 +966,13 @@
 
 
     .serviceContent > p {
-        font-size: 17px;
+    font-size: 19px;
 
-        line-height: 1.75;
+    line-height: 1.75;
 
-        margin-bottom: 32px;
+    margin-bottom: 32px;
+
+    color: #4f5b68;
     }
 
 
@@ -952,9 +988,11 @@
 
     .serviceSection p,
     .serviceList li {
-        font-size: 17px;
+    font-size: 17px;
 
-        line-height: 1.7;
+    line-height: 1.8;
+
+    color: #4f5b68;
     }
 
 
@@ -968,4 +1006,43 @@
 .serviceImage img,
 .serviceContent {
     transition: transform .15s ease-out;
+}
+/*==================================================
+        MOBILE — EGR: ТЕКСТ → ФОТО
+==================================================*/
+
+@media (max-width: 600px) {
+
+    .service-egr {
+        display: flex !important;
+        flex-direction: column !important;
+
+        gap: 45px !important;
+
+        margin-top: 90px !important;
+        margin-bottom: 100px !important;
+    }
+
+    .service-egr .serviceContent {
+        order: 1 !important;
+        width: 100% !important;
+    }
+
+    .service-egr .serviceImage {
+        order: 2 !important;
+        width: 100% !important;
+
+        margin: 0 !important;
+    }
+
+    .service-egr .serviceImage img {
+        width: 100% !important;
+        height: 260px !important;
+
+        object-fit: cover;
+        object-position: center;
+
+        border-radius: 24px;
+    }
+
 }
