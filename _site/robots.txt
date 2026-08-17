@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /
+Allow: /$
+Allow: /assets/
+
+Sitemap: https://compfort.pro/sitemap.xml
