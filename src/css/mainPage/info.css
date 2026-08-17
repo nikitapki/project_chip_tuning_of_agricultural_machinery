@@ -185,6 +185,99 @@
 
 
 /*==================================================
+        ОЧЕНЬ ШИРОКИЕ ЭКРАНЫ
+    От 1500px текст визуально мельчает на фоне выросшего
+    пустого пространства вокруг — увеличиваем шрифт и
+    расширяем max-width блоков под него. Три ступени —
+    чем шире экран, тем крупнее.
+==================================================*/
+
+@media (min-width: 1500px) {
+
+    .infoMain {
+        max-width: 780px;
+    }
+
+    .infoMain .infoText h3 {
+        font-size: 62px;
+    }
+
+    .infoMain .infoText p {
+        font-size: 28px;
+    }
+
+    .infoSecondary {
+        max-width: 340px;
+    }
+
+    .infoSecondary .infoKicker {
+        font-size: 20px;
+    }
+
+    .infoSecondary .infoText li {
+        font-size: 28px;
+    }
+
+}
+
+@media (min-width: 1900px) {
+
+    .infoMain {
+        max-width: 880px;
+    }
+
+    .infoMain .infoText h3 {
+        font-size: 72px;
+    }
+
+    .infoMain .infoText p {
+        font-size: 31px;
+    }
+
+    .infoSecondary {
+        max-width: 380px;
+    }
+
+    .infoSecondary .infoKicker {
+        font-size: 22px;
+    }
+
+    .infoSecondary .infoText li {
+        font-size: 31px;
+    }
+
+}
+
+@media (min-width: 2300px) {
+
+    .infoMain {
+        max-width: 1000px;
+    }
+
+    .infoMain .infoText h3 {
+        font-size: 84px;
+    }
+
+    .infoMain .infoText p {
+        font-size: 34px;
+    }
+
+    .infoSecondary {
+        max-width: 420px;
+    }
+
+    .infoSecondary .infoKicker {
+        font-size: 24px;
+    }
+
+    .infoSecondary .infoText li {
+        font-size: 34px;
+    }
+
+}
+
+
+/*==================================================
         RESPONSIVE
     1000px — по бокам уже не хватает места: блоки
     возвращаются в строку сверху (как было раньше),
@@ -193,7 +286,7 @@
     относительно предыдущей версии).
 ==================================================*/
 
-@media (max-width: 1100px) {
+@media (max-width: 1000px) {
 
     .heroInfoRow {
         display: flex;
@@ -309,7 +402,7 @@
     .infoSecondary {
         position: fixed;
 
-        left: 55%;
+        left: 50%;
         bottom: calc(84px + 14px);
 
         transform: translateX(-50%);
