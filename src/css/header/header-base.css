@@ -79,6 +79,30 @@ RESPONSIVE
 
 ==================================================*/
 
+@media (max-width: 1200px) {
+
+    header {
+        gap: 16px;
+    }
+
+}
+
+@media (max-width: 1130px) {
+
+    header {
+        gap: 12px;
+    }
+
+}
+
+@media (max-width: 1050px) {
+
+    .logo img {
+        height: 40px;
+    }
+
+}
+
 @media (max-width: 900px) {
 
     header {

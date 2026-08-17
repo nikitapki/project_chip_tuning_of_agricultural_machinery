@@ -250,6 +250,23 @@
         margin-top: 16px;
     }
 
+    /* размеры с брейкпоинта 1000px (36px/19px) были рассчитаны на
+       строку шириной под .cards — на узком мобильном экране
+       .infoMain сжимается в 90%/420px и текст того же размера
+       переносится на много строк, разрастаясь по высоте */
+    .infoMain .infoText h3 {
+        font-size: 30px;
+    }
+
+    .infoMain .infoText p {
+        font-size: 17px;
+        line-height: 1.55;
+    }
+
+    .infoMain::before {
+        height: 54px;
+    }
+
     /* Раньше здесь был margin-top в vh, привязанный к высоте
        планеты — но нижние вкладки-карточки на мобильном это
        position: fixed (см. entrance.js), они всегда прибиты
@@ -264,7 +281,7 @@
     .infoSecondary {
         position: fixed;
 
-        left: 50%;
+        left: 55%;
         bottom: calc(84px + 14px);
 
         transform: translateX(-50%);
@@ -275,6 +292,29 @@
         max-width: 100%;
         margin-top: 0;
         padding-top: 0;
+    }
+
+    /* тот же принцип — 17px/21px были рассчитаны на широкую
+       строку, в узком фиксированном блоке текст переносился
+       на 2-3 строки на каждый пункт и налезал сам на себя */
+    .infoSecondary .infoKicker {
+        font-size: 15px;
+        margin-bottom: 12px;
+    }
+
+    .infoSecondary .infoText li {
+        font-size: 18px;
+        line-height: 1.4;
+
+        padding-left: 26px;
+        margin-bottom: 12px;
+    }
+
+    .infoSecondary .infoText li::before {
+        width: 10px;
+        height: 10px;
+
+        top: 7px;
     }
 
 }
