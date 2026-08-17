@@ -1,6 +1,8 @@
 User-agent: *
 Disallow: /
 Allow: /$
-Allow: /assets/
+Allow: /css/
+Allow: /js/
+Allow: /images/
 
 Sitemap: https://compfort.pro/sitemap.xml
