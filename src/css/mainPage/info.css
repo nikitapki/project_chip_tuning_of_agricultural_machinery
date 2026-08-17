@@ -114,42 +114,37 @@
 
 
 /*==================================================
-        HERO INFO ROW — главный текст + доп. блок.
-    Выровнены по той же ширине и левому краю, что и
-    сетка карточек снизу (.cards: width:1100px,
-    max-width:92%, left:50% + translateX(-50%)).
+        HERO INFO ROW — обёртка-контейнер.
+    ПРОБУЕМ: на десктопе больше не задаёт свою раскладку
+    (display: contents — без собственного бокса), .infoMain
+    и .infoSecondary позиционируются НАПРЯМУЮ каждый по
+    своему краю экрана (слева/справа от планеты), а не
+    строкой. На средних/узких экранах (см. RESPONSIVE ниже)
+    heroInfoRow возвращает себе реальный display: flex —
+    там места по бокам уже не хватает, и блоки снова
+    собираются в единую строку/колонку сверху.
 ==================================================*/
 
 .heroInfoRow {
-    position: absolute;
-
-    left: 50%;
-    top: 80px;
-
-    width: 1100px;
-    max-width: 92%;
-
-    transform: translateX(-50%);
-
-    display: flex;
-    align-items: flex-start;
-    gap: 48px;
-
-    z-index: 40;
+    display: contents;
 }
 
 
 /*==================================================
                     INFO MAIN
-    65% ширины строки — то есть 65% от ширины сетки
-    карточек (.cards), с которой выровнена вся строка.
+    ДЕСКТОП: слева от планеты, по вертикали примерно
+    на уровне её центра.
 ==================================================*/
 
 .infoMain {
-    position: relative;
+    position: absolute;
 
-    flex: 0 0 65%;
-    max-width: 65%;
+    left: 50px;
+    top: 70px;
+
+    max-width: 700px;
+
+    z-index: 40;
 }
 
 .infoMain::before {
@@ -157,11 +152,11 @@
 
     position: absolute;
 
-    left: -26px;
-    top: 16px;
+    left: 0;
+    top: -22px;
 
     width: 2px;
-    height: 110px;
+    height: 50px;
 
     background:
         linear-gradient(
@@ -174,35 +169,65 @@
 
 /*==================================================
                     INFO SECONDARY
-    Раньше — облачко (infoLeft), теперь просто текст
-    рядом с главным блоком, крупнее прежнего.
+    ДЕСКТОП: справа от планеты, тем же приёмом.
 ==================================================*/
 
 .infoSecondary {
-    flex: 1 1 auto;
+    position: absolute;
 
-    padding-top: 6px;
+    right: 100px;
+    top: 60px;
+
+    max-width: 300px;
+
+    z-index: 40;
 }
 
 
 /*==================================================
         RESPONSIVE
-    1000px — строка складывается в колонку: главный
-    текст сверху, доп. блок под ним, оба на всю ширину.
-    800px — уходят в обычный поток документа.
+    1000px — по бокам уже не хватает места: блоки
+    возвращаются в строку сверху (как было раньше),
+    heroInfoRow снова получает реальный display: flex.
+    800px — уходят в обычный поток документа (без изменений
+    относительно предыдущей версии).
 ==================================================*/
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
 
     .heroInfoRow {
+        display: flex;
+        align-items: flex-start;
+
+        position: absolute;
+
+        left: 50%;
         top: 90px;
+
+        width: 1100px;
+        max-width: 92%;
+
+        transform: translateX(-50%);
 
         flex-direction: column;
         gap: 24px;
+
+        z-index: 40;
     }
 
     .infoMain,
     .infoSecondary {
+        /* сбрасываем десктопное абсолютное позиционирование по
+           краям — внутри heroInfoRow (теперь снова flex) блоки
+           ведут себя как обычные flex-элементы */
+        position: relative;
+
+        left: auto;
+        right: auto;
+        top: auto;
+
+        transform: none;
+
         flex: 1 1 auto;
         max-width: 100%;
     }
@@ -224,6 +249,9 @@
     }
 
     .infoMain::before {
+        left: -26px;
+        top: 16px;
+
         height: 70px;
     }
 
