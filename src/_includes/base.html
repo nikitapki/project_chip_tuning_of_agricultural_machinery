@@ -8,11 +8,12 @@
 
         <title>{{ title }}</title>
 
-        <meta name="description" content="{{ description }}">
-
+        {% if description %}
+        <meta name="description" content="Чип-тюнинг спецтехники и сельхозтехники: тракторы, комбайны, самоходные опрыскиватели, грузовики. Отключение DPF, EGR, AdBlue, прошивка ЭБУ. Профессиональная настройка двигателя.">
+        {% endif %}
 
         <meta property="og:title" content="{{ title }}">
-        <meta property="og:description" content="{{ description }}">
+        <meta property="og:description" content="Прошивка ГБУ, отключение DPF/EGR/AdBlue на тракторах, комбайнах, опрыскивателях и грузовиках. Работаем с John Deere, Claas, Case, New Holland и другими брендами.">
         <meta property="og:image" content="https://compfort.pro/images/assets/og-image.jpg">
 
 
